@@ -1,0 +1,1301 @@
+﻿<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></meta>
+<title>RDF語彙公開のためのベストプラクティスのレシピ</title>
+<style type="text/css" media="all">.inlineCode {
+  background-color: #ddf;
+  font-family: "courier new";
+}
+pre.code {
+  padding: 0.5em;
+  background-color: #eef;
+  border-style: solid;
+  border-width: 1pt;
+  border-color: #999999;
+  font-family: "courier new";
+  white-space: pre;
+}
+pre.code2 {
+  padding: 0.5em;
+  background-color: #ffa;
+  border-style: solid;
+  border-width: 1pt;
+  border-color: #999999;
+  font-family: "courier new";
+  white-space: pre;
+}
+.ednote {
+  font-style: italic;
+}
+pre.clientmsg {
+  border: 1px solid #999;
+  background: white;
+  padding: 2px;
+  margin: 0;
+  background-color: #eee;
+}
+pre.servermsg {
+  border: 1px solid #999;
+  background: white;
+  padding: 2px;
+  text-align: left;
+  margin: 5px 0 0 0;
+  background-color: #eee;
+}
+p.msg {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+div.interaction {
+  border: 1px solid #999;
+  padding: 5px;
+}
+div.interaction h4 {
+  margin: 0 0 10px 0;
+}
+div.interaction p {
+  margin: 0 0 0 0;
+}
+div.test {
+  border: 1px solid #999;
+  padding: 5px;
+}
+div.test h4 {
+  margin: 0 0 10px 0;
+}
+.style1 {
+  border-width: 0px;
+}
+.style2 {
+  border-style: solid;
+  border-width: 1px;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-WG-NOTE" />
+<!--
+<link rel="stylesheet" type="text/css" href="asset?aid=0"></link>
+-->
+</head>
+<body lang="en" dir="ltr" xml:lang="en">
+<div style="background-color:#daa;margin:10px 5px;padding:1px 3px;font-size:small">
+<p>本文書<em>「RDF語彙公開のためのベストプラクティスのレシピ」</em>は、<a href="http://www.w3.org/">W3C</a> の <a href="http://www.w3.org/2006/07/SWD/">Semantic Web Deployment Working Group</a> による「<a href="http://www.w3.org/TR/2008/NOTE-swbp-vocab-pub-20080828/" hreflang="en">Best Practice Recipes for Publishing RDF Vocabularies (W3C Working Group Note 28 August 2008)</a>」の日本語訳です。</p>
+
+<p>規範的な文書は原文のみとなっています。この日本語訳は参考情報であり、正式な文書ではないことにご注意ください。また、翻訳において生じた誤りが含まれる可能性があります。</p>
+
+<p><a href="http://www.w3.org/TR/swbp-vocab-pub/" hreflang="en">原文の最新版</a> は、この日本語訳が参照した版から更新されている可能性があります。</p>
+
+<dl class="meta">
+<!--
+<dt>更新日:</dt>
+<dd class="date"><span class="modified">2016-05-09</span></dd>
+-->
+<dt>公開日:</dt>
+<dd class="date"><span class="published">2016-05-09</span></dd>
+<dt>翻訳者:</dt>
+<dd class="translator vcard"><span class="fn n"><span class="family-name">山本</span> <span class="given-name">泰智</span></span> &lt;<a href="mailto:yasunori.yamamoto@gmail.com" class="email">yasunori.yamamoto@gmail.com</a>&gt;</dd>
+</dl>
+</div>
+<!--
+**********
+* HEADER *
+**********
+-->
+<div class="head"> <a href="http://www.w3.org/"> <img src="http://www.w3.org/Icons/w3c_home" alt="W3C" height="48" width="72"> </a>
+  <h1 id="title">RDF語彙公開のためのベストプラクティスのレシピ</h1>
+  <h2 id="w3c-doctype">W3Cワーキンググループノート2008年8月28日</h2>
+  <dl>
+    <dt>このバージョン：</dt>
+    <dd> <a href="http://www.w3.org/TR/2008/NOTE-swbp-vocab-pub-20080828/">http://www.w3.org/TR/2008/NOTE-swbp-vocab-pub-20080828/</a> </dd>
+    <dt>最新バージョン：</dt>
+    <dd> <a href="http://www.w3.org/TR/swbp-vocab-pub/">http://www.w3.org/TR/swbp-vocab-pub/</a> </dd>
+    <dt>前のバージョン：</dt>
+    <dd> <a href="http://www.w3.org/TR/2008/WD-swbp-vocab-pub-20080123/">http://www.w3.org/TR/2008/WD-swbp-vocab-pub-20080123/</a> </dd>
+    <dt>編集者：</dt>
+    <dd>Diego Berrueta, Fundación CTIC</dd>
+    <dd>Jon Phipps, Cornell University Library</dd>
+    <dt>前の編集者：</dt>
+    <dd><a href="http://purl.org/net/aliman">Alistair Miles</a>, STFC
+      Rutherford Appleton Laboratory</dd>
+    <dd>Thomas Baker, Goettingen State and University Library</dd>
+    <dd>Ralph Swick, W3C</dd>
+  </dl>
+
+<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2008 <a href="http://www.w3.org/"><acronym title="ワールドワイドウェブコンソーシアム">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="マサチューセッツ工科大学">MIT</acronym></a>, <a href="http://www.ercim.org/"><acronym title="情報と数学のための欧州研究コンソーシアム">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
+
+  <hr>
+</div>
+<h2 class="notoc"> <a id="abstract" name="abstract">要旨</a> </h2>
+<p>この文書では<acronym title="リソース・ディスクリプション・フレームワーク">（RDF</acronym>スキーマや<acronym title="ウェブ・オントロジー言語">OWL</acronym>で）ウェブ上の語彙やオントロジを公開するためのベストプラクティスのレシピを説明します。語彙デザイナーが自分のニーズに最も適したレシピを選択することができるよう、各レシピの特徴は詳細に記載されています。各レシピでは、一般的な原則とApache HTTPサーバーで使用するための設定例（他の環境にも適合させることができます）を紹介しています。各レシピに関連する設定例は意図的に単純にしていますが、レシピはすべて現在仕様化されているウェブアーキテクチャと一致するように設計されています。</p>
+
+<!--
+********
+* SOTD *
+********
+-->
+<h2 id="Status">本文書のステータス</h2>
+<p> <em>このセクションでは、公開時点での本文書のステータスを説明します。他の文書が本文書を上書きしている可能性があります。現行のW3Cの刊行物および技術報告の最新の改訂版のリストは<a href="http://www.w3.org/TR/">W3C technical reports index</a>（http://www.w3.org/TR/）で見つけることができます。</em> </p>
+<p>本文書は、<a href="http://www.w3.org/2001/sw/BestPractices/">Semantic Web Best Practices and Deployment
+  Working Group</a> (SWBPD)における以前の作業の基づき、<a href="http://www.w3.org/2006/07/SWD/">Semantic Web
+  Deployment Working Group</a> (SWD)により作成されたものです。本作業は<a href="http://www.w3.org/2001/sw/Activity.html">W3C Semantic Web Activity</a>の一部です。</p>
+<p>本文書はいくつかのベストプラクティスを記述するノートです。公開時点で、本文書に対するSemantic Web Deployment Working Groupにおける今後の作業予定はありません。このバージョンは、以前のバージョンで行われたいくつかのコメントに対応しています。しかし、<a href="https://www.w3.org/TR/swbp-vocab-pub/#q_values">コンテントネゴシエーションで「q」値がつけられたもの</a>に関する<a href="http://www.w3.org/2006/07/SWD/track/issues/58">既知の問題</a>を解決しようとしたものではなく、また、いくつかの語彙に有用な技術として知られているRDFa[RDFa]とGRDDL [GRDDL]を用いた語彙公開のためのレシピを提供することもしません。</p>
+<p>コメントを歓迎します。件名にテキスト「comment」を含めて<a href="mailto:public-swd-wg@w3.org">public-swd-wg@w3.org</a>宛に送付してください。このアドレスで受信したすべてのメッセージは<a href="http://lists.w3.org/Archives/Public/public-swd-wg/">公開アーカイブ</a>にて閲覧可能です。ワーキンググループは、適宜コメントに応答することもあります。私たちは、Semantic Web Interest Groupのメーリングリストで、このノートの解釈を議論するためのコミュニティを奨励します<a href="mailto:semantic-web@w3.org"></a>（<a href="http://lists.w3.org/Archives/Public/semantic-web/">公開アーカイブ</a>）。</p>
+
+<p>本文書は、<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">2004年2月5日W3C特許方針</a>の下で活動するグループにより作成されました。W3Cは、グループの成果物に関連して作成された<a href="http://www.w3.org/2004/01/pp-impl/39408/status" rel="disclosure">あらゆる特許の開示の公開リスト</a>を維持します。そのページには、特許開示にあたっての指示も含まれています。<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">エッセンシャルクレーム</a>を含むと信じる特許について具体的な知識を持つ個人は、<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">W3C特許方針のセクション6</a>に従ってそれを公開しなくてはなりません。</p>
+<p>ワーキンググループ・ノートとしての公開は、W3C会員による承認を意味するものではありません。本文書はドラフトであり、いつでも他の文書によって更新、置換または廃止される可能性があります。進行中の作業を除き、本文書の引用は不適切です。</p>
+
+<!--
+************
+* CONTENTS *
+************
+-->
+<h2 id="Contents">目次</h2>
+<ul>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#secintro">はじめに</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#choosing">レシピの選択</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1">レシピ1．「ハッシュ名前空間」の最小設定</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2">レシピ2．「スラッシュ名前空間」の最小設定</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3．「ハッシュ名前空間」の拡張設定</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4．単一のHTML文書を使用した「スラッシュ名前空間」の拡張設定</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5">レシピ5．複数のHTML文書を使用した「スラッシュ名前空間」の拡張設定</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe6">レシピ6．複数のHTML文書とクエリサービスを使用した「スラッシュ名前空間」の拡張設定</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#requirements">必要条件</a> </li>
+</ul>
+<ul>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#ack">謝辞</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#references">参考文献</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#purls">付録A：命名のためにPURLを使用した語彙</a>
+    <ul>
+      <li>PURL適用レシピ： <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1a">レシピ1a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2a">レシピ2a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3a">レシピ3a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4a">レシピ4a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5a">レシピ5a</a></li>
+    </ul>
+  </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#naming">付録B：URI名前空間</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#redirect">付録C：303-リダイレクトサービスに基づく語彙のURI</a> </li>
+  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#apache">付録D：Apacheの設定</a> </li>
+</ul>
+<hr>
+<!--
+****************
+* INTRODUCTION *
+****************
+-->
+<h2 id="secintro">はじめに</h2>
+<p>本文書はRDFSとOWLにおける語彙のクリエイターやメンテナのために書かれています。なお、本文書においては語彙とオントロジーは同義として使います。本文書では、最も一般的なケースがカバーされるように設計された設定例を与えて、ウェブ上で語彙を公開するための手順を説明します。RDFSとOWLについて詳しくは次の文書を参照してください[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-RDFS">RDFS</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-RDFPrimer">RDFPrimer</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-OWLGuide">OWLGuide</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-OWLFeatures">OWLFeatures</a>]。</p>
+<p>この「クックブック」は、ウェブサーバー上に語彙を公開すること、およびセマンティックウェブアプリケーションをサポートするウェブサーバーを設定するために必要な手順を記述した「レシピ」を提供します。「<a href="https://www.w3.org/TR/swbp-vocab-pub/#choosing">レシピを選択する</a>」では状況や要件に応じて最適なレシピを選択するための助言を提供します。レシピを選択したら、記述されている例を特定の語彙に適応させながら、手順に従って設定できます。</p>
+<p>レシピはすべて、ApacheのHTTPサーバー[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-APACHE20">APACHE20</a>]向けの設定例となっています。Apacheの設定に慣れていない方のために、付録<a href="https://www.w3.org/TR/swbp-vocab-pub/#apache">Apacheの設定</a>では、例の中で使われる設定の仕組みについて、問題が生じた際の対応に関する基本的な情報とともに簡単に紹介しています。</p>
+<p>設定例はApache HTTPサーバー向けですが、一般的な原理は、非Apacheの環境にも適用できます。ワーキンググループでは、非Apacheサーバー向けの情報を追加してくれることを望みます。W3Cは、これら収集するために、<a href="http://esw.w3.org/topic/VocabPublishingRecipes">Apache以外のバインディングと提言</a>というWikiページを提供しています。</p>
+<p>本文書は主に語彙をウェブ上で最良な形で公開する方法についての助言を求めている、既存語彙のクリエイターとメンテナのために意図されています。そして本文書は、新しい語彙やその構成用語を命名するための適切なURI名前空間を選択することについての詳細かつ網羅的な助言を提供するものでは<strong>ありません</strong> 。しかし、語彙のURI名前空間を選択することに関する考慮を含む、基本的なURIの名前空間に関する技術情報は、<a href="https://www.w3.org/TR/swbp-vocab-pub/#naming">URI名前空間</a>セクションに書かれています。</p>
+<p>レシピはすべて、「ワールド・ワイド・ウェブのアーキテクチャ[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-AWWW04">AWWW04</a>]」で現在規定されているワールド・ワイド・ウェブのアーキテクチャ原則に一致するよう作られています。このことを確認するために、本文書の最後に一連の<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>が記載されています。これらの最小要件は、セマンティックウェブアプリケーションの基本的な要件を明確にすることを意図しています。すべてのレシピが適切に実装されれば、この最小要件を満たすはずです。さらに、一連の<a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張要件を</a>も記載しています。拡張要件は、ある語彙に関する資料をウェブページ上でHTMLを用いて提供するなど、セマンティックウェブアプリケーション開発者の更なる実用的なニーズを明確にすることを意図しています。レシピ3、4、5、6が適切に実装されれば、この拡張された要件を満たすはずです。</p>
+<p>拡張要件を満たすために、レシピ3、4、5、6ではサーバーが<a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>を行うよう設定します。このプロセスについては、<a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>セクションにて簡単に説明しています。そこでは併せて様々なクライアントの動作の違いに対処するためのオプションについても説明しています。</p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#purls">付録A</a>では、<span class="inlineCode">http://purl.org/</span>[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-PURL">PURL</a>]のようなPURLサービスを用いた解決を行う「永続的なURL（PURL）」を利用して解決される語彙向けに、本文中で説明がなされている6つのレシピの適用方法を説明しています。</p>
+<p>簡単のためレシピの論拠は記載していません。より詳しく知りたい場合は次の文書を参照してください。
+1. 「ワールド・ワイド・ウェブのアーキテクチャ」[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-AWWW04">AWWW04</a>]中の<a href="http://www.w3.org/TR/2004/REC-webarch-20041215/#id-resources">URI /リソースの関係</a>、
+2. HTTPのURI[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-RFC3986">RFC3986</a>] [<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-RFC2616">RFC2616</a>]における<a href="http://gbiv.com/protocols/uri/rfc/rfc3986.html#fragment">フラグメント識別子</a>、
+3. W3Cインタレストグループノート：「セマンティックウェブのためのクールなURI」[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-COOLURI">COOLURI</a>]、
+4.  W3Cテクニカルアーキテクチャグループ決議のうちの、HTTP参照解決に関する範囲（別名「httpRange-14」）[HTTPRANGE14]。<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14"></a> </p>
+<p>最後に、このクックブックで説明するレシピは、セマンティックウェブアプリケーションで使用するための語彙やオントロジーを公開するための唯一の方法ではないことにご留意ください。<a href="http://www.w3.org/TR/xhtml-rdfa-primer/">RDFa</a>や<a href="http://www.w3.org/TR/grddl-primer/">GRDDL</a>は近い将来、人と機械の双方で使われる文書を公開するための効果的な方法を提供するでしょう。しかし、RDFaのとGRDDLに関する有益な議論をすることは本文書の範囲外です。</p>
+<hr>
+<h2 id="choosing">レシピを選択します</h2>
+<p>レシピの選択は、語彙URIで提供したいコンテントタイプと、語彙で定義されるクラスやプロパティのURIにより決まります。URIの名前空間については<a href="https://www.w3.org/TR/swbp-vocab-pub/#naming">付録B</a>で詳細を記載していますが、本文書全体を通して、「語彙URI」は、「語彙の名前空間URI」と解釈することとします。</p>
+<h3 id="recipe_table">選択早見表</h3>
+<table cellpadding="5" cellspacing="0" class="style1" style="width:100%">
+  <tr>
+    <td class="style2"><strong>構成</strong> </td>
+    <td valign="top" class="style2"><strong>ハッシュ名前空間</strong> </td>
+    <td valign="top" class="style2"><strong>スラッシュ名前空間</strong> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="style2">機械処理可能なRDF</td>
+    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1">レシピ1</a> </td>
+    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2">レシピ2</a> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="style2">機械処理可能なRDF（PURLを使用）</td>
+    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1a">レシピ1a</a> </td>
+    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2a">レシピ2a</a> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="style2">RDFと一つのHTML文書</td>
+    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a> </td>
+    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="style2">RDFと一つのHTML文書（PURLを使用）</td>
+    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3a">レシピ3a</a> </td>
+    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4a">レシピ4a</a> </td>
+  </tr>
+  <tr>
+    <td valign="top" class="style2">RDFと複数のHTML文書</td>
+    <td valign="top" class="style2"> </td>
+    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5">レシピ5</a>または<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe6">レシピ6</a></td>
+  </tr>
+  <tr>
+    <td valign="top" class="style2">RDFと複数のHTML文書（PURLを使用）</td>
+    <td valign="top" class="style2"> </td>
+    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5a">レシピ5a</a> </td>
+  </tr>
+</table>
+<p>  </p>
+<h3 id="simplechoices">簡単な設定</h3>
+<p>最も簡単なレシピは、語彙URIに対して機械処理可能（RDF）コンテンツだけを提供するようサーバーを構成するものです。</p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>を使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1">レシピ1</a>を参照してください。ただしPURLを使用している場合には<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1a">レシピ1a</a>を参照してください。</p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2">レシピ2</a>を参照してください。ただしPURLを使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2a">レシピ2a</a>を参照してください。</p>
+<h3 id="extendedchoices">拡張設定</h3>
+<p>拡張レシピでは、機械処理可能（RDF）と人可読（HTML）の双方のコンテンツを提供するようサーバーを設定します（<a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>セクションも参照ください）。これらのレシピは別のコンテントタイプも提供できるよう簡単に拡張できます。</p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>を参照してください。ただしPURLを使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3a">レシピ3a</a>を参照してください。</p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい、そして、HTMLコンテンツが単一の文書に含まれている場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>を参照してください。ただしPURLを使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4a">レシピ4a</a>を参照してください。</p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい、そしてHTMLコンテンツについては、語彙URIにおいて目次や索引などの概要とともに、各クラスやプロパティはそれぞれハイパーリンクでリンクした個々の文書として提供したい場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5">レシピ5</a>を参照してください。ただしPURLを使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5a">レシピ5a</a>を参照してください。</p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい、そしてHTMLコンテンツについては個々のクラスやプロパティに対してそれぞれハイパーリンクでリンクした文書として提供したい、さらにRDFについては各クラスやプロパティの記述の一部を提供したい場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe6">レシピ6</a>を参照してください。</p>
+<hr>
+<h2 id="negotiation">コンテントネゴシエーション</h2>
+<p>HTTPクライアントが、あるURIを参照解決しようとするとき、返されるコンテンツについて希望のタイプを指定できます。これはリクエストメッセージのヘッダに「Accept:」フィールドを含めることで実現でき、その値として希望するMIMEタイプを与えます。例えば、RDF/XMLコンテンツを望むHTTPクライアントは各リクエストのヘッダに次のフィールドを含めることでしょう。</p>
+<pre class="code2">Accept: application/rdf+xml</pre>
+<p>同様に、ウェブブラウザなど、HTMLコンテンツを望むHTTPクライアントは、各リクエストのヘッダに次のようなフィールドを含めることでしょう。</p>
+<pre class="code2">Accept: application/xhtml+xml,text/html</pre>
+<p>HTTPクライアントは、リクエストヘッダ中に、処理可能なコンテントタイプを「Accept:」フィールドで陽に指定すべきということは、ベストプラクティスとして受け入れられています。</p>
+<p>サーバーはリクエストを受け取る際に、クライアントの希望を最大限満たすよう、最も適切な応答を対応可能なものの中から選ぶために「Accept:」フィールドの値を利用できます。このプロセスは<a href="http://www.w3.org/TR/webarch/#def-coneg">コンテントネゴシエーション</a>[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-AWWW04">AWWW04</a>] の一例です。</p>
+<p>レシピ<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1">1</a>および<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2">2</a>は、サーバーがコンテントネゴシエーションを<strong>しない</strong>設定です。RDF/XMLが唯一の表現タイプであり、クライアントから送られる「Accept:」ヘッダの値に左右されません。</p>
+<p id="q_values">レシピ<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">3</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">4</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5">5</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe6">6</a>はクライアントから送信されたヘッダフィールド「Acdept:」の値に基づいて、コンテントネゴシエーションを行うようにサーバーを設定<strong>します</strong>。しかし、提案された設定例は、コンテントネゴシエーションに関するHTTPの仕様のすべてに対応するものではありません。事実、コンテントネゴシエーションにおけるクライアントの希望順にある程度は対応するものの、「q」指標を扱うことはできません。したがって、「Accept:」ヘッダーにq値を使用するHTTPクライアントは、予期しない結果を得るかもしれません。</p>
+<p class="editorial"><strong>編集者注</strong> ：できるだけレシピの容易性を維持しながら、HTTP仕様に完全準拠する代替案をワーキンググループは検討しています。これはワーキンググループのイシュープロセスにおける<a href="http://www.w3.org/2006/07/SWD/track/issues/58">ISSUE-58</a>として記録されています。この問題に関するコメントは歓迎です。「Comment: ISSUE-58」から始まる件名で<a href="mailto:public-swd-wg@w3.org?subject=Comment: ISSUE-58">SWDワーキンググループ</a>宛てにEメールをお寄せください。</p>
+<h3 id="default">デフォルトの動作</h3>
+<p>サーバーがコンテントネゴシエーションを行うよう設定されている場合、「デフォルトの動作」を定めなければなりません。すなわち、次のような場合における応答を決定できなくてはなりません。</p>
+<ol>
+  <li>クライアントが「Accept:」フィールドをメッセージヘッダに含めていない。すなわち、クライアントは所望のタイプを指定していない。</li>
+  <li>「Accept:」フィールドの値がが使用可能なコンテントタイプのいずれにも一致しない。つまり、クライアントはRDF/XMLやHTML以外を要求している。</li>
+</ol>
+<p>レシピ3、4、5、6では、RDF/XMLがデフォルトの応答として設定されています。これは、RDFコンテンツに対する適切な「Accept:」ヘッダフィールド値を要求しないセマンティックウェブアプリケーションへの影響を最小化するために選ばれたものです。もしもHTMLがデフォルトの応答タイプとして設定されていると、RDFコンテンツを受け取るように作られている既存のセマンティックウェブアプリケーションがHTML文書を受け取ることになり、不具合を起こすということを心に留めておいてください。</p>
+<h3 id="accept_header">「Accept:」ヘッダの提供</h3>
+<p>RDFコンテンツを処理することが期待されるセマンティックウェブアプリケーションを開発したり維持したりしていて、<em>現在</em>この「Accept:」ヘッダフィールドをHTTPリクエストに含めていない場合は、早々に提供する計画を立てるべきです。</p>
+<p>「Accept:」フィールドにおける適切な値は次の通りです。</p>
+<pre class="code2">Accept: application/rdf+xml,application/xml;q=0.5</pre>
+<p>HTTP 1.1プロトコル[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-RFC2616">RFC2616</a>]の<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">セクション14</a>で規定されているとおり、この例中の「q=0.5」は、相対的な品質値を示します。何も指定されていない場合のデフォルトの「q」値は1.0です。この例は次のように読むことができます。すなわち、「application/rdf+xml」にデフォルトの相対品質値である1.0を与えてこれを希望しますが、その半分（50%）だけのq値で「application/xml」も受け入れます。</p>
+<h3 id="defaultIE">Internet Explorer用の特別なデフォルト動作</h3>
+<p>他のほとんどのブラウザと異なり、Internet Explorerは、すべてを受け取ることを示す<span class="inlineCode">*/*</span>を「q」値無しで「Accept:」ヘッダに含めて送信します。これとは対照的に、FirefoxとSafariは双方とも<span class="inlineCode">*/*;q=0.5</span>とし、Operaは<span class="inlineCode">*/*;q=0.1</span>とします。これらを考慮したデフォルトの振る舞いを確立するためには、「User-agent:」ヘッダフィールドの値に基づく書き換え条件を設定に挿入する必要があります。</p>
+<pre class="code2">RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*</pre>
+<p>さらに、IEの「クリック可能な」URIをそのままにしたいなら、​​デフォルト応答としてHTMLを設定する必要があります。</p>
+<h3 id="server_test">サーバー設定のテスト</h3>
+<p>いくつかのレシピについては、コンテントネゴシエーションの結果を効果的にテストすることがかなり複雑になり得ます。単一のURIにおけるコンテントネゴシエーションの結果の試験を容易にするために、<a href="http://idi.fundacionctic.org/vapour">コンテントネゴシエーション試験サービス</a>が提供されています。</p>
+<p>このサービスでは、サーバーから提供されたURIを要求し、レシピの仕様に対するサーバーの応答をテストするために設計されたテストスイートを実行し、そして各テストの成否レポートが、調査結果の詳細な説明とともに表示されます。</p>
+<p><a href="http://sourceforge.net/projects/vapour/">テストサービスのためのソースコード</a>も利用可能です。</p>
+<hr>
+<!--
+************
+* RECIPE 1 *
+************
+-->
+<h2 id="recipe1">レシピ1．「ハッシュ名前空間」の最小設定</h2>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1example">設定例</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1testing">設定のテスト</a></p>
+<p>このレシピは、<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>を使う語彙のための<strong>最も簡単な設定</strong>例になります。語彙URIから機械処理可能な（RDF）コンテンツを提供するようサーバーを設定して<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>を満たします。以下の図のようなやりとりになります：</p>
+<div class="interaction">
+  <h4 id="recipe1deref">語彙URIの参照解決</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-min.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（RDF/XMLとしてエンコードされた、語彙についてのRDF記述を返す。）</p>
+</div>
+<h3 id="recipe1example">設定例</h3>
+<p>語彙...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example1">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example1</a></pre>
+<p>クラス定義...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example1#ClassA">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example1#ClassA</a>
+<a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example1#ClassB">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example1#ClassB</a></pre>
+<p>プロパティ...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example1#propA">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example1#propA</a>
+<a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example1#propB">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example1#propB</a></pre>
+<h4 id="recipe1s1">ステップ1</h4>
+<p>RDF/XML形式にした語彙<em><strong>全体</strong></em>を含む<span class="inlineCode">example1.rdf</span>というファイルを作ります。すなわち当該語彙で定義されている<em><strong>すべて</strong></em>のリソースは、このファイルに記述されています。</p>
+<h4 id="recipe1s2">ステップ2</h4>
+<p>ファイル<span class="inlineCode">example1.rdf</span>をサーバー上のディレクトリ<span class="inlineCode">/apachedocumentroot/examples/</span>にコピーします。</p>
+<h4 id="recipe1s3">ステップ3</h4>
+<p>下記のディレクティブをサーバー上のディレクトリ<span class="inlineCode">
+/apachedocumentroot/examples/</span>にある、ファイル<span class="inlineCode">.htaccess</span>に追記します。</p>
+<pre class="code2"># Directive to ensure *.rdf files served as appropriate content type,
+# if not present in main apache config
+AddType application/rdf+xml .rdf
+
+# Rewrite engine setup
+RewriteEngine On
+RewriteBase /examples
+
+# Rewrite rule to serve RDF/XML content from the vocabulary URI
+RewriteRule ^example1$ example1.rdf</pre>
+<p>（注：<span class="inlineCode">.htaccess</span>ファイルが無い場合は作成します。）</p>
+<h3 id="recipe1testing">設定のテスト</h3>
+<p>この設定がうまく機能している場合には次のようなやり取りがなされるはずです。</p>
+<div class="test">
+  <h4 id="recipe1testderef">語彙URIの参照解決</h4>
+  <p>テストメッセージ（語彙URIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example1 HTTP/1.1
+Host: example.com</pre>
+  <p>レスポンスヘッダには次のフィールドが含まれているはずです：</p>
+  <pre class="servermsg">HTTP/1.x 200 OK
+Content-Type: application/rdf+xml</pre>
+</div>
+<hr>
+<!--
+************
+* RECIPE 2 *
+************
+-->
+<h2 id="recipe2">レシピ2．「スラッシュ名前空間」の最小設定</h2>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2example">設定例</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2testing">構成のテスト</a></p>
+<p>このレシピは、<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使用する語彙のための<strong>最も簡単な設定</strong>例になります。語彙URIから機械処理可能な（RDF）コンテンツを提供し、クラスとプロパティのURIから語彙URIにクライアントをリダイレクトするようにサーバー設定することで<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>満たします。以下の図のようなやりとりになります：</p>
+<div class="interaction">
+  <h4 id="recipe2deref">語彙URIの参照解決</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-min.png" alt="例2クライアントとサーバーの対話。"> </p>
+  <p>（RDF/XMLとしてエンコードされた、語彙のRDF記述を返す。）</p>
+</div>
+<div class="interaction">
+  <h4 id="recipe2propderef">クラスまたはプロパティのURIの参照解決</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-min.png" alt="例2クライアントとサーバーの対話。"> </p>
+  <p>（語彙URIにクライアントをリダイレクトします。）</p>
+</div>
+<h3 id="recipe2example">設定例</h3>
+<p>語彙...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example2/">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example2/</a></pre>
+<p>クラス定義...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example2/ClassA">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example2/ClassA</a>
+<a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example2/ClassB">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example2/ClassB</a></pre>
+<p>プロパティ...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example2/propA">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example2/propA</a>
+<a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example2/propB">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example2/propB</a></pre>
+<h4 id="recipe2s1">ステップ1</h4>
+<p>RDF/XML形式にした語彙<em><strong>全体</strong></em>を含む<span class="inlineCode">example2.rdf</span>というファイルを作ります。すなわち、語彙で定義されている<em><strong>全ての</strong></em>リソースがこのファイルに記述されています。</p>
+<h4 id="recipe2s2">ステップ2</h4>
+<p>サーバー上の<span class="inlineCode">/apachedocumentroot/examples/</span>ディレクトリにファイル<span class="inlineCode">example2.rdf</span>をコピーします。</p>
+<h4 id="recipe2s3">ステップ3</h4>
+<p>サーバー上のディレクトリ<span class="inlineCode">/apachedocumentroot/examples/</span>にあるファイル<span class="inlineCode">.htaccess</span>に次のディレクティブを追記します。</p>
+<pre class="code2"># Turn off MultiViews
+Options -MultiViews
+
+# Directive to ensure *.rdf files served as appropriate content type,
+# if not present in main apache config
+AddType application/rdf+xml .rdf
+
+# Rewrite engine setup
+RewriteEngine On
+RewriteBase /examples
+
+# Rewrite rule to redirect 303 from any class or prop URI
+RewriteRule ^example2/.+ example2/ [R=303]
+
+# Rewrite rule to serve RDF/XML content from the vocabulary URI
+RewriteRule ^example2/$ example2.rdf</pre>
+<p>（注：<span class="inlineCode">.htaccess</span>ファイルが無い場合は作成します。）</p>
+<p>ディレクトリオプションの「MultiViews」は、この設定が機能するために無効にする必要があります。さらに、ディレクトリ<span class="inlineCode">/apachedocumentroot/examples/example2/</span>は実際にはサーバーのファイルシステム上に存在<em><strong>してはなりません</strong></em>。</p>
+<h3 id="recipe2testing">設定のテスト</h3>
+<p>この設定がうまく機能している場合には次のようなやり取りがなされるはずです。</p>
+<div class="test">
+  <h4 id="recipe2testderef">語彙URIの参照解決</h4>
+  <p>テストメッセージ（語彙URIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example2/ HTTP/1.1
+Host: example.com</pre>
+  <p>レスポンスヘッダには次のフィールドが含まれているはずです：</p>
+  <pre class="servermsg">HTTP/1.x 200 OK
+Content-Type: application/rdf+xml</pre>
+</div>
+<div class="test">
+  <h4 id="recipe2testpropderef">クラスまたはプロパティのURIの参照解決</h4>
+  <p>テストメッセージ（語彙URIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example2/ClassA HTTP/1.1
+Host: example.com</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値として語彙URIと、次のようなフィールドが含まれているはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example2/</pre>
+</div>
+<hr>
+<!--
+************
+* RECIPE 3 *
+************
+-->
+<h2 id="recipe3">レシピ3．「ハッシュ名前空間」の拡張設定</h2>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3example">設定例</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3testing">設定のテスト</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3notes">注意事項</a></p>
+<p>このレシピは、<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>例になります。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかをリクエストに応じて提供するようにサーバーを設定し、<a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張要件</a>を満たします。以下の図のようなやりとりになります：</p>
+<div class="interaction">
+  <h4 id="recipe3htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（語彙に対する現在のHTML文書にクライアントをリダイレクトします。）</p>
+</div>
+<div class="interaction">
+  <h4 id="recipe3rdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（語彙に対する現在のRDF記述にクライアントをリダイレクトします。）</p>
+</div>
+<h3 id="recipe3example">設定例</h3>
+<p>語彙...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example3">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example3</a></pre>
+<p>クラス定義...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example3#ClassA">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example3#ClassA</a>
+<a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example3#ClassB">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example3#ClassB</a></pre>
+<p>プロパティ...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example3#propA">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example3#propA</a>
+<a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example3#propB">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example3#propB</a></pre>
+<h4 id="recipe3s1">ステップ1</h4>
+<p>2005年10月31日時点の（または現在の日付であれば何でも）、RDF/XML形式にした語彙<em><strong>全体</strong></em>を含む<span class="inlineCode">2005-10-31.rdf</span>というファイルを作成します。すなわち当該語彙で定義されている<em><strong>すべて</strong></em>のリソースは、このファイルに記述されており、このファイルは当該語彙の「スナップショット」や「バージョン」を表しています。</p>
+<h4 id="recipe3s2">ステップ2</h4>
+<p>2005年10月31日時点の（または現在の日付であれば何でも）語彙で定義されたすべてのクラスとプロパティに関するHTMLコンテンツ文書が含まれる、<span class="inlineCode">2005-10-31.html</span>というファイルを作成します。この文書には、各クラスやプロパティについて説明するセクションを含められますが、その際には、各セクション冒頭に、これらのクラスやプロパティのフラグメント識別子と同一であるHTMLアンカーを埋め込みます。</p>
+<h4 id="recipe3s3">ステップ3</h4>
+<p><span class="inlineCode">2005-10-31.rdf</span>と<span class="inlineCode">2005-10-31.html</span>をサーバー上のディレクトリ<span class="inlineCode">/apachedocumentroot/examples/example3-content/</span>にコピーします。</p>
+<h4 id="recipe3s4">ステップ4</h4>
+<p><span class="inlineCode">/apachedocumentroot/exmples/</span>ディレクトリにある<span class="inlineCode">.htaccess</span>ファイルに次のディレクティブを追加します。</p>
+<pre class="code2"># Turn off MultiViews
+Options -MultiViews
+
+# Directive to ensure *.rdf files served as appropriate content type,
+# if not present in main apache config
+AddType application/rdf+xml .rdf
+
+# Rewrite engine setup
+RewriteEngine On
+RewriteBase /examples
+
+# Rewrite rule to serve HTML content from the vocabulary URI if requested
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example3$ example3-content/2005-10-31.html [R=303]
+
+# Rewrite rule to serve RDF/XML content from the vocabulary URI if requested
+RewriteCond %{HTTP_ACCEPT} application/rdf\+xml
+RewriteRule ^example3$ example3-content/2005-10-31.rdf [R=303]
+
+# Choose the default response
+# ---------------------------
+
+# Rewrite rule to serve the RDF/XML content from the vocabulary URI by default
+RewriteRule ^example3$ example3-content/2005-10-31.rdf [R=303]
+
+# Rewrite rule to serve HTML content from the vocabulary URI by default (disabled)
+# (To enable this option, uncomment the rewrite rule below, and comment
+# out the rewrite rule directly above)
+# RewriteRule ^example3$ example3-content/2005-10-31.html [R=303]</pre>
+<p>（注：<span class="inlineCode">.htaccess</span>ファイルが無い場合は作成します。）</p>
+<h3 id="recipe3testing">設定のテスト</h3>
+<p>この設定がうまく機能している場合には次のようなやり取りがなされるはずです：</p>
+<div class="test">
+  <h4 id="recipe3testhtmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
+  <p>テストメッセージ（語彙URIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example3 HTTP/1.1
+Host: example.com
+Accept: text/html</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値としてHTMLコンテンツの所在を含む次のようなフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example3-content/2005-10-31.html</pre>
+</div>
+<div class="test">
+  <h4 id="recipe3testrdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
+  <p>テストメッセージ（語彙URIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example3 HTTP/1.1
+Host: example.com
+Accept: application/rdf+xml</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値として現在のRDFコンテンツの所在を含む次のようなフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example3-content/2005-10-31.rdf</pre>
+</div>
+<div class="test">
+  <h4 id="recipe3defaultderef">デフォルトの場合における語彙URIの参照解決</h4>
+  <p>テストメッセージ（語彙URIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example3 HTTP/1.1
+Host: example.com</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値として現在のRDFコンテンツの所在を含む次のフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example3-content/2005-10-31.rdf</pre>
+</div>
+<h3 id="recipe3notes">注意点</h3>
+<p>この例ではファイル名を語彙バージョンの変更日としています。また、日付の代わりにバージョン番号（例えば「1.01」）を使うこともできますし、さらには語彙のバージョンを区別し、来歴を保持するためのどんな命名法を使用しても問題ありません。</p>
+<p>また、<a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>も参照してください。</p>
+<hr>
+<!--
+************
+* RECIPE 4 *
+************
+-->
+<h2 id="recipe4">レシピ4．単一のHTML文書を使用した「スラッシュ名前空間」の拡張設定</h2>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4example">設定例</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4testing">設定のテスト</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4notes">注意事項</a></p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかをリクエストに応じて提供するようにサーバーを設定し、さらにリクエストに応じてクラスまたはプロパティURIから適切なコンテンツを取得できるようクライアントをリダイレクトすることで<a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張要件</a>を満たします。HTML文書は、単一のファイルとして提供されています。以下の図のようなやりとりになります：</p>
+<div class="interaction">
+  <h4 id="recipe4htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>のように、語彙に対する現在のHTML文書にクライアントをリダイレクトします。）</p>
+</div>
+<div class="interaction">
+  <h4 id="recipe4rdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>のように、語彙に対する現在のRDF記述にクライアントをリダイレクトします。）</p>
+</div>
+<div class="interaction">
+  <h4 id="recipe4prophtmlderef">クラスまたはプロパティのURIを参照解決し、HTMLコンテンツを要求</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-html.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（クラスやプロパティに関連する語彙についての現在のHTML文書のフラグメントにクライアントをリダイレクトします。）</p>
+</div>
+<div class="interaction">
+  <h4 id="recipe4proprdfderef">クラスまたはプロパティのURIを参照解決し、RDFコンテンツを要求</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（語彙に対する現在のRDF記述にクライアントをリダイレクトします。）</p>
+</div>
+<h3 id="recipe4example">設定例</h3>
+<p>語彙...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example4/">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example4/</a></pre>
+<p>クラス定義...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example4/ClassA">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example4/ClassA</a>
+<a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example4/ClassB">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example4/ClassB</a></pre>
+<p>プロパティ...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example4/propA">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example4/propA</a>
+<a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example4/propB">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example4/propB</a></pre>
+<h4 id="recipe4s1">ステップ1</h4>
+<p>2005年10月31日時点の（または現在の日付であれば何でも）、RDF/XML形式にした語彙<em><strong>全体</strong></em>を含む<span class="inlineCode">2005-10-31.rdf</span>というファイルを作成します。すなわち語彙で定義されている<em><strong>すべて</strong></em>のリソースは、このファイルに記述されており、このファイルは語彙の「スナップショット」や「バージョン」を表しています。</p>
+<h4 id="recipe4s2">ステップ2</h4>
+<p>2005年10月31日時点の（または現在の日付が何であれ）語彙で定義されたすべてのクラスとプロパティに関するHTMLコンテンツ文書が含まれる<span class="inlineCode">2005-10-31.html</span>というファイルを作成します。この文書には、各クラスやプロパティについて説明するセクションを含められますが、その際には、各セクション冒頭に、これらのクラスやプロパティのフラグメント識別子と同一であるHTMLアンカーを埋め込みます。</p>
+<h4 id="recipe4s3">ステップ3</h4>
+<p><span class="inlineCode">2005-10-31.rdf</span>と<span class="inlineCode">2005-10-31.html</span>をサーバー上のディレクトリ<span class="inlineCode">/apachedocumentroot/examples/example4-content/</span>にコピーします。</p>
+<h4 id="recipe4s4">ステップ4</h4>
+<p><span class="inlineCode">/apachedocumentroot/examples/</span>ディレクトリにある<span class="inlineCode">.htaccess</span>ファイルに次のディレクティブを追加します。</p>
+<pre class="code2"># Turn off MultiViews
+Options -MultiViews
+
+# Directive to ensure *.rdf files served as appropriate content type,
+# if not present in main apache config
+AddType application/rdf+xml .rdf
+
+# Rewrite engine setup
+RewriteEngine On
+RewriteBase /examples
+
+# Rewrite rule to serve HTML content from the vocabulary URI if requested
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example4/$ example4-content/2005-10-31.html [R=303]
+
+# Rewrite rule to serve directed HTML content from class/prop URIs
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example4/(.+) example4-content/2005-10-31.html#$1 [R=303,NE]
+
+# Rewrite rule to serve RDF/XML content if requested
+RewriteCond %{HTTP_ACCEPT} application/rdf\+xml
+RewriteRule ^example4/ example4-content/2005-10-31.rdf [R=303]
+
+# Choose the default response
+# ---------------------------
+
+# Rewrite rule to serve RDF/XML content by default
+RewriteRule ^example4/ example4-content/2005-10-31.rdf [R=303]
+
+# Rewrite rules to serve HTML content by default (disabled)
+# (To enable this option, uncomment the two rewrite rules below,
+# and comment out the rewrite rule directly above)
+# RewriteRule ^example4/$ example4-content/2005-10-31.html [R=303]
+# RewriteRule ^example4/(.+) example4-content/2005-10-31.html#$1 [R=303,NE]
+ </pre>
+<p>（注：<span class="inlineCode">.htaccess</span>ファイルが無い場合は作成します。）</p>
+<p>この設定が機能するためには、ディレクトリオプションの「MultiViews」を無効にする必要があり、さらに、<span class="inlineCode">/apachedocumentroot/examples/example4/</span>というディレクトリは、実際にはサーバーのファイルシステム上に存在<em><strong>してはなりません</strong></em>。</p>
+<h3 id="recipe4testing">設定のテスト</h3>
+<p>この設定がうまく機能している場合には次のようなやり取りがなされるはずです：</p>
+<div class="test">
+  <h4 id="recipe4testhtmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
+  <p>テストメッセージ（語彙URIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example4/ HTTP/1.1
+Host: example.com
+Accept: text/html</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値としてHTMLコンテンツの所在を含む次のようなフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example4-content/2005-10-31.html</pre>
+</div>
+<div class="test">
+  <h4 id="recipe4testrdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
+  <p>テストメッセージ（語彙URIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example4/ HTTP/1.1
+Host: example.com
+Accept: application/rdf+xml</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値としてRDFコンテンツの所在を含む次のフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example4-content/2005-10-31.rdf</pre>
+</div>
+<div class="test">
+  <h4 id="recipe4testdefaultderef">デフォルトの場合における語彙URIの参照解決</h4>
+  <p>テストメッセージ（語彙URIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example4/ HTTP/1.1
+Host: example.com</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値としてRDFコンテンツの所在を含む次のフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example4-content/2005-10-31.rdf</pre>
+</div>
+<div class="test">
+  <h4 id="recipe4testprophtmlderef">クラスまたはプロパティのURIを参照解決し、HTMLコンテンツを要求</h4>
+  <p>テストメッセージ（あなたのクラスまたはプロパティURIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example4/ClassA HTTP/1.1
+Host: example.com
+Accept: text/html</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値としてHTMLコンテンツの所在（と適切なフラグメント識別子）を含む次のようなフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example4-content/2005-10-31.html#ClassA</pre>
+</div>
+<div class="test">
+  <h4 id="recipe4testproprdfderef">クラスまたはプロパティのURIを参照解決し、RDFコンテンツを要求</h4>
+  <p>テストメッセージ（あなたのクラスまたはプロパティURIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example4/ClassA HTTP/1.1
+Host: example.com
+Accept: application/rdf+xml</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値としてRDFコンテンツの所在を含む次のフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example4-content/2005-10-31.rdf</pre>
+</div>
+<div class="test">
+  <h4 id="recipe4testpropdefaultderef">デフォルトの場合におけるクラスまたはプロパティのURIの参照解決</h4>
+  <p>テストメッセージ（あなたのクラスまたはプロパティURIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example4/ClassA HTTP/1.1
+Host: example.com</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値としてRDFコンテンツの所在を含む次のフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example4-content/2005-10-31.rdf</pre>
+</div>
+<h3 id="recipe4notes">注意点</h3>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>と同様に、この例では語彙バージョンの変更日をファイル名にしています。また、日付の代わりにバージョン番号（例えば「1.01」）を使うこともできますし、さらには語彙のバージョンを区別し、来歴を保持するためのどんな命名法を使用しても問題ありません。</p>
+<p>また、<a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>も参照してください。</p>
+<hr>
+<!--
+************
+* RECIPE 5 *
+************
+-->
+<h2 id="recipe5">レシピ5．複数のHTML文書を使用した「スラッシュ名前空間」の拡張設定</h2>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5example">設定例</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5testing">設定のテスト</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5notes">注意事項</a></p>
+<p>このレシピでは<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。要求されたものに応じて、機械可読（RDF）と人間可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。以下の図のようなやりとりになります：</p>
+<div class="interaction">
+  <h4 id="recipe5htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（HTMLで書かれた、語彙についての現在の概要文書にクライアントをリダイレクトします。）</p>
+</div>
+<div class="interaction">
+  <h4 id="recipe5rdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p>(<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>と<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>のように、語彙についての現在のRDF記述にクライアントをリダイレクトします。)</p>
+</div>
+<div class="interaction">
+  <h4 id="recipe5prophtmlderef">クラスまたはプロパティのURIを参照解決し、HTMLコンテンツを要求</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（クラスまたはプロパティの現在のHTML文書にクライアントをリダイレクトします。）</p>
+</div>
+<div class="interaction">
+  <h4 id="recipe5proprdfderef">クラスまたはプロパティのURIを参照解決し、RDFコンテンツを要求</h4>
+  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>のように、語彙についての現在のRDF記述にクライアントをリダイレクトします。）</p>
+</div>
+<h3 id="recipe5example">設定例</h3>
+<p>語彙...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example5/">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example5/</a></pre>
+<p>クラス定義...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example5/ClassA">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example5/ClassA</a>
+<a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example5/ClassB">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example5/ClassB</a></pre>
+<p>プロパティ...</p>
+<pre><a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example5/propA">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example5/propA</a>
+<a href="http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example5/propB">http://www.w3.org/2006/07/SWD/recipes/examples-20080421/example5/propB</a></pre>
+<h4 id="recipe5s1">ステップ1</h4>
+<p>2005年10月31日時点の（または現在の日付であれば何でも）、RDF/XML形式にした語彙<em><strong>全体</strong></em>を含む<span class="inlineCode">2005-10-31.rdf</span>というファイルを作成します。すなわち語彙で定義されている<em><strong>すべて</strong></em>のリソースは、このファイルに記述されており、このファイルは語彙の「スナップショット」や「バージョン」を表します。</p>
+<h4 id="recipe5s2">ステップ2</h4>
+<p><span class="inlineCode">2005-10-31.rdf</span>をサーバー上のディレクトリ<span class="inlineCode">/apachedocumentroot/examples/example5-content/</span>にコピーします。</p>
+<h4 id="recipe5s3">ステップ3</h4>
+<p>2005年10月31日時点（または現在の日付であれば何でも）の、対応するローカル名と一致する名を持つ、クラスまたはプロパティに関連度の高いHTML文書が含まれる以下のファイルを作ります。すなわち、<span class="inlineCode">ClassA.html</span> <span class="inlineCode">ClassB.html</span> <span class="inlineCode">propA.html</span> <span class="inlineCode">propB.html</span>になります。すべてのクラスやプロパティのドキュメントへのハイパーリンクを含む、語彙自体に関するHTML文書が含まれる<span class="inlineCode">index.html</span>ファイルを作成します。</p>
+<h4 id="recipe5s4">ステップ4</h4>
+<p><span class="inlineCode">ClassA.html</span> <span class="inlineCode">ClassB.html</span> <span class="inlineCode">propA.html</span> <span class="inlineCode">propB.html</span>および<span class="inlineCode">index.html</span>を、サーバー上の<span class="inlineCode">/apachedocumentroot/examples/example5-content/2005-10-31-docs/</span>ディレクトリにコピーします。</p>
+<h4 id="recipe5s5">ステップ5</h4>
+<p><span class="inlineCode">/apachedocumentroot/examples/</span>ディレクトリにある<span class="inlineCode">.htaccess</span>ファイルに次のディレクティブを追加します。</p>
+<pre class="code2"># Turn off MultiViews
+Options -MultiViews
+
+# Directive to ensure *.rdf files served as appropriate content type,
+# if not present in main apache config
+AddType application/rdf+xml .rdf
+
+# Rewrite engine setup
+RewriteEngine On
+RewriteBase /examples
+
+# Rewrite rule 1: to serve HTML content from the namespace URI if requested
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example5/$ example5-content/2005-10-31-docs/index.html [R=303]
+
+# Rewrite rule 2: to serve HTML content from class or prop URIs if requested
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example5/(.+) example5-content/2005-10-31-docs/$1.html [R=303]
+
+# Rewrite rule 3: to serve RDF content is requested
+RewriteCond %{HTTP_ACCEPT} application/rdf\+xml
+RewriteRule ^example5/ example5-content/2005-10-31.rdf [R=303]
+
+# Choose the default response
+# ---------------------------
+
+# Rewrite rule 4: to serve RDF/XML content by default
+RewriteRule ^example5/ example5-content/2005-10-31.rdf [R=303]
+
+# Rewrite rules to serve HTML content by default (disabled)
+# (To enable this option, uncomment the two rewrite rules below,
+# and comment out the rewrite rule directly above)
+# RewriteRule ^example5/$ example5-content/2005-10-31-docs/index.html [R=303]
+# RewriteRule ^example5/(.+) example5-content/2005-10-31-docs/$1.html [R=303]</pre>
+<p>（注：<span class="inlineCode">.htaccess</span>ファイルが無い場合は作成します。）</p>
+<h3 id="recipe5testing">設定のテスト</h3>
+<p>この設定がうまく機能している場合には次のようなやり取りがなされるはずです：</p>
+<div class="test">
+  <h4 id="recipe5testhtmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
+  <p>テストメッセージ（語彙URIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example5/ HTTP/1.1
+Host: example.com
+Accept: text/html</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値として概要の書かれたHTMLコンテンツの所在を含む次のようなフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example5-content/2005-10-31-docs/index.html</pre>
+</div>
+<div class="test">
+  <h4 id="recipe5testrdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
+  <p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>に同じ。</p>
+</div>
+<div class="test">
+  <h4 id="recipe5testdefaultderef">デフォルトの場合における語彙URIの参照解決</h4>
+  <p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>に同じ。</p>
+</div>
+<div class="test">
+  <h4 id="recipe5testprophtmlderef">クラスまたはプロパティのURIを参照解決し、HTMLコンテンツを要求</h4>
+  <p>テストメッセージ（あなたのクラスまたはプロパティURIの正しいパスとホストに置き換えてください）​​：</p>
+  <pre class="clientmsg">GET /examples/example5/ClassA HTTP/1.1
+Host: example.com
+Accept: text/html</pre>
+  <p>レスポンスヘッダには「Location」フィールドの値として、与えられたクラスやプロパティについてのHTMLコンテンツの所在を含む次のようなフィールドがあるはずです：</p>
+  <pre class="servermsg">HTTP/1.x 303 See Other
+Location: http://example.com/examples/example5-content/2005-10-31-docs/ClassA.html</pre>
+</div>
+<div class="test">
+  <h4 id="recipe5testproprdfderef">クラスまたはプロパティのURIを参照解決し、RDFコンテンツを要求</h4>
+  <p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>に同じ。</p>
+</div>
+<div class="test">
+  <h4 id="recipe5testpropdefaultderef">デフォルトの場合におけるクラスまたはプロパティのURIの参照解決</h4>
+  <p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>に同じ。</p>
+</div>
+<h3 id="recipe5notes">注意点</h3>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>も参照してください。</p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>と同様に 、この例では語彙バージョンの変更日をファイル名にしています。また、日付の代わりにバージョン番号（例えば「1.01」）を使うこともできますし、さらには語彙のバージョンを区別し、来歴を保持するためのどんな命名法を使用しても問題ありません。</p>
+<p>なお、ディレクトリ<span class="inlineCode">/apachedocumentroot/examples/example5-content/2005-10-31-docs/</span>においてIndexesとMultiViewsオプションが有効の場合は、書き換え規則1と2を下記のような単一の規則で置き換えることが出来ます。</p>
+<pre class="code2">RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example5/(.*) example5-content/2005-10-31-docs/$1 [R=303]</pre>
+<p>この設定は、Protege向けのOWLDocプラグインによって生成された文書を扱うのに特に適しています。</p>
+<hr>
+<!--
+****************
+* REQUIREMENTS *
+****************
+-->
+<h2 id="recipe6">レシピ6．複数のHTML文書とクエリサービスを使用した「スラッシュ名前空間」の拡張設定</h2>
+<p>このレシピでは、<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>の一例を示します。要求されたものに応じて、機械処理可能（RDF）と人可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。また、RDFコンテンツについては、クライアントが語彙に関するRDFでの記述の一部を適宜取得できるクエリサービスにより利用可能となるものです。</p>
+<p>このレシピは、<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5">レシピ5</a>のほぼすべての機能を共有しているものの、RDFのコンテンツを取得するクエリサービスまたはスクリプトを使用すると、最も複雑な拡張構成とならざるを得ず、直接使用可能なレシピを提供するのに最大の課題となります。このため、ただ番号に従うようなレシピではなく、推奨される実装パターンのセットとして提示することにしました。また、他のレシピで採用しているのと同様の詳細さでは特定の実装パターンを記述していません。したがって、このレシピを実施するためにはいくつかのウェブ・プログラミングの知識が必要になります。</p>
+<h3 id="pattern1">パターン1：アプリケーション・ロジックの使用</h3>
+<p>このパターンは、ウェブサーバーに配備されている幾つかのアプリケーション・ロジックに依存しています。このロジックは、単純に要求をサードパーティのウェブサーバーにリダイレクト（またはプロキシとして機能）するシンレイヤー（薄い層、以下のDBpediaの例を参照）か、RDFデータソースをロードし、クエリを処理するためにHTTPリクエストをAPI呼び出しに変換するシックレイヤー（厚い層）になります。</p>
+<p>サーバー側のロジックを導入するにあたり、2つの選択肢があります。</p>
+<ol>
+  <li>サーバー側のスクリプト<br>一般的なサーバーサイドスクリプト言語（PHPやPython、Perl、Ruby）はRDF APIを持ち、RDFトリプルストアとバインドできます。ですから、RDFファイルまたはRDFトリプルストアを照会し、該当部分を返す単純なスクリプトを記述するために使用することができます。
+    <ul>
+      <li>長所：デプロイがしやすい（多くのウェブホスティングサーバーは、これらの言語のいずれかをサポートしています）</li>
+      <li>短所：ウェブマスターは恐らくアドホックなスクリプトを記述することになります</li>
+    </ul>
+  </li>
+  <li>Javaサーブレット（または同等のもの）
+    <ul>
+      <li>長所：Javaの、RDFおよびSPARQL、そしてRDFトリプルストアに対するサポートが良い</li>
+      <li>短所：ヘビー級ソリューション、デプロイが困難（サーブレットコンテナが必要）</li>
+    </ul>
+  </li>
+</ol>
+<p> <strong>実装例</strong>（選択肢1と2の双方に有効）</p>
+<p>DBpediaのサーバーは、コンテンツプロバイダーとして、次の例で使用されます。</p>
+<pre class="code2">RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml
+RewriteRule ^example6/(.+) http://dbpedia.org/page/$1 [R=303]
+
+RewriteCond %{HTTP_ACCEPT} application/rdf\+xml
+RewriteRule ^example6/(.+) http://dbpedia.org/data/$1 [R=303]
+
+RewriteRule ^example6/(.+) http://dbpedia.org/data/$1 [R=303]</pre>
+<p>これは「薄い」実装層の一例で、書き換えルールは簡単です：</p>
+<ol>
+  <li>HTMLデータの要求は、DBpediaのサーブレットが出力するHTML版のURLに転送されます。</li>
+  <li>RDFデータの要求は、RDFデータのURLに転送されます。なお、RDFを返すことはデフォルトの動作であるため、「Acccept:」ヘッダの無い場合も同様です。</li>
+</ol>
+<p>HTTPコンテントネゴシエーションをスクラッチで正しく実装することがアプリケーション・ロジックを使用してレシピ6を実装する最も難しい部分になります。ほとんどのウェブスクリプト言語（PHPやPython等）およびフレームワークは、HTTPヘッダ値へのアクセス方法がある一方で、「Accept:」ヘッダに対する適切な戻り値の型を選択することは自明とはほど遠いものです。「Accept:」ヘッダーには、ワイルドカードとq値が含まれる場合があるので、正規表現や単純な文字列比較関数では十分ではないのです。なお、<a href="http://esw.w3.org/topic/ContentNegotiation">さまざまなプログラミング言語用のコンテントネゴシエーションライブラリ</a>に対するリンクを含むwikiページがあります。ワーキンググループは、コンテントネゴシエーションをサポートする、追加のライブラリやフレームワークの貢献を求めています。</p>
+<h3 id="pattern2">パターン2：Apacheを使用したSPARQLエンドポイントへのリダイレクト</h3>
+<p>このパターンはアプリケーションロジックを記述する必要はありませんが、その代わりに、要求はApacheのmod_rewriteのを使用して、HTTPリダイレクトされます。この方法は、既存のSPARQLエンドポイントをラップするのに特に適しています。多くのSPARQLエンドポイントがHTTPバインディングを持つということを利用します。</p>
+<ul>
+  <li>長所：軽量、全くプログラミングを必要としません</li>
+  <li>短所：公開対象とする語彙向けのSPARQLエンドポイントが使用可能でなければなりません</li>
+</ul>
+<p> <strong>実装例</strong> ：</p>
+<pre class="code2">RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml
+RewriteRule ^example6/(.+) http://dbpedia.org/$1 [R=303]
+
+RewriteCond %{HTTP_ACCEPT} application/rdf\+xml
+RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://dbpedia.org/$1&gt; [R=303]
+
+RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://dbpedia.org/$1&gt; [R=303]
+</pre>
+<p>クライアントがHTMLコンテンツを要求すると外部のウェブサーバーに転送されますが、RDFの要求は異なる方法で処理されます。<a href="http://dbpedia.org/page/property/birthplace">http://example.org/example6/property/birthplace</a>のようなURIに対する要求は、 DBpediaのSPARQLエンドポイントに対して<span class="inlineCode">DESCRIBE</span> <span class="inlineCode">&lt;http://dbpedia.org/property/birthplace&gt;</span>文を実行した結果にリダイレクトされます。結果はリソースを記述するRDFグラフです。この例の場合は、人々と生誕地をリンクするプロパティになります。</p>
+	       <h3 id="case_studies">ケーススタディ</h3>
+<ul>
+  <li>Joshua Taubererは米国国勢調査からの膨大なRDFデータセットを公開したと<a href="http://simile.mit.edu/mail/ReadMsg?listName=Linking Open Data&amp;msgId=19957">発表しました</a>。SPARQLエンドポイントが利用可能で、URL書き換え方法を利用してURIは参照可能です。（例：<a href="http://www.rdfabout.com/rdf/usgov/geo/us">http://www.rdfabout.com/rdf/usgov/geo/us</a>）</li>
+  <li>D2R Serverは関係データベースをラップし、それに対するSPARQLとリンクトデータのインタフェースを提供します。後者については、リソースに対するHTMLとRDF記述の双方を提供するための303リダイレクトを伴うコンテントネゴシエーションの例になります。一方、Pubbyは、既存のSPARQLエンドポイントにリンクトデータのインタフェースを提供します。詳細は「セマンティックウェブのためのクールなURI」[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-COOLURI">COOLURI</a>]の<a href="http://www.w3.org/TR/cooluris/#examples">5章</a>にあります。</li>
+</ul>
+<hr>
+<h2 id="requirements">必要条件</h2>
+<p>このセクションでは、HTTPのURI（すなわち<span class="inlineCode">http:</span>から始まるURI空間）で表される語彙、クラス、およびプロパティのHTTPの挙動に関してセマンティックウェブアプリケーションとアプリケーション開発者の要件と期待を明確にしようとします。これは、上記のレシピで指定された構成例を確認できるベンチマークとして意図されています。</p>
+<h3 id="minimumrequirements">最小要件</h3>
+<h4 id="recipe6r1">M1．HTTP URIで示される語彙、クラス、またはプロパティの「正式な」RDF記述は、その語彙、クラス、またはプロパティのURIを参照解決することで取得できます。</h4>
+<p>HTTPクライアントは、語彙、クラスまたはプロパティのURIに対してHTTP GETリクエストを実行することによって、当該語彙、クラス、またはプロパティの「正式な」RDF記述を取得することができます。RDFの記述は、RDFコンテンツに対して登録されたMIMEタイプのHTTPレスポンスとして返されます。</p>
+<p>これは、コンテントネゴシエーションがURIに対して実装されている場合のデフォルトの動作です。すなわち「Accept:」ヘッダフィールドの<em>無い</em>HTTP GETリクエストに対して、対象リソースの「正式な」RDF記述を構成するRDFトリプル群のシリアライゼーション（application/rdf+xmlなど）を返します。</p>
+<p>注：RDFプロパティやクラスのURIを参照解決しようとしたさいに、それらプロパティやクラスだけでなく、RDF記述を返すことは合理的と言えます。</p>
+<h4 id="recipe6r2">M2．RDFS/OWL語彙やクラス、プロパティを表すHTTP URIの振る舞い​​は、示されたリソースの性質を解釈するさいに矛盾を生じません。</h4>
+<p>現在、ウェブのアーキテクチャにおいてアプリケーションは、HTTP URIで示されるリソースの性質について次の事項に基づき推論できます：</p>
+<p>（ⅰ）URIを参照解決したときに得られるHTTPレスポンスコード（TAG問題「httpRange-14」についての解決を参照してください[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE14]</a>）</p>
+<p>そして、</p>
+<p>（ii）URIがフラグメント識別子を含む場合、利用可能な表現のコンテントタイプ[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-AWWW04">AWWW04</a>]。</p>
+<p>これらの制約が与えられたときには、RDFS/OWLの語彙やクラス、プロパティを表す各HTTP URIへのHTTP要求に対して、アプリケーションが矛盾を含む結論を導き出すことのないような応答が得られます。</p>
+<h3 id="extendedrequirements">拡張要件</h3>
+<p>これらの要件は<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>に対する拡張要件です。</p>
+<h4 id="recipe6e1">E1．HTTP URIで示されるRDF語彙やクラス、プロパティに関する「人可読な」文書は、それらのURIを参照解決することで得られます。</h4>
+<p>ウェブブラウザなどのHTTPクライアントは、RDFS/OWL語彙やクラス、プロパティのURIに対してHTTP GETリクエストすることで、それに関する「人可読な」文書を取得できます。そのさい、「Accept:」ヘッダに所望のコンテントタイプを指定します。</p>
+<h4 id="recipe6e2">E2．アプリケーションは、語彙の「バージョン」を区別できます。</h4>
+<p>時とともに語彙は変化します。なぜならプロパティやクラスが追加されたり、それらの記述が編集されたりするからです。このため、アプリケーションは語彙について一連の「スナップショット」を区別する方法が必要です。より正確には、「バージョン管理されるもの」はプロパティの<em>説明</em>です。つまり、当該プロパティに関する一連のRDFトリプル群であり、対応するURIが不変のプロパティそのものではありません。</p>
+<p>一連の記述を区別するため、ファイル名やパス名にバージョン番号を示す文字列や日付文字列を使うことが一般的に行われています。例えば、<span class="inlineCode">1.01.rdf</span>や<span class="inlineCode">2005-10-31.rdf</span>、<span class="inlineCode">http://dublincore.org/2008/01/14/dcelements.rdf#title</span>です。ただ、現時点では、日付やバージョン番号の文字列をこのように使う一般的に受け入れられた慣例はありません。</p>
+<hr>
+<!--
+********************
+* ACKNOWLEDGEMENTS *
+********************
+-->
+<h2 id="ack">謝辞</h2>
+<p>ここで扱う例の数々は、現在デプロイされているセマンティックウェブの語彙、特に、Dublin Core Metadata Terms、Friend of a Friend Ontology、そしてSKOS Core Vocabularyにおけるグッドプラクティスの要素を抽出した試みです。これらのプラクティスの開発に貢献したす​​べての人に深く感謝します。</p>
+<hr>
+<!--
+**************
+* REFERENCES *
+**************
+-->
+<h2 id="references">参考文献</h2>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/references.bib">BibTeX</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/references.xml">BibTeXML</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/references.rdf">RDF</a> </p>
+<dl>
+  <dt> <a name="ref-APACHE20" id="ref-APACHE20">APACHE20</a> </dt>
+  <dd><em> <a href="http://httpd.apache.org/docs/2.0/"> <cite>Apache HTTP Server Version 2.0 Documentation</cite> </a> </em>, The Apache Software Foundation.<br>
+    Available at <a href="http://httpd.apache.org/docs/2.0/">http://httpd.apache.org/docs/2.0/</a></dd>
+  <dt> <a name="ref-AWWW04" id="ref-AWWW04">AWWW04</a> </dt>
+  <dd><em> <a href="http://www.w3.org/TR/2004/REC-webarch-20041215/"> <cite>Architecture of the World Wide Web, Volume One</cite> </a> </em>, Ian Jacobs and Norman Walsh, World Wide Web Consortium, W3C Recommendation, December
+    2004.<br>
+    Available at <a href="http://www.w3.org/TR/2004/REC-webarch-20041215/">http://www.w3.org/TR/2004/REC-webarch-20041215/</a></dd>
+  <dt> <a name="ref-COOLURI" id="ref-COOLURI">COOLURI</a> </dt>
+  <dd><em> <a href="http://www.w3.org/TR/cooluris/"> <cite>Cool URIs for the Semantic Web</cite> </a> </em>, Leo Sauermann, DFKI GmbH; Richard Cyganiak, Freie Universität
+	Berlin. W3C Interest Group Note March 2008<br>
+    Available at <a href="http://www.w3.org/TR/cooluris/">http://www.w3.org/TR/cooluris/</a></dd>
+  <dt> <a name="ref-FOAF" id="ref-FOAF">FOAF</a> </dt>
+  <dd><em> <a href="http://xmlns.com/foaf/0.1/"> <cite>FOAF Vocabulary Specification</cite> </a> </em>, Dan Brickley and Libby Miller.<br>
+    Available at <a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></dd>
+  <dt> <a name="ref-GRDDL" id="GRDDL">GRDDL</a> </dt>
+  <dd><em> <a href="http://www.w3.org/TR/grddl/"> <cite>Gleaning Resource Descriptions from Dialects of Languages (GRDDL)</cite> </a> </em>, Dan Connolly, World Wide Web Consortium, W3C Recommendation September 
+    2007<br>
+    Available at <a href="http://www.w3.org/TR/grddl/">http://www.w3.org/TR/grddl/</a></dd>
+  <dt> <a name="ref-HTTPRANGE14" id="ref-HTTPRANGE14">HTTPRANGE14</a> </dt>
+  <dd><em> <a href="http://www.w3.org/2001/tag/doc/httpRange-14/2007-10-04/HttpRange-14.html"> <cite>Dereferencing HTTP URIs</cite> </a> </em>, Rhys Lewis, Volantis Systems Ltd.<br>
+    Available at <a href="http://www.w3.org/2001/tag/doc/httpRange-14/2007-10-04/HttpRange-14.html">http://www.w3.org/2001/tag/doc/httpRange-14/2007-10-04/HttpRange-14.html</a></dd>
+  <dd style="padding-top:3px"><a href="http://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html">W3C Technical Architecture Group's resolution</a> on the
+    range of HTTP dereferencing (aka "<a href="http://www.w3.org/2001/tag/issues.html#httpRange-14">httpRange-14</a>"). <br>
+    Available at <a href="http://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html">http://lists.w3.org/Archives/Public/www-tag/2005Jun/0039.html</a> </dd>
+  <dt> <a name="ref-OWLFeatures" id="ref-OWLFeatures">OWLFeatures</a> </dt>
+  <dd><em> <a href="http://www.w3.org/TR/2004/REC-owl-features-20040210/"> <cite>OWL Web Ontology Language Overview</cite> </a> </em>, Deborah L. McGuinness and Frank van Harmelen, World Wide Web Consortium, W3C
+    Recommendation, February 2004.<br>
+    Available at <a href="http://www.w3.org/TR/2004/REC-owl-features-20040210/">http://www.w3.org/TR/2004/REC-owl-features-20040210/</a></dd>
+  <dt> <a name="ref-OWLGuide" id="ref-OWLGuide">OWLGuide</a> </dt>
+  <dd><em> <a href="http://www.w3.org/TR/2004/REC-owl-guide-20040210/"> <cite>OWL Web Ontology Language Guide</cite> </a> </em>, Michael K. Smith, Chris Welty and Deborah L. McGuinness, World Wide Web Consortium,
+    W3C Recommendation, February 2004.<br>
+    Available at <a href="http://www.w3.org/TR/2004/REC-owl-guide-20040210/">http://www.w3.org/TR/2004/REC-owl-guide-20040210/</a></dd>
+  <dt> <a name="ref-PURL" id="ref-PURL">PURL</a> </dt>
+  <dd><em> <a href="http://purl.oclc.org/docs/inet96.html"> <cite>Introduction to Persistent Uniform Resource Locators</cite> </a> </em>, Keith Shafer, Stuart Weibel, Erik Jul and Jon Fausey, 6565 Frantz Road, Dublin, Ohio
+    43017-3395: OCLC Online Computer Library Center, Inc., 1996.<br>
+    Available at <a href="http://purl.oclc.org/docs/inet96.html">http://purl.oclc.org/docs/inet96.html</a></dd>
+  <dt> <a name="ref-RDFa" id="ref-RDFa">RDFa</a> </dt>
+  <dd><em> <a href="http://www.w3.org/TR/2008/CR-rdfa-syntax-20080620/"> <cite>RDFa in XHTML: Syntax and Processing</cite> </a> </em>, B. Adida, M. Birbeck, S. McCarron, S. Pemberton, World Wide Web Consortium, W3C Candidate Recommendation June 2008<br>
+    Available at <a href="http://www.w3.org/TR/2008/CR-rdfa-syntax-20080620/">http://www.w3.org/TR/2008/CR-rdfa-syntax-20080620/</a></dd>
+  <dt> <a name="ref-RDFPrimer" id="ref-RDFPrimer">RDFPrimer</a> </dt>
+  <dd><em> <a href="http://www.w3.org/TR/2004/REC-rdf-primer-20040210/"> <cite>RDF Primer</cite> </a> </em>, Frank Manola and Eric Miller, World Wide Web Consortium, W3C Recommendation, February
+    2004.<br>
+    Available at <a href="http://www.w3.org/TR/2004/REC-rdf-primer-20040210/">http://www.w3.org/TR/2004/REC-rdf-primer-20040210/</a></dd>
+  <dt> <a name="ref-RDFS" id="ref-RDFS">RDFS</a> </dt>
+  <dd><em> <a href="http://www.w3.org/TR/2004/REC-rdf-schema-20040210/"> <cite>RDF Vocabulary Description Language 1.0: RDF Schema</cite> </a> </em>, Dan Brickley and R. V. Guha, World Wide Web Consortium, W3C Recommendation, February
+    2004.<br>
+    Available at <a href="http://www.w3.org/TR/2004/REC-rdf-schema-20040210/">http://www.w3.org/TR/2004/REC-rdf-schema-20040210/</a></dd>
+  <dt> <a name="ref-RFC2616" id="ref-RFC2616">RFC2616</a> </dt>
+  <dd><em> <a href="http://www.ietf.org/rfc/rfc2616.txt"> <cite>Hypertext Transfer Protocol - HTTP/1.1</cite> </a> </em>, R. Fielding, J. Gettys, J. Mogul, H. Frystyk, L. Masinter, P. Leach and T.
+    Berners-Lee, Internet Engineering Task Force, RFC (2616), June 1999.<br>
+    Available at <a href="http://www.ietf.org/rfc/rfc2616.txt">http://www.ietf.org/rfc/rfc2616.txt</a></dd>
+  <dt> <a name="ref-RFC3986" id="ref-RFC3986">RFC3986</a> </dt>
+  <dd><em> <a href="http://www.ietf.org/rfc/rfc3986.txt"> <cite>Uniform Resource Identifier (URI): Generic Syntax</cite> </a> </em>, T. Berners-Lee, R. Fielding and L. Masinter, Internet Engineering Task Force, RFC
+    (3986), January 2005.<br>
+    Available at <a href="http://www.ietf.org/rfc/rfc3986.txt">http://www.ietf.org/rfc/rfc3986.txt</a></dd>
+  <dt> <a name="ref-SKOS" id="ref-SKOS">SKOS</a> </dt>
+  <dd><em> <a href="http://www.w3.org/TR/2005/WD-swbp-skos-core-spec-20051102/"> <cite>SKOS Core Vocabulary Specification</cite> </a> </em>, Alistair Miles and Dan Brickley, World Wide Web Consortium, W3C Working Draft,
+    November 2005.<br>
+    Available at <a href="http://www.w3.org/TR/2005/WD-swbp-skos-core-spec-20051102/">http://www.w3.org/TR/2005/WD-swbp-skos-core-spec-20051102/</a></dd>
+  <dt> <a name="ref-XMLNames" id="ref-XMLNames">XMLNAMES</a> </dt>
+  <dd><em> <a href="http://www.w3.org/TR/1999/REC-xml-names-19990114/"> <cite>Namespaces in XML</cite> </a> </em>, Tim Bray, Dave Hollander and Andrew Layman, World Wide Web Consortium, W3C
+    Recommendation, January 1999.<br>
+    Available at <a href="http://www.w3.org/TR/1999/REC-xml-names-19990114/">http://www.w3.org/TR/1999/REC-xml-names-19990114/</a></dd>
+</dl>
+<hr>
+<!--
+*********
+* PURLS *
+*********
+-->
+<h2 id="purls">付録A：命名用にPURLを使う語彙</h2>
+<p>PURL（Persistent URL）は<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span> URI空間のURIです。PURLは、PURL解決サービスによってサポートされており、これによりPURLドメインの登録所有者はPURLに対するHTTP要求を任意のリソースURLにリダイレクトさせることができます。PURLの登録所有者は、各PURLのリダイレクトURLを指定することは出来ますが、PURLサーバーを設定することは出来ません。</p>
+<p>PURLの中央サーバーが1990年代に開発されたときには、PURLに対する要求に対するHTTPサーバーの標準的な応答は302コード（「一時的な移動」）を返すことでした。その後ウェブアーキテクチャは進化し、W3Cの技術アーキテクチャグループ（TAG）は、RDF<em>クラスとプロパティ名</em>に対するリダイレクトのために、応答コードとして303（「他を参照」）を返すべきであると決めました。
+詳細はhttpRange-14[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE14</a>]についてのTAG決議を参照してください。</p>
+<p>PURLサーバーが302応答コードを使用しているため、303応答コードを返すような設定が出来ず、<span class="inlineCode">http://purl.org</span>スラッシュ名前空間サーバーを持つ既存語彙は現在のTAG勧告に厳密には準拠していません。これらの例は、以下のレシピで取り上げています。</p>
+<p>注：本ワーキングドラフトの執筆時点である2008年1月において、PURLサービスのアップデートが進行中です。我々は、このアップデートがhttpRange-14と303リダイレクトについてのTAG判断に対応すると予想しています。
+（<a href="http://www.oclc.org/news/releases/200669.htm">http://www.oclc.org/news/releases/200669.htm</a>を参照）。</p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1a">レシピ1a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2a">レシピ2a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3a">レシピ3a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4a">レシピ4a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5a">レシピ5a</a></p>
+<hr>
+<!--
+*************
+* RECIPE 1A *
+*************
+-->
+<h2 id="recipe1a">レシピ1a．PURL「ハッシュ名前空間」の最小設定</h2>
+<p>このレシピは<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URIスペース内の<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>をもつ語彙に対する<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>を満たす設定例です。機械処理可能（RDF）コンテンツのみが当該名前空間URIで提供されています。</p>
+<p>語彙...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a">http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a</a></pre>
+<p>クラス定義...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a#ClassA">http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a#ClassA</a>
+<a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a#ClassB">http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a#ClassB</a></pre>
+<p>プロパティ...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a#propA">http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a#propA</a>
+<a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a#propB">http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a#propB</a></pre>
+<h3 id="recipe1as1">ステップ1</h3>
+<p>RDF/XML形式にした語彙<em><strong>全体</strong></em>を含む<span class="inlineCode">example1a.rdf</span>というファイルを作成します。すなわち語彙で定義される<em><strong>すべて</strong></em>のリソースは、このファイルに記述されています。</p>
+<h3 id="recipe1as2">ステップ2</h3>
+<p><span class="inlineCode">example1a.rdf</span>をサーバー上のディレクトリ<span class="inlineCode">/apachedocumentroot/examples/</span>にコピーします。サーバーはコンテンツを提供するもので、この例では<span class="inlineCode">www.w3.org</span>になります。</p>
+<h3 id="recipe1as3">ステップ3</h3>
+<p>次のPURLを設定します。</p>
+<pre>PURL: http://purl.org/NET/SWD/recipes/examples-A/example1a
+URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example1a.rdf </pre>
+<h3 id="recipe1anotes">注意点</h3>
+<p>サーバーが既にコンテントタイプ<span class="inlineCode">application/rdf+xml</span>として<span class="inlineCode">.rdf</span>拡張子を持つファイルを処理するように設定されているなら何もする必要はありません。そうではない場合は、次のディレクティブを追加する必要があります。</p>
+<pre class="code2">AddType application/rdf+xml .rdf</pre>
+<p>Apacheのメインの設定ファイルか、あるいはそれへのアクセスが認められていない場合は、サーバー上のディレクトリ<span class="inlineCode">
+/apachedocumentroot/examples/</span>を対象としたディレクトリ単位の設定ファイルである(<span class="inlineCode">.htaccess</span>)に追加します。</p>
+<hr>
+<!--
+*************
+* RECIPE 2A *
+*************
+-->
+<h2 id="recipe2a">レシピ2a．PURL「スラッシュ名前空間」の最小設定</h2>
+<p>このレシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間にある<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙に対する<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>を満たす設定例になります。機械処理可能（RDF）コンテンツのみが当該名前空間URIで提供されています。</p>
+<p>注：本ワーキングドラフトの執筆時点で、この例は、httpRange-14[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE-14</a>]についてのTAG決議に厳密には従いません。なぜなら、purl.orgサーバーは、303リダイレクトコードではなく、302を使用しているためです。</p>
+<p>語彙...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/">http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/</a></pre>
+<p>クラス定義...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/ClassA">http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/ClassA</a>
+<a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/ClassB">http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/ClassB</a></pre>
+<p>プロパティ...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/propA">http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/propA</a>
+<a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/propB">http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/propB</a></pre>
+<h3 id="recipe2as1">ステップ1</h3>
+<p>RDF/XML形式にした語彙<em><strong>全体</strong></em>を含む<span class="inlineCode">example2a.rdf</span>というファイルを生成します。すなわち語彙で定義される<em><strong>すべて</strong></em>のリソースは、このファイルに記述されています。</p>
+<h3 id="recipe2as2">ステップ2</h3>
+<p><span class="inlineCode">example2a.rdf</span>をサーバー上のディレクトリ<span class="inlineCode">/apachedocumentroot/examples/</span>にコピーします。サーバーはコンテンツを提供するもので、この例では<span class="inlineCode">www.w3.org</span>になります。</p>
+<h3 id="recipe2as3">ステップ3</h3>
+<p>以下のような部分​​リダイレクトPURLを設定します。</p>
+<pre>PR PURL: http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/
+Root URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example2a/ </pre>
+<h3 id="recipe2as4">ステップ4</h3>
+<p>サーバー上の<span class="inlineCode">/apachedocumentroot/examples/</span>ディレクトリにある<span class="inlineCode">.htaccess</span>ファイルに次のディレクティブを追加します。</p>
+<pre class="code2"># Turn off MultiViews
+Options -MultiViews
+
+# Directive to ensure *.rdf files served as appropriate content type,
+# if not present in main apache config
+AddType application/rdf+xml .rdf
+
+# Rewrite engine setup
+RewriteEngine On
+RewriteBase /examples
+
+# Rewrite rule to serve RDF/XML content from all partially redirected URIs
+RewriteRule ^example2a/ example2a.rdf</pre>
+<p>（注：<span class="inlineCode">.htaccess</span>ファイルが無い場合は作成します。）</p>
+<h3 id="recipe2anotes">注意点</h3>
+<p>上記のレシピにおいて、単一の書き換えルールは<em>内部</em>リダイレクトです。これは参照解決時に行われる<em>外部</em>（つまり、HTTP）リダイレクトの数を最小限に抑えます。しかし、次のように上記のルールを置き換えることにより、外部リダイレクトとしてこの書き換えルールを実装することも出来ます。</p>
+<pre class="code2"># Rewrite rule to serve RDF/XML content from all partially redirected URIs
+RewriteRule ^example2a/ example2a.rdf [R=303]</pre>
+<p>このルールでは参照解決時に更なるHTTPリダイレクトを伴いますが、クライアントには、語彙やクラス、プロパティのURIが全て同じ場所であることが恐らく明白であり、現在のPURL実装をTAG httpRange-14決議[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE14</a>]に従うように<em>仕向けます</em>。</p>
+<p>また、語彙の各クラスやプロパティに対する個々のPURLを生成し、部分リダイレクトPURLではなく、それら全て同一のURLを参照することでサーバーの設定を回避することもできます。しかし、コンテンツがその後に移動するなら、個々のPURLは更新が必要になります。これは、つまり中規模から大規模なオントロジーに対しては煩雑で非実用的な作業となります。</p>
+<hr>
+<!--
+*************
+* RECIPE 3A *
+*************
+-->
+<h2 id="recipe3a">レシピ3a．PURL「ハッシュ名前空間」の拡張設定</h2>
+<p>このレシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間内の<em><a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a></em>をもつ語彙に対する<em><a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張要件</a></em>を満たす設定例になります。機械処理可能（RDF）および人可読（HTML）双方のコンテンツが当該名前空間URIで提供されます。</p>
+<p>語彙...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a">http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a</a></pre>
+<p>クラス定義...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a#ClassA">http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a#ClassA</a>
+<a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a#ClassB">http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a#ClassB</a></pre>
+<p>プロパティ...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a#propA">http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a#propA</a>
+<a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a#propB">http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a#propB</a></pre>
+<h3 id="recipe3as1">ステップ1</h3>
+<p>2005年10月31日時点の（または現在の日付であれば何でも）、RDF/XML形式にした語彙<em><strong>全体</strong></em>を含む<span class="inlineCode">2005-10-31.rdf</span>というファイルを作成します。すなわち語彙で定義される<em><strong>すべて</strong></em>のリソースは、このファイルに記述されており、このファイルは語彙の「スナップショット」や「バージョン」を表します。</p>
+<h3 id="recipe3as2">ステップ2</h3>
+<p>2005年10月31日時点の（または現在の日付であれば何でも）語彙で定義されたすべてのクラスとプロパティについてHTMLコンテンツ文書を含む<span class="inlineCode">2005-10-31.html</span>というファイルを作成します。このHTML文書には、個々のクラスやプロパティに関する文書が記述されたセクションを含めることができ、各セクションは、当該クラスやプロパティのフラグメント識別子と同一の名前のHTMLアンカーで始まります。</p>
+<h3 id="recipe3as3">ステップ3</h3>
+<p><span class="inlineCode">2005-10-31.rdf</span>と<span class="inlineCode">2005-10-31.html</span>をサーバー上のディレクトリ <span class="inlineCode">/apachedocumentroot/examples/example3a-content/</span>にコピーします。サーバーはコンテンツを提供するもので、この例では<span class="inlineCode">www.w3.org</span>になります。</p>
+<h3 id="recipe3as4">ステップ4</h3>
+<p><span class="inlineCode">/apachedocumentroot/examples/</span>ディレクトリにある<span class="inlineCode">.htaccess</span>ファイルに次のディレクティブを追加します。</p>
+<pre class="code2"># Turn off MultiViews
+Options -MultiViews
+
+# Directive to ensure *.rdf files served as appropriate content type,
+# if not present in main apache config
+AddType application/rdf+xml .rdf
+
+# Rewrite engine setup
+RewriteEngine On
+RewriteBase /examples
+
+# Rewrite rule to make sure we serve HTML content from the namespace URI if requested
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example3a$ example3a-content/2005-10-31.html [R=303]
+
+# Rewrite rule to make sure we serve the RDF/XML content from the namespace URI by default
+RewriteRule ^example3a$ example3a-content/2005-10-31.rdf [R=303]</pre>
+<p></p>
+<h3 id="recipe3as5">ステップ5</h3>
+<p>以下のPURLをセットアップします：</p>
+<pre>PURL: http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a
+URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example3a</pre>
+<h3 id="recipe3anotes">注意点</h3>
+<p>コンテントネゴシエーションのためにPURLサーバーを設定することは出来ないので、この例ではPURLサーバーから302リダイレクトが行われた<em>後に</em>コンテンツサーバーがネゴシエーションを行うように設定しています。</p>
+<hr>
+<!--
+*************
+* RECIPE 4A *
+*************
+-->
+<h2 id="recipe4a">レシピ4a．単一HTMLドキュメントのPURL「スラッシュ名前空間」の拡張設定</h2>
+<p>このレシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間内の<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙に対する<a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張要件</a>を満たす設定例になります。機械処理可能（RDF）および人可読（HTML）双方のコンテンツが、当該名前空間URIで提供されます。 HTML文書は単一のファイルとして提供されます。</p>
+<p>注：この例は、httpRange-14[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE-14</a>]についてのTAG決議に厳密には従いません。なぜなら、purl.orgサーバーは、303リダイレクトコードではなく、302を使用しているためです。</p>
+<p>語彙...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/">http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/</a></pre>
+<p>クラス定義...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/ClassA">http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/ClassA</a>
+<a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/ClassB">http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/ClassB</a></pre>
+<p>プロパティ...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/propA">http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/propA</a>
+<a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/propB">http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/propB</a></pre>
+<h3 id="recipe4as1">ステップ1</h3>
+<p>2005年10月31日時点の（または現在の日付であれば何でも）、RDF/XML形式にした語彙<em><strong>全体</strong></em>を含む<span class="inlineCode">2005-10-31.rdf</span>というファイルを作成します。すなわち語彙で定義される<em><strong>すべて</strong></em>のリソースは、このファイルに記述されており、このファイルは語彙の「スナップショット」や「バージョン」を表しています。</p>
+<h3 id="recipe4as2">ステップ2</h3>
+<p>2005年10月31日時点の（または現在の日付であれば何でも）語彙で定義されたすべてのクラスとプロパティに関するHTMLコンテンツ文書が含まれる<span class="inlineCode">2005-10-31.html</span>というファイルを作成します。このHTML文書には、個々のクラスやプロパティに関する文書が記述されたセクションを含めることができ、各セクションは、当該クラスやプロパティのフラグメント識別子と同一の名前のHTMLアンカーで始まります。</p>
+<h3 id="recipe4as3">ステップ3</h3>
+<p><span class="inlineCode">2005-10-31.rdf</span>と<span class="inlineCode">2005-10-31.html</span>をサーバー上のディレクトリ<span class="inlineCode">/apachedocumentroot/examples/example4a-content/</span>にコピーします。サーバーはコンテンツを提供するもので、この例では<span class="inlineCode">www.w3.org</span>になります。</p>
+<h3 id="recipe4as4">ステップ4</h3>
+<p><span class="inlineCode">/apachedocumentroot/examples/</span>ディレクトリにある<span class="inlineCode">.htaccess</span>ファイルに次のディレクティブを追加します。</p>
+<pre class="code2"># Turn off MultiViews
+Options -MultiViews
+
+# Directive to ensure *.rdf files served as appropriate content type,
+# if not present in main apache config
+AddType application/rdf+xml .rdf
+
+# Rewrite engine setup
+RewriteEngine On
+RewriteBase /examples
+
+# Rewrite rule to serve HTML content from the namespace URI if requested
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example4a/$ example4a-content/2005-10-31.html [R=303]
+
+# Rewrite rule to serve directed HTML content from class/prop URIs
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example4a/(.+) example4a-content/2005-10-31.html#$1 [R=303,NE]
+
+# Rewrite rule to serve RDF/XML content from the namespace URI by default
+RewriteRule ^example4a/ example4a-content/2005-10-31.rdf [R=303]</pre>
+<p>（注：<span class="inlineCode">.htaccess</span>ファイルが無い場合は作成します。）</p>
+<h3 id="recipe4as5">ステップ5</h3>
+<p>以下のような部分​​リダイレクトPURLを設定します。</p>
+<pre>PR PURL: http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/
+URL Root:  http://www.w3.org/2006/07/SWD/recipes/examples/example4a/</pre>
+<h3 id="recipe4anotes">注意点</h3>
+<p>この設定は、ダブリンコアメタデータ規約向けに最も適しているでしょう。</p>
+<hr>
+<!--
+*************
+* RECIPE 5A *
+*************
+-->
+<h2 id="recipe5a">レシピ5a．複数のHTML文書を使用したPURL「スラッシュ名前空間」の拡張設定</h2>
+<p>本レシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間にある、<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙に対する<a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張設定</a>を満たす設定例になります。機械処理可能（RDF）と人可読（HTML）コンテンツの双方を当該名前空間URIで提供するもので、HTML文書については複数のリンクで結ばれた文書と一つの概要文書からなります。</p>
+<p>注：この例は、httpRange-14[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE14</a>]についてのTAG決議に厳密には従いません。なぜなら、purl.orgサーバーは、303リダイレクトコードではなく、302を使用しているためです。</p>
+<p>語彙...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/">http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/</a></pre>
+<p>クラス定義...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/ClassA">http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/ClassA</a>
+<a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/ClassB">http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/ClassB</a></pre>
+<p>プロパティ...</p>
+<pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/propA">http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/propA</a>
+<a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/propB">http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/propB</a></pre>
+<h3 id="recipe5as1">ステップ1</h3>
+<p>2005年10月31日時点の（または現在の日付であれば何でも）、RDF/XML形式にした語彙<em><strong>全体</strong></em>を含む<span class="inlineCode">2005-10-31.rdf</span>というファイルを作成します。すなわち語彙で定義される<em><strong>すべて</strong></em>のリソースは、このファイルに記述されており、このファイルは語彙の「スナップショット」や「バージョン」を表します。</p>
+<h3 id="recipe5as2">ステップ2</h3>
+<p><span class="inlineCode">2005-10-31.rdf</span>をサーバー上のディレクトリ<span class="inlineCode">/apachedocumentroot/examples/example5a-content/</span>にコピーします。
+サーバーはコンテンツを提供するもので、この例では<span class="inlineCode">www.w3.org</span>になります。</p>
+<h3 id="recipe5as3">ステップ3</h3>
+<p><span class="inlineCode">ClassA.html</span>、<span class="inlineCode">ClassB.html</span>、<span class="inlineCode">propA.html</span>、<span class="inlineCode">propB.html</span>を生成します。それぞれ、2005年10月31日時点（あるいは現在の日付であれば何でも）の対応するローカル名を持つクラスまたはプロパティに関連するHTMLコンテンツ文書が含まれています。すべてのクラスやプロパティのドキュメントへのハイパーリンクを含む、語彙自体に関するHTMLコンテンツを含む<span class="inlineCode">index.html</span>ファイルを作成します。</p>
+<h3 id="recipe5as4">ステップ4</h3>
+<p><span class="inlineCode">ClassA.html</span>、<span class="inlineCode">ClassB.html</span>、<span class="inlineCode">propA.html</span>、<span class="inlineCode">propB.html</span>、および<span class="inlineCode">index.html</span>をサーバー上のディレクトリ<span class="inlineCode">/apachedocumentroot/examples/example5a-content/2005-10-31-docs/</span>にコピーします。サーバーはコンテンツを提供するもので、この例では<span class="inlineCode">www.w3.org</span>です。</p>
+<h3 id="recipe5as5">ステップ5</h3>
+<p><span class="inlineCode">/apachedocumentroot/examples/</span>ディレクトリにある<span class="inlineCode">.htaccess</span>ファイルに次のディレクティブを追加します。</p>
+<pre class="code2"># Turn off MultiViews
+Options -MultiViews
+
+# Directive to ensure *.rdf files served as appropriate content type,
+# if not present in main apache config
+AddType application/rdf+xml .rdf
+
+# Rewrite engine setup
+RewriteEngine On
+RewriteBase /examples
+
+# Rewrite rule to serve HTML content from the namespace URI if requested
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example5a/$ example5a-content/2005-10-31-docs/index.html [R=303]
+
+# Rewrite rule to serve HTML content from class or prop URIs if requested
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^example5a/(.+) example5a-content/2005-10-31-docs/$1.html [R=303]
+
+# Rewrite rule to serve RDF/XML content from the namespace URI by default
+RewriteRule ^example5a/ example5a-content/2005-10-31.rdf [R=303]</pre>
+<p>（注：<span class="inlineCode">.htaccess</span>ファイルが無い場合は作成します。）</p>
+<h3 id="recipe5as6">ステップ6</h3>
+<p>以下のような部分​​リダイレクトPURLを設定します。</p>
+<pre>PR PURL: http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/
+Root URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example5a/</pre>
+<hr>
+<!--
+******************
+* URI NAMESPACES *
+******************
+-->
+<h2 id="naming">付録B：URI名前空間</h2>
+<p>あなたの語彙を識別するURIをここでは<em>語彙名前空間URI</em>もしくは単に<em>語彙URI</em>（ここでは<em>語彙</em>と<em>オントロジー</em>は同意なので、<em>オントロジーURI</em>とも）と呼びます。たとえば、次のURIは、SKOSコア語彙を特定します。</p>
+<pre><a href="http://www.w3.org/2004/02/skos/core">http://www.w3.org/2004/02/skos/core</a></pre>
+<p>...そして次のURIはFOAFオントロジーを特定します。</p>
+<pre><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></pre>
+<h3 id="hash">「ハッシュ名前空間」を使う語彙</h3>
+<p>SKOSコア[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-SKOS">SKOS</a>]は<em>ハッシュ名前空間</em>を利用する語彙の例です。これは、非公式な表現で、語彙のクラスとプロパティのURIがどのように構築されるかを示しています。この場合、クラスやプロパティのためのURIは、語彙URIの後にハッシュ文字（'＃'）が続き、そして「ローカル名」を付加することによって構築されています。「ローカル名」は語彙のスコープ内で一意にクラスやプロパティを識別する文字列であり、「フラグメント識別子」としても知られています。[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-AWWW04">AWWW04</a>]（ローカル名は[<a href="https://www.w3.org/TR/swbp-vocab-pub/">XML-NS</a>]トークン<a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a>でなくてはなりません）。</p>
+<p>たとえば、次のURIはSKOSコア語彙のクラスとプロパティを特定します。</p>
+<pre><a href="http://www.w3.org/2004/02/skos/core#Concept">http://www.w3.org/2004/02/skos/core#Concept</a>
+<a href="http://www.w3.org/2004/02/skos/core#prefLabel">http://www.w3.org/2004/02/skos/core#prefLabel</a></pre>
+<h3 id="slash">「スラッシュ名前空間」を使う語彙</h3>
+<p>FOAF[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-FOAF">FOAF</a>]は<em>スラッシュ名前空間</em>を使用する語彙の例です。ハッシュ名前空間と同じく、これは語彙で定義されたクラスやプロパティのURIが構築される方法を参照する非公式の表現です。この場合、語彙URIはスラッシュ文字（'/'）で終わり、クラスやプロパティのURIは語彙URIにクラスまたはプロパティの「ローカル名」を直接付加することにより構築されています。ここでも、「ローカル名」は語彙のスコープ内でそのクラスやプロパティを一意に識別し、そして[<a href="https://www.w3.org/TR/swbp-vocab-pub/">XML-NS</a>]トークン<a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a>でなくてはなりません。</p>
+<p>たとえば、次のURIは、FOAFの語彙のクラスやプロパティを特定します。</p>
+<pre><a href="http://xmlns.com/foaf/0.1/Person">http://xmlns.com/foaf/0.1/Person</a>
+<a href="http://xmlns.com/foaf/0.1/maker">http://xmlns.com/foaf/0.1/maker</a></pre>
+<p>URIがスラッシュで終わる語彙が<em>必ずしもスラッシュ名前空間を使うとは限らない</em>ことに注意してください。そしてハッシュ名前空間の場合もあり得ます。例えば、語彙<span class="inlineCode">http://example.org/myvocabulary/</span>はクラス<span class="inlineCode">http://example.org/myvocabulary/#Foo</span>や<span class="inlineCode">http://example.org/myvocabulary/#Bar</span>を定義できます。</p>
+<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>と<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>の双方ともウェブアーキテクチャでサポートされていますが、ウェブサーバーがこれらの選択肢の違いに応じた特定の振舞いが要求されます。サーバーが受信する要求およびサーバーが返す応答の双方がそれぞれの名前空間の場合で異なるので、下記に示す<a href="https://www.w3.org/TR/swbp-vocab-pub/#requirements">要件</a>の一部または全てを満たすために必要なHTTPサーバーの構築方法も異なります。従って両者はそれぞれ別々に扱われます。</p>
+<h3 id="other">他のタイプの名前空間の使う語彙</h3>
+<p>執筆時点で検討中の第三のタイプの語彙URI、すなわち、<a href="http://thing-described-by.org">http://thing-described-by.org</a>のような303リダイレクトサービスに基づいたURIについて留意してください。303リダイレクトのアプローチは本文書で説明しているアプローチよりも簡単に実装できるものの、まだ安定して公開されているRDF語彙がないため、次のレシピでは利用していません。<a href="https://www.w3.org/TR/swbp-vocab-pub/#redirect">付録C</a>でこのアプローチをより詳しく説明しています。</p>
+<h3 id="choosingURI">URI名前空間を選択する際の検討事項</h3>
+<p>この文書は、<em>既存</em>語彙の作成者とメンテナのために意図されています。従い、いかなる場面においても最良の<a href="https://www.w3.org/TR/swbp-vocab-pub/#naming">URI名前空間</a>を選択するための適切な助言を行うということは本文書の範囲を超えています。とはいえ、本文書のレシピは、機能性に関する想定をしたうえで特質評価を行っているので、URI名前空間の選択における検討事項の<em>幾つか</em>は本セクションで扱っています。なお、既にURI名前空間の選択をしている場合には、<a href="https://www.w3.org/TR/swbp-vocab-pub/#choosing">レシピの選択</a>に進んでください。</p>
+<p>自身の管理する語彙のために選択しようとしているURI名前空間は書き込み権限のあるウェブアドレス（URI）である必要があり、語彙の利用者は当該語彙のURIそのものと、当該語彙で定義されているプロパティやクラスのURIの双方について参照解決可能であると期待しています。ですから、URI名前空間を選択することは、語彙設計の早期における大切な決定事項になります。</p>
+<p>RDFの仕様としては妥当なURIスキームであればどれでも名前空間の冒頭部分に使うことができますが、セマンティックウェブのベストプラクティスとしては、プラグインの追加や追加設定をすることなく、いかなるクライアントでも解決可能なURIスキームを使います。そのなかで、<span style="font-style:italic">http</span> URIスキームが最もよく知られた存在であり、かつ、全てのウェブクライアントに解決されます。このことから、本文書では<span class="inlineCode">http:</span>から始まる名前空間を持つ語彙のみに焦点を当てています。</p>
+<p>ベストプラクティスでは、すべてのRDF語彙が<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>または<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使うこととしています（上記参照）。どちらを選択するかは次の3点にある程度依存します。すなわち、どの程度対象語彙が大きくなるか、どの程度頻繁に新規語（すなわち、プロパティやクラス）を追加するか、そして、どの程度利用者が語彙中の個々の語に関する情報にアクセスするか、になります。</p>
+<p>小規模な語彙であれば語彙全体を一度のウェブアクセスで提供するのが最も都合が良いでしょう。このような語彙は<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>を利用するのが一般的で、当該語彙中のいかなる語に対するウェブアクセス（すなわち、HTTP GETリクエスト）も、当該語彙の全ての語を記述する単一の<a href="http://www.w3.org/TR/2004/REC-webarch-20041215/#def-information-resource">情報リソース</a>を返します。</p>
+<p>追加が頻繁に行われると想定されたり、一般的なユーザーアプリケーションが一度のアクセスで取得可能なサイズよりも大きなデータを含んでいたりする語彙については、ウェブアクセスを繰り返すことで徐々に語彙中の語に関する詳細を得られるように調整するのが良いでしょう。全ての語に関する完全な記述は複数の情報リソースに分割するか、あるいは、クエリサービスを経由するのが良いかもしれません（例えば[SPARQL] -- <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe6">レシピ6</a>を参照）。このような語彙は<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を利用するのが一般的で、それは当該語彙中のどの語へのウェブアクセスも原則当該語についての情報のみを返すことが可能だからです。（HTTPプロトコルの仕組みから、<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>を使うとこのような設定は出来ません。）</p>
+<p>セマンティックウェブのためのURI設計に関する問題について詳細な議論は次の文書で行われています。</p>
+<ul>
+  <li>「セマンティックウェブのためのクールなURI」[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-COOLURI">COOLURI</a>]</li>
+  <li>TAG調査結果：「<a href="http://www.w3.org/2001/tag/doc/nsDocuments/">リソースに名前空間を関連づける</a>」</li>
+</ul>
+<hr>
+<h2 id="redirect">付録C：303-リダイレクトサービスに基づく語彙のURI</h2>
+<p>このタイプのURIには、<a href="http://thing-described-by.org">http://thing-described-by.org</a>のような303リダイレクトサービスのベースURIにクエリ文字列として記述リソースのURIを追加することによって形成されます。thing-described-by.orgドメインは、クエリ文字列（すなわち、疑問符に続く部分）に引用されたドメインに対して、それらのクエリURIの意味を定義する権限を委譲しています。</p>
+<p>原理的には、Foo語彙向けの識別子として、URI<a href="http://thing-described-by.org?http://example.org/foo">http://thing-described-by.org?http://example.org/foo</a>を生成できます。Foo語彙のためのURIまたはFoo語彙のプロパティやクラスに対するURIへのHTTP GETリクエストは303応答コードを返すので、本文書で記述しているRDF語彙の公開のための二件の<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>の二件目に従うことになります。さらに、http://example.org/fooというURIが当該語彙に対する正式なRDF記述を識別するためにあり、そして当該記述を提供するサーバーがそれを適切に識別するMIMEタイプを返すならば、<a href="http://thing-described-by.org?http://example.org/foo">http://thing-described-by.org?http://example.org/foo</a>を使うことで最小要件の一件目に従うことになります。</p>
+<hr>
+<!--
+************************
+* APACHE CONFIGURATION *
+************************
+-->
+<h2 id="apache">付録D：Apacheの設定</h2>
+<p>Apache HTTPサーバー[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-APACHE20">APACHE20</a>]は、メインのApacheの設定ファイル（通常は「httpd.conf」など）の内部またはディレクトリ単位の設定ファイル（通常は「.htaccess」）の内側のいずれかに書かれた<em>ディレクティブ</em>で設定されています。本文書に書かれているレシピは、読者がメインのApache設定ファイルへのアクセス権を<em>持たない</em>ことを想定しており、必要なティレクティブをサーバーに与えるために、.htaccessファイルを使用し、ディレクトリ単位の設定を行わなくてはならない場面を想定しています。.htaccessファイルを利用するためのより詳しい情報は<a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html">Apache Tutorial: .htaccess
+  files</a>で得られます。</p>
+<p>もしもメインのApache設定ファイルへの書き込み権限が<em>ある</em>場合は、直接そこに記述することを検討するのが良いでしょう。ディレクトリ単位の設定はサーバーのパフォーマンスに悪影響を及ぼしかねず、また、ディレクトリレベルでのセキュリティ設定により気を使う必要があるからです。<a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html#when">Apache Tutorial: When (not)
+  to use .htaccess files</a>を参照してください。なお、<span class="inlineCode">AllowOverride</span>はディレクトリレベルのディレクティブであり、そのパフォーマンスとセキュリティの副作用は通常、それが有効であるディレクトリツリーを越えないことに留意すべきです。</p>
+<p>注意：ここでの設定では、Apache HTTPサーバーのバージョン2.0.46でのみテストされています。</p>
+<h3 id="server_config">サーバー設定</h3>
+<p>ディレクトリ毎の設定ファイルを利用できるように、サーバーは、使用しているディレクトリに対する<em>override</em>を許可するよう設定する必要があります。必要なoverrideは次のとおりです。</p>
+<pre class="code2">AllowOverride FileInfo Options</pre>
+<p>また、利用しているApacheがmod_rewriteモジュールを含めてコンパイルされているか、またはmod_rewrite動的共有オブジェクト（DSO）がインストールされていることを確認してください。そして、次の行がApacheの設定ファイルに含まれます。</p>
+<pre class="code2">AddModule mod_rewrite.c<br>LoadModule rewrite_module modules/mod_rewrite.so</pre>
+<p>レシピの動作に問題がある場合、必要なoverrideディレクティブがメインのApacheの設定ファイルで指定されていないか、mod_rewriteを利用できないことが原因の可能性があります。</p>
+<h3 id="testing_parsing">.htaccessが妥当であることをテストします</h3>
+<p>サーバーが指定されたディレクトリにある.htaccessファイルを正しく解析するかテストするには、ウェブブラウザにテストしたいディレクトリ内のファイルにアクセスするURLを与え、正しく配信されていることを確認します。続いて、次に示す行を含むように当該ディレクトリ内の.htaccessファイルを生成または編集します。</p>
+<pre class="code2">InvalidDirective Here</pre>
+<p>ウェブブラウザで当該URLをリロードします。サーバーが当該ディレクトリの.htaccessファイルを解析している場合、サーバーは解析できない<span class="inlineCode">InvalidDirective</span>により生成された「内部サーバーエラー」ページを返すはずです。通常通りにページが再表示された場合はレシピで使うことになるディレクトリで.htaccessファイルが有効になるようシステム管理者に依頼する必要があります。サーバーが.htaccessファイルを解析していると確認したときは、そのディレクトリ内の.htaccessファイルから<span class="inlineCode">InvalidDirective</span>行を削除するのを忘れないでください。</p>
+<h3 id="testing_rewrite">mod_rewriteがインストールされていることをテストします</h3>
+<p>mod_rewriteがインストールされていることをテストするには、最初のテストにおける<span class="inlineCode">InvalidDirective</span>行を次のものに置き換えます。</p>
+<pre class="code2">RewriteEngine On</pre>
+<p>そしてウェブブラウザで当該URLをリロードします。mod_rewriteがインストールされていないか、<em>または</em>.htaccessのあるディレクトリにおいて、それを有効にするのに十分なoverride権限を持っていない場合、サーバは「内部サーバーエラー」ページを返すはずです。.htaccessファイルにおいてmod_rewriteを有効にするには、<span class="inlineCode">AllowOverride</span>ディレクティブが<span class="inlineCode">FileInfo</span>（もしくは<span class="inlineCode">All</span>）と設定されていなければなりません。</p>
+<h3 id="setting_type">RDF/XMLコンテントタイプを設定します</h3>
+<p><a href="http://www.ietf.org/rfc/rfc3870.txt">RFC3870</a>で定義されているように、RDF/XMLコンテンツを提供するための適切なコンテントタイプは、「application/rdf+xml」です。ファイルの拡張子「.rdf」を認識し、適切なコンテントタイプで提供できるようにApacheサーバーを設定可能で、.htaccessファイルに以下の様に記述します。</p>
+<pre class="code2">AddType application/rdf+xml .rdf</pre>
+<p>このディレクティブは、サーバー設定ファイルにおいてサーバーレベルでグローバルに適用できます。その場合は問題なくレシピから除去することができます。</p>
+<h3 id="alternative_configurations">書き換えルールに対する代替手段</h3>
+<p>本文書で説明されている設定例ではコンテントネゴシエーションを、書き換え規則（mod_rewrite）を用いてクライアントからの要求を最も適した表現にリダイレクトする方法で実装しています。この仕組みは簡単でありながらHTMLおよびRDF/XML文書の所在について大きな柔軟性を持たせることが出来ます。それらの文書は異なるサーバー上にあっても良いのです。</p>
+<p>ここでの設定例ではコンテントネゴシエーションを適切に処理出来ない場合があります。特に、q値を含む「Accept:」ヘッダーのある要求は書き換え規則で解析できず、サーバーが想定外の表現方法を返すかもしれません。このような要求を処理できるようにApacheサーバーを設定することは恐らく可能ですが、.htaccessファイルの制限内ではこの設定がうまく働きません。これらの要求を処理する完全なサーバー設定例を提供することは本文書の範囲を逸脱しています。興味をお持ちの方は<a href="http://httpd.apache.org/docs/2.0/content-negotiation.html">Apacheの型マップとコンテントネゴシエーション</a>を参照してください。</p>
+<hr>
+<!-- FOOTER -->
+<p> <a href="http://validator.w3.org/check?uri=referer">
+    <img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88"></a> <a href="http://jigsaw.w3.org/css-validator/"> <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" style="border:0;width:88px;height:31px"> </a> </p>
+</body>
+</html>
