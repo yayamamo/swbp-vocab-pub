@@ -124,7 +124,7 @@ div.test h4 {
   <hr>
 </div>
 <h2 class="notoc"> <a id="abstract" name="abstract">要旨</a> </h2>
-<p>この文書では<acronym title="リソース・ディスクリプション・フレームワーク">（RDF</acronym>スキーマや<acronym title="ウェブ・オントロジー言語">OWL</acronym>で）ウェブ上の語彙やオントロジを公開するためのベストプラクティスのレシピを説明します。語彙デザイナーが自分のニーズに最も適したレシピを選択することができるよう、各レシピの特徴は詳細に記載されています。各レシピでは、一般的な原則とApache HTTPサーバーで使用するための設定例（他の環境にも適合させることができます）を紹介しています。各レシピに関連する設定例は意図的に単純にしていますが、レシピはすべて現在仕様化されているウェブアーキテクチャと一致するように設計されています。</p>
+<p>この文書では<acronym title="リソース・ディスクリプション・フレームワーク">（RDF</acronym>スキーマや<acronym title="ウェブ・オントロジー言語">OWL</acronym>で）ウェブ上の語彙やオントロジーを公開するためのベストプラクティスのレシピを説明します。語彙デザイナーが自分のニーズに最も適したレシピを選択することができるよう、各レシピの特徴を詳細に記載しています。各レシピでは、一般的な原則とApache HTTPサーバーで使用するための設定例（他の環境にも適合させることができます）を紹介しています。各レシピに関連する設定例は意図的に単純にしていますが、レシピはすべて現在仕様化されているウェブアーキテクチャと一致するように設計されています。</p>
 
 <!--
 ********
@@ -137,10 +137,10 @@ div.test h4 {
   Working Group</a> (SWBPD)における以前の作業の基づき、<a href="http://www.w3.org/2006/07/SWD/">Semantic Web
   Deployment Working Group</a> (SWD)により作成されたものです。本作業は<a href="http://www.w3.org/2001/sw/Activity.html">W3C Semantic Web Activity</a>の一部です。</p>
 <p>本文書はいくつかのベストプラクティスを記述するノートです。公開時点で、本文書に対するSemantic Web Deployment Working Groupにおける今後の作業予定はありません。このバージョンは、以前のバージョンで行われたいくつかのコメントに対応しています。しかし、<a href="#q_values">コンテントネゴシエーションで「q」値がつけられたもの</a>に関する<a href="http://www.w3.org/2006/07/SWD/track/issues/58">既知の問題</a>を解決しようとしたものではなく、また、いくつかの語彙に有用な技術として知られているRDFa[RDFa]とGRDDL [GRDDL]を用いた語彙公開のためのレシピを提供することもしません。</p>
-<p>コメントを歓迎します。件名にテキスト「comment」を含めて<a href="mailto:public-swd-wg@w3.org">public-swd-wg@w3.org</a>宛に送付してください。このアドレスで受信したすべてのメッセージは<a href="http://lists.w3.org/Archives/Public/public-swd-wg/">公開アーカイブ</a>にて閲覧可能です。ワーキンググループは、適宜コメントに応答することもあります。私たちは、Semantic Web Interest Groupのメーリングリストで、このノートの解釈を議論するためのコミュニティを奨励します<a href="mailto:semantic-web@w3.org"></a>（<a href="http://lists.w3.org/Archives/Public/semantic-web/">公開アーカイブ</a>）。</p>
+<p>コメントを歓迎します。件名にテキスト「comment」を含めて<a href="mailto:public-swd-wg@w3.org">public-swd-wg@w3.org</a>宛に送付してください。このアドレスで受信したすべてのメッセージは<a href="http://lists.w3.org/Archives/Public/public-swd-wg/">公開アーカイブ</a>にて閲覧可能です。ワーキンググループは、適宜コメントに回答することもあります。私たちは、Semantic Web Interest Groupのメーリングリストで、このノートの解釈を議論するためのコミュニティを奨励します<a href="mailto:semantic-web@w3.org"></a>（<a href="http://lists.w3.org/Archives/Public/semantic-web/">公開アーカイブ</a>）。</p>
 
 <p>本文書は、<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">2004年2月5日W3C特許方針</a>の下で活動するグループにより作成されました。W3Cは、グループの成果物に関連して作成された<a href="http://www.w3.org/2004/01/pp-impl/39408/status" rel="disclosure">あらゆる特許の開示の公開リスト</a>を維持します。そのページには、特許開示にあたっての指示も含まれています。<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">エッセンシャルクレーム</a>を含むと信じる特許について具体的な知識を持つ個人は、<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">W3C特許方針のセクション6</a>に従ってそれを公開しなくてはなりません。</p>
-<p>ワーキンググループ・ノートとしての公開は、W3C会員による承認を意味するものではありません。本文書はドラフトであり、いつでも他の文書によって更新、置換または廃止される可能性があります。進行中の作業を除き、本文書の引用は不適切です。</p>
+<p>ワーキンググループノートとしての公開は、W3C会員による承認を意味するものではありません。本文書はドラフトであり、いつでも他の文書によって更新、置換または廃止される可能性があります。進行中の作業を除き、本文書の引用は不適切です。</p>
 
 <!--
 ************
@@ -179,11 +179,11 @@ div.test h4 {
 ****************
 -->
 <h2 id="secintro">はじめに</h2>
-<p>本文書はRDFSとOWLにおける語彙のクリエイターやメンテナのために書かれています。なお、本文書においては語彙とオントロジーは同義として使います。本文書では、最も一般的なケースがカバーされるように設計された設定例を与えて、ウェブ上で語彙を公開するための手順を説明します。RDFSとOWLについて詳しくは次の文書を参照してください[<a href="#ref-RDFS">RDFS</a>、<a href="#ref-RDFPrimer">RDFPrimer</a>、<a href="#ref-OWLGuide">OWLGuide</a>、<a href="#ref-OWLFeatures">OWLFeatures</a>]。</p>
+<p>本文書はRDFSとOWLで表現された語彙のクリエイターやメンテナのために書かれています。なお、本文書においては語彙とオントロジーは同義として使います。本文書では、最も一般的なケースがカバーされるように設計された設定例を与えて、ウェブ上で語彙を公開するための手順を説明します。RDFSとOWLについて詳しくは次の文書を参照してください[<a href="#ref-RDFS">RDFS</a>、<a href="#ref-RDFPrimer">RDFPrimer</a>、<a href="#ref-OWLGuide">OWLGuide</a>、<a href="#ref-OWLFeatures">OWLFeatures</a>]。</p>
 <p>この「クックブック」は、ウェブサーバー上に語彙を公開すること、およびセマンティックウェブアプリケーションをサポートするウェブサーバーを設定するために必要な手順を記述した「レシピ」を提供します。「<a href="#choosing">レシピを選択する</a>」では状況や要件に応じて最適なレシピを選択するための助言を提供します。レシピを選択したら、記述されている例を特定の語彙に適応させながら、手順に従って設定できます。</p>
 <p>レシピはすべて、ApacheのHTTPサーバー[<a href="#ref-APACHE20">APACHE20</a>]向けの設定例となっています。Apacheの設定に慣れていない方のために、付録<a href="#apache">Apacheの設定</a>では、例の中で使われる設定の仕組みについて、問題が生じた際の対応に関する基本的な情報とともに簡単に紹介しています。</p>
-<p>設定例はApache HTTPサーバー向けですが、一般的な原理は、非Apacheの環境にも適用できます。ワーキンググループでは、非Apacheサーバー向けの情報を追加してくれることを望みます。W3Cは、これら収集するために、<a href="http://esw.w3.org/topic/VocabPublishingRecipes">Apache以外のバインディングと提言</a>というWikiページを提供しています。</p>
-<p>本文書は主に語彙をウェブ上で最良な形で公開する方法についての助言を求めている、既存語彙のクリエイターとメンテナのために意図されています。そして本文書は、新しい語彙やその構成用語を命名するための適切なURI名前空間を選択することについての詳細かつ網羅的な助言を提供するものでは<strong>ありません</strong> 。しかし、語彙のURI名前空間を選択することに関する考慮を含む、基本的なURIの名前空間に関する技術情報は、<a href="#naming">URI名前空間</a>セクションに書かれています。</p>
+<p>設定例はApache HTTPサーバー向けですが、一般的な原理は、非Apacheの環境にも適用できます。ワーキンググループでは、非Apacheサーバー向けの情報が追加されることを望みます。W3Cは、<a href="http://esw.w3.org/topic/VocabPublishingRecipes">Apache以外のバインディングと提言</a>を集めるためのWikiページを提供しています。</p>
+<p>本文書は主に語彙をウェブ上で最良な形で公開する方法について助言を求めている、既存語彙のクリエイターとメンテナのために意図されています。そして本文書は、新しい語彙やその構成用語を命名するための適切なURI名前空間を選択することについての詳細かつ網羅的な助言を提供するものでは<strong>ありません</strong>。しかし、語彙のURI名前空間を選択するさいの検討事項を含む、基本的なURIの名前空間に関する技術情報は、<a href="#naming">URI名前空間</a>セクションに書かれています。</p>
 <p>レシピはすべて、「ワールド・ワイド・ウェブのアーキテクチャ[<a href="#ref-AWWW04">AWWW04</a>]」で現在規定されているワールド・ワイド・ウェブのアーキテクチャ原則に一致するよう作られています。このことを確認するために、本文書の最後に一連の<a href="#minimumrequirements">最小要件</a>が記載されています。これらの最小要件は、セマンティックウェブアプリケーションの基本的な要件を明確にすることを意図しています。すべてのレシピが適切に実装されれば、この最小要件を満たすはずです。さらに、一連の<a href="#extendedrequirements">拡張要件を</a>も記載しています。拡張要件は、ある語彙に関する資料をウェブページ上でHTMLを用いて提供するなど、セマンティックウェブアプリケーション開発者の更なる実用的なニーズを明確にすることを意図しています。レシピ3、4、5、6が適切に実装されれば、この拡張された要件を満たすはずです。</p>
 <p>拡張要件を満たすために、レシピ3、4、5、6ではサーバーが<a href="#negotiation">コンテントネゴシエーション</a>を行うよう設定します。このプロセスについては、<a href="#negotiation">コンテントネゴシエーション</a>セクションにて簡単に説明しています。そこでは併せて様々なクライアントの動作の違いに対処するためのオプションについても説明しています。</p>
 <p><a href="#purls">付録A</a>では、<span class="inlineCode">http://purl.org/</span>[<a href="#ref-PURL">PURL</a>]のようなPURLサービスを用いた解決を行う「永続的なURL（PURL）」を利用して解決される語彙向けに、本文中で説明がなされている6つのレシピの適用方法を説明しています。</p>
@@ -191,7 +191,7 @@ div.test h4 {
 1. 「ワールド・ワイド・ウェブのアーキテクチャ」[<a href="#ref-AWWW04">AWWW04</a>]中の<a href="http://www.w3.org/TR/2004/REC-webarch-20041215/#id-resources">URI /リソースの関係</a>、<br />
 2. HTTPのURI[<a href="#ref-RFC3986">RFC3986</a>] [<a href="#ref-RFC2616">RFC2616</a>]における<a href="http://gbiv.com/protocols/uri/rfc/rfc3986.html#fragment">フラグメント識別子</a>、<br />
 3. W3Cインタレストグループノート：「セマンティックウェブのためのクールなURI」[<a href="#ref-COOLURI">COOLURI</a>]、<br />
-4.  W3Cテクニカルアーキテクチャグループ決議のうちの、HTTP参照解決に関する範囲（別名「httpRange-14」）[HTTPRANGE14]。<a href="#ref-HTTPRANGE14"></a> </p>
+4.  W3Cテクニカルアーキテクチャグループ決議のうちの、HTTP参照解決に関する範囲（別名「httpRange-14」）[<a href="#ref-HTTPRANGE14">HTTPRANGE14</a>]。</p>
 <p>最後に、このクックブックで説明するレシピは、セマンティックウェブアプリケーションで使用するための語彙やオントロジーを公開するための唯一の方法ではないことにご留意ください。<a href="http://www.w3.org/TR/xhtml-rdfa-primer/">RDFa</a>や<a href="http://www.w3.org/TR/grddl-primer/">GRDDL</a>は近い将来、人と機械の双方で使われる文書を公開するための効果的な方法を提供するでしょう。しかし、RDFaのとGRDDLに関する有益な議論をすることは本文書の範囲外です。</p>
 <hr>
 <h2 id="choosing">レシピを選択します</h2>
@@ -252,17 +252,17 @@ div.test h4 {
 <p>同様に、ウェブブラウザなど、HTMLコンテンツを望むHTTPクライアントは、各リクエストのヘッダに次のようなフィールドを含めることでしょう。</p>
 <pre class="code2">Accept: application/xhtml+xml,text/html</pre>
 <p>HTTPクライアントは、リクエストヘッダ中に、処理可能なコンテントタイプを「Accept:」フィールドで陽に指定すべきということは、ベストプラクティスとして受け入れられています。</p>
-<p>サーバーはリクエストを受け取る際に、クライアントの希望を最大限満たすよう、最も適切な応答を対応可能なものの中から選ぶために「Accept:」フィールドの値を利用できます。このプロセスは<a href="http://www.w3.org/TR/webarch/#def-coneg">コンテントネゴシエーション</a>[<a href="#ref-AWWW04">AWWW04</a>] の一例です。</p>
+<p>サーバーはリクエストを受け取る際に、クライアントの希望を最大限満たすよう、最も適切なレスポンスを対応可能なものの中から選ぶために「Accept:」フィールドの値を利用できます。このプロセスは<a href="http://www.w3.org/TR/webarch/#def-coneg">コンテントネゴシエーション</a>[<a href="#ref-AWWW04">AWWW04</a>] の一例です。</p>
 <p>レシピ<a href="#recipe1">1</a>および<a href="#recipe2">2</a>は、サーバーがコンテントネゴシエーションを<strong>しない</strong>設定です。RDF/XMLが唯一の表現タイプであり、クライアントから送られる「Accept:」ヘッダの値に左右されません。</p>
-<p id="q_values">レシピ<a href="#recipe3">3</a>、<a href="#recipe4">4</a>、<a href="#recipe5">5</a>、<a href="#recipe6">6</a>はクライアントから送信されたヘッダフィールド「Acdept:」の値に基づいて、コンテントネゴシエーションを行うようにサーバーを設定<strong>します</strong>。しかし、提案された設定例は、コンテントネゴシエーションに関するHTTPの仕様のすべてに対応するものではありません。事実、コンテントネゴシエーションにおけるクライアントの希望順にある程度は対応するものの、「q」指標を扱うことはできません。したがって、「Accept:」ヘッダーにq値を使用するHTTPクライアントは、予期しない結果を得るかもしれません。</p>
-<p class="editorial"><strong>編集者注</strong> ：できるだけレシピの容易性を維持しながら、HTTP仕様に完全準拠する代替案をワーキンググループは検討しています。これはワーキンググループのイシュープロセスにおける<a href="http://www.w3.org/2006/07/SWD/track/issues/58">ISSUE-58</a>として記録されています。この問題に関するコメントは歓迎です。「Comment: ISSUE-58」から始まる件名で<a href="mailto:public-swd-wg@w3.org?subject=Comment: ISSUE-58">SWDワーキンググループ</a>宛てにEメールをお寄せください。</p>
+<p id="q_values">レシピ<a href="#recipe3">3</a>、<a href="#recipe4">4</a>、<a href="#recipe5">5</a>、<a href="#recipe6">6</a>はクライアントから送信されたヘッダフィールド「Acdept:」の値に基づいて、コンテントネゴシエーションを行うようにサーバーを設定<strong>します</strong>。しかし、提案された設定例は、コンテントネゴシエーションに関するHTTPの仕様のすべてに対応するものではありません。事実、設定例ではコンテントネゴシエーションにおけるクライアントの希望順にある程度は対応するものの、「q」指標を扱うことはできません。したがって、「Accept:」ヘッダーにq値を使用するHTTPクライアントは、予期しない結果を得るかもしれません。</p>
+<p class="editorial"><strong>編集者注</strong>：できるだけレシピの容易性を維持しながら、HTTP仕様に完全準拠する代替案をワーキンググループは検討しています。これはワーキンググループのイシュープロセスにおける<a href="http://www.w3.org/2006/07/SWD/track/issues/58">ISSUE-58</a>として記録されています。この問題に関するコメントは歓迎です。「Comment: ISSUE-58」から始まる件名で<a href="mailto:public-swd-wg@w3.org?subject=Comment: ISSUE-58">SWDワーキンググループ</a>宛てにEメールをお寄せください。</p>
 <h3 id="default">デフォルトの動作</h3>
-<p>サーバーがコンテントネゴシエーションを行うよう設定されている場合、「デフォルトの動作」を定めなければなりません。すなわち、次のような場合における応答を決定できなくてはなりません。</p>
+<p>サーバーがコンテントネゴシエーションを行うよう設定されている場合、「デフォルトの動作」を定めなければなりません。すなわち、次のような場合におけるレスポンスを決定できなくてはなりません。</p>
 <ol>
   <li>クライアントが「Accept:」フィールドをメッセージヘッダに含めていない。すなわち、クライアントは所望のタイプを指定していない。</li>
   <li>「Accept:」フィールドの値がが使用可能なコンテントタイプのいずれにも一致しない。つまり、クライアントはRDF/XMLやHTML以外を要求している。</li>
 </ol>
-<p>レシピ3、4、5、6では、RDF/XMLがデフォルトの応答として設定されています。これは、RDFコンテンツに対する適切な「Accept:」ヘッダフィールド値を要求しないセマンティックウェブアプリケーションへの影響を最小化するために選ばれたものです。もしもHTMLがデフォルトの応答タイプとして設定されていると、RDFコンテンツを受け取るように作られている既存のセマンティックウェブアプリケーションがHTML文書を受け取ることになり、不具合を起こすということを心に留めておいてください。</p>
+<p>レシピ3、4、5、6では、RDF/XMLがデフォルトのレスポンスとして設定されています。これは、RDFコンテンツに対する適切な「Accept:」ヘッダフィールド値を要求しないセマンティックウェブアプリケーションへの影響を最小化するために選ばれたものです。もしもHTMLがデフォルトのレスポンスタイプとして設定されていると、RDFコンテンツを受け取るように作られている既存のセマンティックウェブアプリケーションがHTML文書を受け取ることになり、不具合を起こすということを心に留めておいてください。</p>
 <h3 id="accept_header">「Accept:」ヘッダの提供</h3>
 <p>RDFコンテンツを処理することが期待されるセマンティックウェブアプリケーションを開発したり維持したりしていて、<em>現在</em>この「Accept:」ヘッダフィールドをHTTPリクエストに含めていない場合は、早々に提供する計画を立てるべきです。</p>
 <p>「Accept:」フィールドにおける適切な値は次の通りです。</p>
@@ -271,10 +271,10 @@ div.test h4 {
 <h3 id="defaultIE">Internet Explorer用の特別なデフォルト動作</h3>
 <p>他のほとんどのブラウザと異なり、Internet Explorerは、すべてを受け取ることを示す<span class="inlineCode">*/*</span>を「q」値無しで「Accept:」ヘッダに含めて送信します。これとは対照的に、FirefoxとSafariは双方とも<span class="inlineCode">*/*;q=0.5</span>とし、Operaは<span class="inlineCode">*/*;q=0.1</span>とします。これらを考慮したデフォルトの振る舞いを確立するためには、「User-agent:」ヘッダフィールドの値に基づく書き換え条件を設定に挿入する必要があります。</p>
 <pre class="code2">RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*</pre>
-<p>さらに、IEの「クリック可能な」URIをそのままにしたいなら、​​デフォルト応答としてHTMLを設定する必要があります。</p>
+<p>さらに、IEの「クリック可能な」URIをそのままにしたいなら、​​デフォルトレスポンスとしてHTMLを設定する必要があります。</p>
 <h3 id="server_test">サーバー設定のテスト</h3>
 <p>いくつかのレシピについては、コンテントネゴシエーションの結果を効果的にテストすることがかなり複雑になり得ます。単一のURIにおけるコンテントネゴシエーションの結果の試験を容易にするために、<a href="http://idi.fundacionctic.org/vapour">コンテントネゴシエーション試験サービス</a>が提供されています。</p>
-<p>このサービスでは、サーバーから提供されたURIを要求し、レシピの仕様に対するサーバーの応答をテストするために設計されたテストスイートを実行し、そして各テストの成否レポートが、調査結果の詳細な説明とともに表示されます。</p>
+<p>このサービスでは、サーバーから提供されたURIをリクエストし、レシピの仕様に対するサーバーのレスポンスをテストするために設計されたテストスイートを実行し、そして各テストの成否レポートが、調査結果の詳細な説明とともに表示されます。</p>
 <p><a href="http://sourceforge.net/projects/vapour/">テストサービスのためのソースコード</a>も利用可能です。</p>
 <hr>
 <!--
@@ -408,7 +408,7 @@ Location: http://example.com/examples/example2/</pre>
 -->
 <h2 id="recipe3">レシピ3．「ハッシュ名前空間」の拡張設定</h2>
 <p><a href="#recipe3example">設定例</a> | <a href="#recipe3testing">設定のテスト</a> | <a href="#recipe3notes">注意事項</a></p>
-<p>このレシピは、<a href="#hash">ハッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>例になります。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかをリクエストに応じて提供するようにサーバーを設定し、<a href="#extendedrequirements">拡張要件</a>を満たします。以下の図のようなやりとりになります：</p>
+<p>このレシピは、<a href="#hash">ハッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>例になります。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかを要求に応じて提供するようにサーバーを設定し、<a href="#extendedrequirements">拡張要件</a>を満たします。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe3htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
   <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
@@ -511,7 +511,7 @@ Location: http://example.com/examples/example3-content/2005-10-31.rdf</pre>
 -->
 <h2 id="recipe4">レシピ4．単一のHTML文書を使用した「スラッシュ名前空間」の拡張設定</h2>
 <p><a href="#recipe4example">設定例</a> | <a href="#recipe4testing">設定のテスト</a> | <a href="#recipe4notes">注意事項</a></p>
-<p><a href="#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかをリクエストに応じて提供するようにサーバーを設定し、さらにリクエストに応じてクラスまたはプロパティURIから適切なコンテンツを取得できるようクライアントをリダイレクトすることで<a href="#extendedrequirements">拡張要件</a>を満たします。HTML文書は、単一のファイルとして提供されています。以下の図のようなやりとりになります：</p>
+<p><a href="#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかを要求に応じて提供するようにサーバーを設定し、さらに要求に応じてクラスまたはプロパティURIから適切なコンテンツを取得できるようクライアントをリダイレクトすることで<a href="#extendedrequirements">拡張要件</a>を満たします。HTML文書は、単一のファイルとして提供されています。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe4htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
   <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
@@ -663,7 +663,7 @@ Location: http://example.com/examples/example4-content/2005-10-31.rdf</pre>
 -->
 <h2 id="recipe5">レシピ5．複数のHTML文書を使用した「スラッシュ名前空間」の拡張設定</h2>
 <p><a href="#recipe5example">設定例</a> | <a href="#recipe5testing">設定のテスト</a> | <a href="#recipe5notes">注意事項</a></p>
-<p>このレシピでは<a href="#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。要求されたものに応じて、機械可読（RDF）と人間可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。以下の図のようなやりとりになります：</p>
+<p>このレシピでは<a href="#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。要求内容に応じて、機械可読（RDF）と人間可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe5htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
   <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
@@ -798,10 +798,10 @@ RewriteRule ^example5/(.*) example5-content/2005-10-31-docs/$1 [R=303]</pre>
 ****************
 -->
 <h2 id="recipe6">レシピ6．複数のHTML文書とクエリサービスを使用した「スラッシュ名前空間」の拡張設定</h2>
-<p>このレシピでは、<a href="#slash">スラッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>の一例を示します。要求されたものに応じて、機械処理可能（RDF）と人可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。また、RDFコンテンツについては、クライアントが語彙に関するRDFでの記述の一部を適宜取得できるクエリサービスにより利用可能となるものです。</p>
-<p>このレシピは、<a href="#recipe5">レシピ5</a>のほぼすべての機能を共有しているものの、RDFのコンテンツを取得するクエリサービスまたはスクリプトを使用すると、最も複雑な拡張構成とならざるを得ず、直接使用可能なレシピを提供するのに最大の課題となります。このため、ただ番号に従うようなレシピではなく、推奨される実装パターンのセットとして提示することにしました。また、他のレシピで採用しているのと同様の詳細さでは特定の実装パターンを記述していません。したがって、このレシピを実施するためにはいくつかのウェブ・プログラミングの知識が必要になります。</p>
-<h3 id="pattern1">パターン1：アプリケーション・ロジックの使用</h3>
-<p>このパターンは、ウェブサーバーに配備されている幾つかのアプリケーション・ロジックに依存しています。このロジックは、単純に要求をサードパーティのウェブサーバーにリダイレクト（またはプロキシとして機能）するシンレイヤー（薄い層、以下のDBpediaの例を参照）か、RDFデータソースをロードし、クエリを処理するためにHTTPリクエストをAPI呼び出しに変換するシックレイヤー（厚い層）になります。</p>
+<p>このレシピでは、<a href="#slash">スラッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>の一例を示します。要求内容に応じて、機械処理可能（RDF）と人可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。また、RDFコンテンツについては、クライアントが語彙に関するRDFでの記述の一部を適宜取得できるクエリサービスにより利用可能となるものです。</p>
+<p>このレシピは、<a href="#recipe5">レシピ5</a>のほぼすべての機能を共有しているものの、RDFのコンテンツを取得するクエリサービスまたはスクリプトを使用すると、最も複雑な拡張構成とならざるを得ず、直接使用可能なレシピを提供するのに最大の課題となります。このため、ただ番号に従うようなレシピではなく、推奨される実装パターンのセットとして提示することにしました。また、他のレシピで採用しているのと同様の詳細さでは特定の実装パターンを記述していません。したがって、このレシピを実施するためにはいくつかのウェブプログラミングの知識が必要になります。</p>
+<h3 id="pattern1">パターン1：アプリケーションロジックの使用</h3>
+<p>このパターンは、ウェブサーバーに配備されている幾つかのアプリケーションロジックに依存しています。このロジックは、単純にリクエストをサードパーティのウェブサーバーにリダイレクト（またはプロキシとして機能）するシンレイヤー（薄い層、以下のDBpediaの例を参照）か、RDFデータソースをロードし、クエリを処理するためにHTTPリクエストをAPI呼び出しに変換するシックレイヤー（厚い層）になります。</p>
 <p>サーバー側のロジックを導入するにあたり、2つの選択肢があります。</p>
 <ol>
   <li>サーバー側のスクリプト<br>一般的なサーバーサイドスクリプト言語（PHPやPython、Perl、Ruby）はRDF APIを持ち、RDFトリプルストアとバインドできます。ですから、RDFファイルまたはRDFトリプルストアを照会し、該当部分を返す単純なスクリプトを記述するために使用することができます。
@@ -829,12 +829,12 @@ RewriteRule ^example6/(.+) http://dbpedia.org/data/$1 [R=303]
 RewriteRule ^example6/(.+) http://dbpedia.org/data/$1 [R=303]</pre>
 <p>これは「薄い」実装層の一例で、書き換えルールは簡単です：</p>
 <ol>
-  <li>HTMLデータの要求は、DBpediaのサーブレットが出力するHTML版のURLに転送されます。</li>
-  <li>RDFデータの要求は、RDFデータのURLに転送されます。なお、RDFを返すことはデフォルトの動作であるため、「Acccept:」ヘッダの無い場合も同様です。</li>
+  <li>HTMLデータを要求した場合は、DBpediaのサーブレットが出力するHTML版のURLに転送されます。</li>
+  <li>RDFデータを要求した場合は、RDFデータのURLに転送されます。なお、RDFを返すことはデフォルトの動作であるため、「Acccept:」ヘッダの無い場合も同様です。</li>
 </ol>
-<p>HTTPコンテントネゴシエーションをスクラッチで正しく実装することがアプリケーション・ロジックを使用してレシピ6を実装する最も難しい部分になります。ほとんどのウェブスクリプト言語（PHPやPython等）およびフレームワークは、HTTPヘッダ値へのアクセス方法がある一方で、「Accept:」ヘッダに対する適切な戻り値の型を選択することは自明とはほど遠いものです。「Accept:」ヘッダーには、ワイルドカードとq値が含まれる場合があるので、正規表現や単純な文字列比較関数では十分ではないのです。なお、<a href="http://esw.w3.org/topic/ContentNegotiation">さまざまなプログラミング言語用のコンテントネゴシエーションライブラリ</a>に対するリンクを含むwikiページがあります。ワーキンググループは、コンテントネゴシエーションをサポートする、追加のライブラリやフレームワークの貢献を求めています。</p>
+<p>HTTPコンテントネゴシエーションをスクラッチで正しく実装することがアプリケーションロジックを使用してレシピ6を実装する最も難しい部分になります。ほとんどのウェブスクリプト言語（PHPやPython等）およびフレームワークは、HTTPヘッダ値へのアクセス方法がある一方で、「Accept:」ヘッダに対する適切な戻り値の型を選択することは自明とはほど遠いものです。「Accept:」ヘッダーには、ワイルドカードとq値が含まれる場合があるので、正規表現や単純な文字列比較関数では十分ではないのです。なお、<a href="http://esw.w3.org/topic/ContentNegotiation">さまざまなプログラミング言語用のコンテントネゴシエーションライブラリ</a>に対するリンクを含むwikiページがあります。ワーキンググループは、コンテントネゴシエーションをサポートする、追加のライブラリやフレームワークの貢献を求めています。</p>
 <h3 id="pattern2">パターン2：Apacheを使用したSPARQLエンドポイントへのリダイレクト</h3>
-<p>このパターンはアプリケーションロジックを記述する必要はありませんが、その代わりに、要求はApacheのmod_rewriteのを使用して、HTTPリダイレクトされます。この方法は、既存のSPARQLエンドポイントをラップするのに特に適しています。多くのSPARQLエンドポイントがHTTPバインディングを持つということを利用します。</p>
+<p>このパターンはアプリケーションロジックを記述する必要はありませんが、その代わりに、リクエストはApacheのmod_rewriteを使用して、HTTPリダイレクトされます。この方法は、既存のSPARQLエンドポイントをラップするのに特に適しています。多くのSPARQLエンドポイントがHTTPバインディングを持つということを利用します。</p>
 <ul>
   <li>長所：軽量、全くプログラミングを必要としません</li>
   <li>短所：公開対象とする語彙向けのSPARQLエンドポイントが使用可能でなければなりません</li>
@@ -849,7 +849,7 @@ RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://d
 
 RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://dbpedia.org/$1&gt; [R=303]
 </pre>
-<p>クライアントがHTMLコンテンツを要求すると外部のウェブサーバーに転送されますが、RDFの要求は異なる方法で処理されます。<a href="http://dbpedia.org/page/property/birthplace">http://example.org/example6/property/birthplace</a>のようなURIに対する要求は、 DBpediaのSPARQLエンドポイントに対して<span class="inlineCode">DESCRIBE</span> <span class="inlineCode">&lt;http://dbpedia.org/property/birthplace&gt;</span>文を実行した結果にリダイレクトされます。結果はリソースを記述するRDFグラフです。この例の場合は、人々と生誕地をリンクするプロパティになります。</p>
+<p>クライアントがHTMLコンテンツを要求すると外部のウェブサーバーに転送されますが、RDFを要求した場合は異なる方法で処理されます。<a href="http://dbpedia.org/page/property/birthplace">http://example.org/example6/property/birthplace</a>のようなURIに対するリクエストは、 DBpediaのSPARQLエンドポイントに対して<span class="inlineCode">DESCRIBE</span> <span class="inlineCode">&lt;http://dbpedia.org/property/birthplace&gt;</span>文を実行した結果にリダイレクトされます。結果はリソースを記述するRDFグラフです。この例の場合は、人々と生誕地をリンクするプロパティになります。</p>
 	       <h3 id="case_studies">ケーススタディ</h3>
 <ul>
   <li>Joshua Taubererは米国国勢調査からの膨大なRDFデータセットを公開したと<a href="http://simile.mit.edu/mail/ReadMsg?listName=Linking Open Data&amp;msgId=19957">発表しました</a>。SPARQLエンドポイントが利用可能で、URL書き換え方法を利用してURIは参照可能です。（例：<a href="http://www.rdfabout.com/rdf/usgov/geo/us">http://www.rdfabout.com/rdf/usgov/geo/us</a>）</li>
@@ -868,7 +868,7 @@ RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://d
 <p>（ⅰ）URIを参照解決したときに得られるHTTPレスポンスコード（TAG問題「httpRange-14」についての解決を参照してください[<a href="#ref-HTTPRANGE14">HTTPRANGE14]</a>）</p>
 <p>そして、</p>
 <p>（ii）URIがフラグメント識別子を含む場合、利用可能な表現のコンテントタイプ[<a href="#ref-AWWW04">AWWW04</a>]。</p>
-<p>これらの制約が与えられたときには、RDFS/OWLの語彙やクラス、プロパティを表す各HTTP URIへのHTTP要求に対して、アプリケーションが矛盾を含む結論を導き出すことのないような応答が得られます。</p>
+<p>これらの制約が与えられたときには、RDFS/OWLの語彙やクラス、プロパティを表す各HTTP URIへのHTTPリクエストに対して、アプリケーションが矛盾を含む結論を導き出すことのないようなレスポンスが得られます。</p>
 <h3 id="extendedrequirements">拡張要件</h3>
 <p>これらの要件は<a href="#minimumrequirements">最小要件</a>に対する拡張要件です。</p>
 <h4 id="recipe6e1">E1．HTTP URIで示されるRDF語彙やクラス、プロパティに関する「人可読な」文書は、それらのURIを参照解決することで得られます。</h4>
@@ -964,8 +964,8 @@ RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://d
 *********
 -->
 <h2 id="purls">付録A：命名用にPURLを使う語彙</h2>
-<p>PURL（Persistent URL）は<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span> URI空間のURIです。PURLは、PURL解決サービスによってサポートされており、これによりPURLドメインの登録所有者はPURLに対するHTTP要求を任意のリソースURLにリダイレクトさせることができます。PURLの登録所有者は、各PURLのリダイレクトURLを指定することは出来ますが、PURLサーバーを設定することは出来ません。</p>
-<p>PURLの中央サーバーが1990年代に開発されたときには、PURLに対する要求に対するHTTPサーバーの標準的な応答は302コード（「一時的な移動」）を返すことでした。その後ウェブアーキテクチャは進化し、W3Cの技術アーキテクチャグループ（TAG）は、RDF<em>クラスとプロパティ名</em>に対するリダイレクトのために、応答コードとして303（「他を参照」）を返すべきであると決めました。
+<p>PURL（Persistent URL）は<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span> URI空間のURIです。PURLは、PURL解決サービスによってサポートされており、これによりPURLドメインの登録所有者はPURLに対するHTTPリクエストを任意のリソースURLにリダイレクトさせることができます。PURLの登録所有者は、各PURLのリダイレクトURLを指定することは出来ますが、PURLサーバーを設定することは出来ません。</p>
+<p>PURLの中央サーバーが1990年代に開発されたときには、PURLへのリクエストに対するHTTPサーバーの標準的な応答は302コード（「一時的な移動」）を返すことでした。その後ウェブアーキテクチャは進化し、W3Cの技術アーキテクチャグループ（TAG）は、RDF<em>クラスとプロパティ名</em>に対するリダイレクトのために、応答コードとして303（「他を参照」）を返すべきであると決めました。
 詳細はhttpRange-14[<a href="#ref-HTTPRANGE14">HTTPRANGE14</a>]についてのTAG決議を参照してください。</p>
 <p>PURLサーバーが302応答コードを使用しているため、303応答コードを返すような設定が出来ず、<span class="inlineCode">http://purl.org</span>スラッシュ名前空間サーバーを持つ既存語彙は現在のTAG勧告に厳密には準拠していません。これらの例は、以下のレシピで取り上げています。</p>
 <p>注：本ワーキングドラフトの執筆時点である2008年1月において、PURLサービスのアップデートが進行中です。我々は、このアップデートがhttpRange-14と303リダイレクトについてのTAG判断に対応すると予想しています。
@@ -1224,7 +1224,7 @@ Root URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example5a/</pre>
 ******************
 -->
 <h2 id="naming">付録B：URI名前空間</h2>
-<p>あなたの語彙を識別するURIをここでは<em>語彙名前空間URI</em>もしくは単に<em>語彙URI</em>（ここでは<em>語彙</em>と<em>オントロジー</em>は同意なので、<em>オントロジーURI</em>とも）と呼びます。たとえば、次のURIは、SKOSコア語彙を特定します。</p>
+<p>あなたの語彙を識別するURIをここでは<em>語彙名前空間URI</em>もしくは単に<em>語彙URI</em>（ここでは<em>語彙</em>と<em>オントロジー</em>は同義なので、<em>オントロジーURI</em>とも）と呼びます。たとえば、次のURIは、SKOSコア語彙を特定します。</p>
 <pre><a href="http://www.w3.org/2004/02/skos/core">http://www.w3.org/2004/02/skos/core</a></pre>
 <p>...そして次のURIはFOAFオントロジーを特定します。</p>
 <pre><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></pre>
@@ -1239,7 +1239,7 @@ Root URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example5a/</pre>
 <pre><a href="http://xmlns.com/foaf/0.1/Person">http://xmlns.com/foaf/0.1/Person</a>
 <a href="http://xmlns.com/foaf/0.1/maker">http://xmlns.com/foaf/0.1/maker</a></pre>
 <p>URIがスラッシュで終わる語彙が<em>必ずしもスラッシュ名前空間を使うとは限らない</em>ことに注意してください。そしてハッシュ名前空間の場合もあり得ます。例えば、語彙<span class="inlineCode">http://example.org/myvocabulary/</span>はクラス<span class="inlineCode">http://example.org/myvocabulary/#Foo</span>や<span class="inlineCode">http://example.org/myvocabulary/#Bar</span>を定義できます。</p>
-<p><a href="#hash">ハッシュ名前空間</a>と<a href="#slash">スラッシュ名前空間</a>の双方ともウェブアーキテクチャでサポートされていますが、ウェブサーバーがこれらの選択肢の違いに応じた特定の振舞いが要求されます。サーバーが受信する要求およびサーバーが返す応答の双方がそれぞれの名前空間の場合で異なるので、下記に示す<a href="#requirements">要件</a>の一部または全てを満たすために必要なHTTPサーバーの構築方法も異なります。従って両者はそれぞれ別々に扱われます。</p>
+<p><a href="#hash">ハッシュ名前空間</a>と<a href="#slash">スラッシュ名前空間</a>の双方ともウェブアーキテクチャでサポートされていますが、ウェブサーバーがこれらの選択肢の違いに応じた特定の振舞いが要求されます。サーバーが受信するリクエストおよびサーバーが返すレスポンスの双方がそれぞれの名前空間の場合で異なるので、下記に示す<a href="#requirements">要件</a>の一部または全てを満たすために必要なHTTPサーバーの構築方法も異なります。従って両者はそれぞれ別々に扱われます。</p>
 <h3 id="other">他のタイプの名前空間の使う語彙</h3>
 <p>執筆時点で検討中の第三のタイプの語彙URI、すなわち、<a href="http://thing-described-by.org">http://thing-described-by.org</a>のような303リダイレクトサービスに基づいたURIについて留意してください。303リダイレクトのアプローチは本文書で説明しているアプローチよりも簡単に実装できるものの、まだ安定して公開されているRDF語彙がないため、次のレシピでは利用していません。<a href="#redirect">付録C</a>でこのアプローチをより詳しく説明しています。</p>
 <h3 id="choosingURI">URI名前空間を選択する際の検討事項</h3>
@@ -1289,8 +1289,8 @@ Root URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example5a/</pre>
 <pre class="code2">AddType application/rdf+xml .rdf</pre>
 <p>このディレクティブは、サーバー設定ファイルにおいてサーバーレベルでグローバルに適用できます。その場合は問題なくレシピから除去することができます。</p>
 <h3 id="alternative_configurations">書き換えルールに対する代替手段</h3>
-<p>本文書で説明されている設定例ではコンテントネゴシエーションを、書き換え規則（mod_rewrite）を用いてクライアントからの要求を最も適した表現にリダイレクトする方法で実装しています。この仕組みは簡単でありながらHTMLおよびRDF/XML文書の所在について大きな柔軟性を持たせることが出来ます。それらの文書は異なるサーバー上にあっても良いのです。</p>
-<p>ここでの設定例ではコンテントネゴシエーションを適切に処理出来ない場合があります。特に、q値を含む「Accept:」ヘッダーのある要求は書き換え規則で解析できず、サーバーが想定外の表現方法を返すかもしれません。このような要求を処理できるようにApacheサーバーを設定することは恐らく可能ですが、.htaccessファイルの制限内ではこの設定がうまく働きません。これらの要求を処理する完全なサーバー設定例を提供することは本文書の範囲を逸脱しています。興味をお持ちの方は<a href="http://httpd.apache.org/docs/2.0/content-negotiation.html">Apacheの型マップとコンテントネゴシエーション</a>を参照してください。</p>
+<p>本文書で説明されている設定例では書き換え規則（mod_rewrite）を用いて、コンテントネゴシエーションを、クライアントからのリクエストを最も適した表現が返されるURLにリダイレクトする方法で実装しています。この仕組みは簡単でありながらHTMLおよびRDF/XML文書の所在について大きな柔軟性を持たせることが出来ます。それらの文書は異なるサーバー上にあっても良いのです。</p>
+<p>ここでの設定例ではコンテントネゴシエーションを適切に処理出来ない場合があります。特に、q値を含む「Accept:」ヘッダーのあるリクエストは書き換え規則で解析できず、サーバーが想定外の表現方法を返すかもしれません。このような要求を処理できるようにApacheサーバーを設定することは恐らく可能ですが、.htaccessファイルの制限内ではこの設定がうまく働きません。これらのリクエストを処理する完全なサーバー設定例を提供することは本文書の範囲を逸脱しています。興味をお持ちの方は<a href="http://httpd.apache.org/docs/2.0/content-negotiation.html">Apacheの型マップとコンテントネゴシエーション</a>を参照してください。</p>
 <hr>
 <!-- FOOTER -->
 <p> <a href="http://validator.w3.org/check?uri=referer">
