@@ -138,7 +138,7 @@ div.test h4 {
 <p>本文書は、<a href="http://www.w3.org/2001/sw/BestPractices/">Semantic Web Best Practices and Deployment
   Working Group</a> (SWBPD)における以前の作業の基づき、<a href="http://www.w3.org/2006/07/SWD/">Semantic Web
   Deployment Working Group</a> (SWD)により作成されたものです。本作業は<a href="http://www.w3.org/2001/sw/Activity.html">W3C Semantic Web Activity</a>の一部です。</p>
-<p>本文書はいくつかのベストプラクティスを記述するノートです。公開時点で、本文書に対するSemantic Web Deployment Working Groupにおける今後の作業予定はありません。このバージョンは、以前のバージョンで行われたいくつかのコメントに対応しています。しかし、<a href="https://www.w3.org/TR/swbp-vocab-pub/#q_values">コンテントネゴシエーションで「q」値がつけられたもの</a>に関する<a href="http://www.w3.org/2006/07/SWD/track/issues/58">既知の問題</a>を解決しようとしたものではなく、また、いくつかの語彙に有用な技術として知られているRDFa[RDFa]とGRDDL [GRDDL]を用いた語彙公開のためのレシピを提供することもしません。</p>
+<p>本文書はいくつかのベストプラクティスを記述するノートです。公開時点で、本文書に対するSemantic Web Deployment Working Groupにおける今後の作業予定はありません。このバージョンは、以前のバージョンで行われたいくつかのコメントに対応しています。しかし、<a href="#q_values">コンテントネゴシエーションで「q」値がつけられたもの</a>に関する<a href="http://www.w3.org/2006/07/SWD/track/issues/58">既知の問題</a>を解決しようとしたものではなく、また、いくつかの語彙に有用な技術として知られているRDFa[RDFa]とGRDDL [GRDDL]を用いた語彙公開のためのレシピを提供することもしません。</p>
 <p>コメントを歓迎します。件名にテキスト「comment」を含めて<a href="mailto:public-swd-wg@w3.org">public-swd-wg@w3.org</a>宛に送付してください。このアドレスで受信したすべてのメッセージは<a href="http://lists.w3.org/Archives/Public/public-swd-wg/">公開アーカイブ</a>にて閲覧可能です。ワーキンググループは、適宜コメントに応答することもあります。私たちは、Semantic Web Interest Groupのメーリングリストで、このノートの解釈を議論するためのコミュニティを奨励します<a href="mailto:semantic-web@w3.org"></a>（<a href="http://lists.w3.org/Archives/Public/semantic-web/">公開アーカイブ</a>）。</p>
 
 <p>本文書は、<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">2004年2月5日W3C特許方針</a>の下で活動するグループにより作成されました。W3Cは、グループの成果物に関連して作成された<a href="http://www.w3.org/2004/01/pp-impl/39408/status" rel="disclosure">あらゆる特許の開示の公開リスト</a>を維持します。そのページには、特許開示にあたっての指示も含まれています。<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">エッセンシャルクレーム</a>を含むと信じる特許について具体的な知識を持つ個人は、<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">W3C特許方針のセクション6</a>に従ってそれを公開しなくてはなりません。</p>
@@ -151,28 +151,28 @@ div.test h4 {
 -->
 <h2 id="Contents">目次</h2>
 <ul>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#secintro">はじめに</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#choosing">レシピの選択</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1">レシピ1．「ハッシュ名前空間」の最小設定</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2">レシピ2．「スラッシュ名前空間」の最小設定</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3．「ハッシュ名前空間」の拡張設定</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4．単一のHTML文書を使用した「スラッシュ名前空間」の拡張設定</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5">レシピ5．複数のHTML文書を使用した「スラッシュ名前空間」の拡張設定</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe6">レシピ6．複数のHTML文書とクエリサービスを使用した「スラッシュ名前空間」の拡張設定</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#requirements">必要条件</a> </li>
+  <li> <a href="#secintro">はじめに</a> </li>
+  <li> <a href="#choosing">レシピの選択</a> </li>
+  <li> <a href="#negotiation">コンテントネゴシエーション</a> </li>
+  <li> <a href="#recipe1">レシピ1．「ハッシュ名前空間」の最小設定</a> </li>
+  <li> <a href="#recipe2">レシピ2．「スラッシュ名前空間」の最小設定</a> </li>
+  <li> <a href="#recipe3">レシピ3．「ハッシュ名前空間」の拡張設定</a> </li>
+  <li> <a href="#recipe4">レシピ4．単一のHTML文書を使用した「スラッシュ名前空間」の拡張設定</a> </li>
+  <li> <a href="#recipe5">レシピ5．複数のHTML文書を使用した「スラッシュ名前空間」の拡張設定</a> </li>
+  <li> <a href="#recipe6">レシピ6．複数のHTML文書とクエリサービスを使用した「スラッシュ名前空間」の拡張設定</a> </li>
+  <li> <a href="#requirements">必要条件</a> </li>
 </ul>
 <ul>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#ack">謝辞</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#references">参考文献</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#purls">付録A：命名のためにPURLを使用した語彙</a>
+  <li> <a href="#ack">謝辞</a> </li>
+  <li> <a href="#references">参考文献</a> </li>
+  <li> <a href="#purls">付録A：命名のためにPURLを使用した語彙</a>
     <ul>
-      <li>PURL適用レシピ： <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1a">レシピ1a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2a">レシピ2a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3a">レシピ3a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4a">レシピ4a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5a">レシピ5a</a></li>
+      <li>PURL適用レシピ： <a href="#recipe1a">レシピ1a</a> | <a href="#recipe2a">レシピ2a</a> | <a href="#recipe3a">レシピ3a</a> | <a href="#recipe4a">レシピ4a</a> | <a href="#recipe5a">レシピ5a</a></li>
     </ul>
   </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#naming">付録B：URI名前空間</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#redirect">付録C：303-リダイレクトサービスに基づく語彙のURI</a> </li>
-  <li> <a href="https://www.w3.org/TR/swbp-vocab-pub/#apache">付録D：Apacheの設定</a> </li>
+  <li> <a href="#naming">付録B：URI名前空間</a> </li>
+  <li> <a href="#redirect">付録C：303-リダイレクトサービスに基づく語彙のURI</a> </li>
+  <li> <a href="#apache">付録D：Apacheの設定</a> </li>
 </ul>
 <hr>
 <!--
@@ -181,23 +181,23 @@ div.test h4 {
 ****************
 -->
 <h2 id="secintro">はじめに</h2>
-<p>本文書はRDFSとOWLにおける語彙のクリエイターやメンテナのために書かれています。なお、本文書においては語彙とオントロジーは同義として使います。本文書では、最も一般的なケースがカバーされるように設計された設定例を与えて、ウェブ上で語彙を公開するための手順を説明します。RDFSとOWLについて詳しくは次の文書を参照してください[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-RDFS">RDFS</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-RDFPrimer">RDFPrimer</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-OWLGuide">OWLGuide</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-OWLFeatures">OWLFeatures</a>]。</p>
-<p>この「クックブック」は、ウェブサーバー上に語彙を公開すること、およびセマンティックウェブアプリケーションをサポートするウェブサーバーを設定するために必要な手順を記述した「レシピ」を提供します。「<a href="https://www.w3.org/TR/swbp-vocab-pub/#choosing">レシピを選択する</a>」では状況や要件に応じて最適なレシピを選択するための助言を提供します。レシピを選択したら、記述されている例を特定の語彙に適応させながら、手順に従って設定できます。</p>
-<p>レシピはすべて、ApacheのHTTPサーバー[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-APACHE20">APACHE20</a>]向けの設定例となっています。Apacheの設定に慣れていない方のために、付録<a href="https://www.w3.org/TR/swbp-vocab-pub/#apache">Apacheの設定</a>では、例の中で使われる設定の仕組みについて、問題が生じた際の対応に関する基本的な情報とともに簡単に紹介しています。</p>
+<p>本文書はRDFSとOWLにおける語彙のクリエイターやメンテナのために書かれています。なお、本文書においては語彙とオントロジーは同義として使います。本文書では、最も一般的なケースがカバーされるように設計された設定例を与えて、ウェブ上で語彙を公開するための手順を説明します。RDFSとOWLについて詳しくは次の文書を参照してください[<a href="#ref-RDFS">RDFS</a>、<a href="#ref-RDFPrimer">RDFPrimer</a>、<a href="#ref-OWLGuide">OWLGuide</a>、<a href="#ref-OWLFeatures">OWLFeatures</a>]。</p>
+<p>この「クックブック」は、ウェブサーバー上に語彙を公開すること、およびセマンティックウェブアプリケーションをサポートするウェブサーバーを設定するために必要な手順を記述した「レシピ」を提供します。「<a href="#choosing">レシピを選択する</a>」では状況や要件に応じて最適なレシピを選択するための助言を提供します。レシピを選択したら、記述されている例を特定の語彙に適応させながら、手順に従って設定できます。</p>
+<p>レシピはすべて、ApacheのHTTPサーバー[<a href="#ref-APACHE20">APACHE20</a>]向けの設定例となっています。Apacheの設定に慣れていない方のために、付録<a href="#apache">Apacheの設定</a>では、例の中で使われる設定の仕組みについて、問題が生じた際の対応に関する基本的な情報とともに簡単に紹介しています。</p>
 <p>設定例はApache HTTPサーバー向けですが、一般的な原理は、非Apacheの環境にも適用できます。ワーキンググループでは、非Apacheサーバー向けの情報を追加してくれることを望みます。W3Cは、これら収集するために、<a href="http://esw.w3.org/topic/VocabPublishingRecipes">Apache以外のバインディングと提言</a>というWikiページを提供しています。</p>
-<p>本文書は主に語彙をウェブ上で最良な形で公開する方法についての助言を求めている、既存語彙のクリエイターとメンテナのために意図されています。そして本文書は、新しい語彙やその構成用語を命名するための適切なURI名前空間を選択することについての詳細かつ網羅的な助言を提供するものでは<strong>ありません</strong> 。しかし、語彙のURI名前空間を選択することに関する考慮を含む、基本的なURIの名前空間に関する技術情報は、<a href="https://www.w3.org/TR/swbp-vocab-pub/#naming">URI名前空間</a>セクションに書かれています。</p>
-<p>レシピはすべて、「ワールド・ワイド・ウェブのアーキテクチャ[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-AWWW04">AWWW04</a>]」で現在規定されているワールド・ワイド・ウェブのアーキテクチャ原則に一致するよう作られています。このことを確認するために、本文書の最後に一連の<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>が記載されています。これらの最小要件は、セマンティックウェブアプリケーションの基本的な要件を明確にすることを意図しています。すべてのレシピが適切に実装されれば、この最小要件を満たすはずです。さらに、一連の<a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張要件を</a>も記載しています。拡張要件は、ある語彙に関する資料をウェブページ上でHTMLを用いて提供するなど、セマンティックウェブアプリケーション開発者の更なる実用的なニーズを明確にすることを意図しています。レシピ3、4、5、6が適切に実装されれば、この拡張された要件を満たすはずです。</p>
-<p>拡張要件を満たすために、レシピ3、4、5、6ではサーバーが<a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>を行うよう設定します。このプロセスについては、<a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>セクションにて簡単に説明しています。そこでは併せて様々なクライアントの動作の違いに対処するためのオプションについても説明しています。</p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#purls">付録A</a>では、<span class="inlineCode">http://purl.org/</span>[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-PURL">PURL</a>]のようなPURLサービスを用いた解決を行う「永続的なURL（PURL）」を利用して解決される語彙向けに、本文中で説明がなされている6つのレシピの適用方法を説明しています。</p>
+<p>本文書は主に語彙をウェブ上で最良な形で公開する方法についての助言を求めている、既存語彙のクリエイターとメンテナのために意図されています。そして本文書は、新しい語彙やその構成用語を命名するための適切なURI名前空間を選択することについての詳細かつ網羅的な助言を提供するものでは<strong>ありません</strong> 。しかし、語彙のURI名前空間を選択することに関する考慮を含む、基本的なURIの名前空間に関する技術情報は、<a href="#naming">URI名前空間</a>セクションに書かれています。</p>
+<p>レシピはすべて、「ワールド・ワイド・ウェブのアーキテクチャ[<a href="#ref-AWWW04">AWWW04</a>]」で現在規定されているワールド・ワイド・ウェブのアーキテクチャ原則に一致するよう作られています。このことを確認するために、本文書の最後に一連の<a href="#minimumrequirements">最小要件</a>が記載されています。これらの最小要件は、セマンティックウェブアプリケーションの基本的な要件を明確にすることを意図しています。すべてのレシピが適切に実装されれば、この最小要件を満たすはずです。さらに、一連の<a href="#extendedrequirements">拡張要件を</a>も記載しています。拡張要件は、ある語彙に関する資料をウェブページ上でHTMLを用いて提供するなど、セマンティックウェブアプリケーション開発者の更なる実用的なニーズを明確にすることを意図しています。レシピ3、4、5、6が適切に実装されれば、この拡張された要件を満たすはずです。</p>
+<p>拡張要件を満たすために、レシピ3、4、5、6ではサーバーが<a href="#negotiation">コンテントネゴシエーション</a>を行うよう設定します。このプロセスについては、<a href="#negotiation">コンテントネゴシエーション</a>セクションにて簡単に説明しています。そこでは併せて様々なクライアントの動作の違いに対処するためのオプションについても説明しています。</p>
+<p><a href="#purls">付録A</a>では、<span class="inlineCode">http://purl.org/</span>[<a href="#ref-PURL">PURL</a>]のようなPURLサービスを用いた解決を行う「永続的なURL（PURL）」を利用して解決される語彙向けに、本文中で説明がなされている6つのレシピの適用方法を説明しています。</p>
 <p>簡単のためレシピの論拠は記載していません。より詳しく知りたい場合は次の文書を参照してください。
-1. 「ワールド・ワイド・ウェブのアーキテクチャ」[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-AWWW04">AWWW04</a>]中の<a href="http://www.w3.org/TR/2004/REC-webarch-20041215/#id-resources">URI /リソースの関係</a>、
-2. HTTPのURI[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-RFC3986">RFC3986</a>] [<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-RFC2616">RFC2616</a>]における<a href="http://gbiv.com/protocols/uri/rfc/rfc3986.html#fragment">フラグメント識別子</a>、
-3. W3Cインタレストグループノート：「セマンティックウェブのためのクールなURI」[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-COOLURI">COOLURI</a>]、
-4.  W3Cテクニカルアーキテクチャグループ決議のうちの、HTTP参照解決に関する範囲（別名「httpRange-14」）[HTTPRANGE14]。<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14"></a> </p>
+1. 「ワールド・ワイド・ウェブのアーキテクチャ」[<a href="#ref-AWWW04">AWWW04</a>]中の<a href="http://www.w3.org/TR/2004/REC-webarch-20041215/#id-resources">URI /リソースの関係</a>、
+2. HTTPのURI[<a href="#ref-RFC3986">RFC3986</a>] [<a href="#ref-RFC2616">RFC2616</a>]における<a href="http://gbiv.com/protocols/uri/rfc/rfc3986.html#fragment">フラグメント識別子</a>、
+3. W3Cインタレストグループノート：「セマンティックウェブのためのクールなURI」[<a href="#ref-COOLURI">COOLURI</a>]、
+4.  W3Cテクニカルアーキテクチャグループ決議のうちの、HTTP参照解決に関する範囲（別名「httpRange-14」）[HTTPRANGE14]。<a href="#ref-HTTPRANGE14"></a> </p>
 <p>最後に、このクックブックで説明するレシピは、セマンティックウェブアプリケーションで使用するための語彙やオントロジーを公開するための唯一の方法ではないことにご留意ください。<a href="http://www.w3.org/TR/xhtml-rdfa-primer/">RDFa</a>や<a href="http://www.w3.org/TR/grddl-primer/">GRDDL</a>は近い将来、人と機械の双方で使われる文書を公開するための効果的な方法を提供するでしょう。しかし、RDFaのとGRDDLに関する有益な議論をすることは本文書の範囲外です。</p>
 <hr>
 <h2 id="choosing">レシピを選択します</h2>
-<p>レシピの選択は、語彙URIで提供したいコンテントタイプと、語彙で定義されるクラスやプロパティのURIにより決まります。URIの名前空間については<a href="https://www.w3.org/TR/swbp-vocab-pub/#naming">付録B</a>で詳細を記載していますが、本文書全体を通して、「語彙URI」は、「語彙の名前空間URI」と解釈することとします。</p>
+<p>レシピの選択は、語彙URIで提供したいコンテントタイプと、語彙で定義されるクラスやプロパティのURIにより決まります。URIの名前空間については<a href="#naming">付録B</a>で詳細を記載していますが、本文書全体を通して、「語彙URI」は、「語彙の名前空間URI」と解釈することとします。</p>
 <h3 id="recipe_table">選択早見表</h3>
 <table cellpadding="5" cellspacing="0" class="style1" style="width:100%">
   <tr>
@@ -207,46 +207,46 @@ div.test h4 {
   </tr>
   <tr>
     <td valign="top" class="style2">機械処理可能なRDF</td>
-    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1">レシピ1</a> </td>
-    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2">レシピ2</a> </td>
+    <td valign="top" class="style2"><a href="#recipe1">レシピ1</a> </td>
+    <td valign="top" class="style2"><a href="#recipe2">レシピ2</a> </td>
   </tr>
   <tr>
     <td valign="top" class="style2">機械処理可能なRDF（PURLを使用）</td>
-    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1a">レシピ1a</a> </td>
-    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2a">レシピ2a</a> </td>
+    <td valign="top" class="style2"><a href="#recipe1a">レシピ1a</a> </td>
+    <td valign="top" class="style2"><a href="#recipe2a">レシピ2a</a> </td>
   </tr>
   <tr>
     <td valign="top" class="style2">RDFと一つのHTML文書</td>
-    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a> </td>
-    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a> </td>
+    <td valign="top" class="style2"><a href="#recipe3">レシピ3</a> </td>
+    <td valign="top" class="style2"><a href="#recipe4">レシピ4</a> </td>
   </tr>
   <tr>
     <td valign="top" class="style2">RDFと一つのHTML文書（PURLを使用）</td>
-    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3a">レシピ3a</a> </td>
-    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4a">レシピ4a</a> </td>
+    <td valign="top" class="style2"><a href="#recipe3a">レシピ3a</a> </td>
+    <td valign="top" class="style2"><a href="#recipe4a">レシピ4a</a> </td>
   </tr>
   <tr>
     <td valign="top" class="style2">RDFと複数のHTML文書</td>
     <td valign="top" class="style2"> </td>
-    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5">レシピ5</a>または<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe6">レシピ6</a></td>
+    <td valign="top" class="style2"><a href="#recipe5">レシピ5</a>または<a href="#recipe6">レシピ6</a></td>
   </tr>
   <tr>
     <td valign="top" class="style2">RDFと複数のHTML文書（PURLを使用）</td>
     <td valign="top" class="style2"> </td>
-    <td valign="top" class="style2"><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5a">レシピ5a</a> </td>
+    <td valign="top" class="style2"><a href="#recipe5a">レシピ5a</a> </td>
   </tr>
 </table>
 <p>  </p>
 <h3 id="simplechoices">簡単な設定</h3>
 <p>最も簡単なレシピは、語彙URIに対して機械処理可能（RDF）コンテンツだけを提供するようサーバーを構成するものです。</p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>を使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1">レシピ1</a>を参照してください。ただしPURLを使用している場合には<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1a">レシピ1a</a>を参照してください。</p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2">レシピ2</a>を参照してください。ただしPURLを使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2a">レシピ2a</a>を参照してください。</p>
+<p><a href="#hash">ハッシュ名前空間</a>を使用している場合は<a href="#recipe1">レシピ1</a>を参照してください。ただしPURLを使用している場合には<a href="#recipe1a">レシピ1a</a>を参照してください。</p>
+<p><a href="#slash">スラッシュ名前空間</a>を使用している場合は<a href="#recipe2">レシピ2</a>を参照してください。ただしPURLを使用している場合は<a href="#recipe2a">レシピ2a</a>を参照してください。</p>
 <h3 id="extendedchoices">拡張設定</h3>
-<p>拡張レシピでは、機械処理可能（RDF）と人可読（HTML）の双方のコンテンツを提供するようサーバーを設定します（<a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>セクションも参照ください）。これらのレシピは別のコンテントタイプも提供できるよう簡単に拡張できます。</p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>を参照してください。ただしPURLを使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3a">レシピ3a</a>を参照してください。</p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい、そして、HTMLコンテンツが単一の文書に含まれている場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>を参照してください。ただしPURLを使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4a">レシピ4a</a>を参照してください。</p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい、そしてHTMLコンテンツについては、語彙URIにおいて目次や索引などの概要とともに、各クラスやプロパティはそれぞれハイパーリンクでリンクした個々の文書として提供したい場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5">レシピ5</a>を参照してください。ただしPURLを使用している場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5a">レシピ5a</a>を参照してください。</p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい、そしてHTMLコンテンツについては個々のクラスやプロパティに対してそれぞれハイパーリンクでリンクした文書として提供したい、さらにRDFについては各クラスやプロパティの記述の一部を提供したい場合は<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe6">レシピ6</a>を参照してください。</p>
+<p>拡張レシピでは、機械処理可能（RDF）と人可読（HTML）の双方のコンテンツを提供するようサーバーを設定します（<a href="#negotiation">コンテントネゴシエーション</a>セクションも参照ください）。これらのレシピは別のコンテントタイプも提供できるよう簡単に拡張できます。</p>
+<p><a href="#hash">ハッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい場合は<a href="#recipe3">レシピ3</a>を参照してください。ただしPURLを使用している場合は<a href="#recipe3a">レシピ3a</a>を参照してください。</p>
+<p><a href="#slash">スラッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい、そして、HTMLコンテンツが単一の文書に含まれている場合は<a href="#recipe4">レシピ4</a>を参照してください。ただしPURLを使用している場合は<a href="#recipe4a">レシピ4a</a>を参照してください。</p>
+<p><a href="#slash">スラッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい、そしてHTMLコンテンツについては、語彙URIにおいて目次や索引などの概要とともに、各クラスやプロパティはそれぞれハイパーリンクでリンクした個々の文書として提供したい場合は<a href="#recipe5">レシピ5</a>を参照してください。ただしPURLを使用している場合は<a href="#recipe5a">レシピ5a</a>を参照してください。</p>
+<p><a href="#slash">スラッシュ名前空間</a>を使用していて、RDFとHTMLコンテンツの双方を提供したい、そしてHTMLコンテンツについては個々のクラスやプロパティに対してそれぞれハイパーリンクでリンクした文書として提供したい、さらにRDFについては各クラスやプロパティの記述の一部を提供したい場合は<a href="#recipe6">レシピ6</a>を参照してください。</p>
 <hr>
 <h2 id="negotiation">コンテントネゴシエーション</h2>
 <p>HTTPクライアントが、あるURIを参照解決しようとするとき、返されるコンテンツについて希望のタイプを指定できます。これはリクエストメッセージのヘッダに「Accept:」フィールドを含めることで実現でき、その値として希望するMIMEタイプを与えます。例えば、RDF/XMLコンテンツを望むHTTPクライアントは各リクエストのヘッダに次のフィールドを含めることでしょう。</p>
@@ -254,9 +254,9 @@ div.test h4 {
 <p>同様に、ウェブブラウザなど、HTMLコンテンツを望むHTTPクライアントは、各リクエストのヘッダに次のようなフィールドを含めることでしょう。</p>
 <pre class="code2">Accept: application/xhtml+xml,text/html</pre>
 <p>HTTPクライアントは、リクエストヘッダ中に、処理可能なコンテントタイプを「Accept:」フィールドで陽に指定すべきということは、ベストプラクティスとして受け入れられています。</p>
-<p>サーバーはリクエストを受け取る際に、クライアントの希望を最大限満たすよう、最も適切な応答を対応可能なものの中から選ぶために「Accept:」フィールドの値を利用できます。このプロセスは<a href="http://www.w3.org/TR/webarch/#def-coneg">コンテントネゴシエーション</a>[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-AWWW04">AWWW04</a>] の一例です。</p>
-<p>レシピ<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1">1</a>および<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2">2</a>は、サーバーがコンテントネゴシエーションを<strong>しない</strong>設定です。RDF/XMLが唯一の表現タイプであり、クライアントから送られる「Accept:」ヘッダの値に左右されません。</p>
-<p id="q_values">レシピ<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">3</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">4</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5">5</a>、<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe6">6</a>はクライアントから送信されたヘッダフィールド「Acdept:」の値に基づいて、コンテントネゴシエーションを行うようにサーバーを設定<strong>します</strong>。しかし、提案された設定例は、コンテントネゴシエーションに関するHTTPの仕様のすべてに対応するものではありません。事実、コンテントネゴシエーションにおけるクライアントの希望順にある程度は対応するものの、「q」指標を扱うことはできません。したがって、「Accept:」ヘッダーにq値を使用するHTTPクライアントは、予期しない結果を得るかもしれません。</p>
+<p>サーバーはリクエストを受け取る際に、クライアントの希望を最大限満たすよう、最も適切な応答を対応可能なものの中から選ぶために「Accept:」フィールドの値を利用できます。このプロセスは<a href="http://www.w3.org/TR/webarch/#def-coneg">コンテントネゴシエーション</a>[<a href="#ref-AWWW04">AWWW04</a>] の一例です。</p>
+<p>レシピ<a href="#recipe1">1</a>および<a href="#recipe2">2</a>は、サーバーがコンテントネゴシエーションを<strong>しない</strong>設定です。RDF/XMLが唯一の表現タイプであり、クライアントから送られる「Accept:」ヘッダの値に左右されません。</p>
+<p id="q_values">レシピ<a href="#recipe3">3</a>、<a href="#recipe4">4</a>、<a href="#recipe5">5</a>、<a href="#recipe6">6</a>はクライアントから送信されたヘッダフィールド「Acdept:」の値に基づいて、コンテントネゴシエーションを行うようにサーバーを設定<strong>します</strong>。しかし、提案された設定例は、コンテントネゴシエーションに関するHTTPの仕様のすべてに対応するものではありません。事実、コンテントネゴシエーションにおけるクライアントの希望順にある程度は対応するものの、「q」指標を扱うことはできません。したがって、「Accept:」ヘッダーにq値を使用するHTTPクライアントは、予期しない結果を得るかもしれません。</p>
 <p class="editorial"><strong>編集者注</strong> ：できるだけレシピの容易性を維持しながら、HTTP仕様に完全準拠する代替案をワーキンググループは検討しています。これはワーキンググループのイシュープロセスにおける<a href="http://www.w3.org/2006/07/SWD/track/issues/58">ISSUE-58</a>として記録されています。この問題に関するコメントは歓迎です。「Comment: ISSUE-58」から始まる件名で<a href="mailto:public-swd-wg@w3.org?subject=Comment: ISSUE-58">SWDワーキンググループ</a>宛てにEメールをお寄せください。</p>
 <h3 id="default">デフォルトの動作</h3>
 <p>サーバーがコンテントネゴシエーションを行うよう設定されている場合、「デフォルトの動作」を定めなければなりません。すなわち、次のような場合における応答を決定できなくてはなりません。</p>
@@ -269,7 +269,7 @@ div.test h4 {
 <p>RDFコンテンツを処理することが期待されるセマンティックウェブアプリケーションを開発したり維持したりしていて、<em>現在</em>この「Accept:」ヘッダフィールドをHTTPリクエストに含めていない場合は、早々に提供する計画を立てるべきです。</p>
 <p>「Accept:」フィールドにおける適切な値は次の通りです。</p>
 <pre class="code2">Accept: application/rdf+xml,application/xml;q=0.5</pre>
-<p>HTTP 1.1プロトコル[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-RFC2616">RFC2616</a>]の<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">セクション14</a>で規定されているとおり、この例中の「q=0.5」は、相対的な品質値を示します。何も指定されていない場合のデフォルトの「q」値は1.0です。この例は次のように読むことができます。すなわち、「application/rdf+xml」にデフォルトの相対品質値である1.0を与えてこれを希望しますが、その半分（50%）だけのq値で「application/xml」も受け入れます。</p>
+<p>HTTP 1.1プロトコル[<a href="#ref-RFC2616">RFC2616</a>]の<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">セクション14</a>で規定されているとおり、この例中の「q=0.5」は、相対的な品質値を示します。何も指定されていない場合のデフォルトの「q」値は1.0です。この例は次のように読むことができます。すなわち、「application/rdf+xml」にデフォルトの相対品質値である1.0を与えてこれを希望しますが、その半分（50%）だけのq値で「application/xml」も受け入れます。</p>
 <h3 id="defaultIE">Internet Explorer用の特別なデフォルト動作</h3>
 <p>他のほとんどのブラウザと異なり、Internet Explorerは、すべてを受け取ることを示す<span class="inlineCode">*/*</span>を「q」値無しで「Accept:」ヘッダに含めて送信します。これとは対照的に、FirefoxとSafariは双方とも<span class="inlineCode">*/*;q=0.5</span>とし、Operaは<span class="inlineCode">*/*;q=0.1</span>とします。これらを考慮したデフォルトの振る舞いを確立するためには、「User-agent:」ヘッダフィールドの値に基づく書き換え条件を設定に挿入する必要があります。</p>
 <pre class="code2">RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*</pre>
@@ -285,11 +285,11 @@ div.test h4 {
 ************
 -->
 <h2 id="recipe1">レシピ1．「ハッシュ名前空間」の最小設定</h2>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1example">設定例</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1testing">設定のテスト</a></p>
-<p>このレシピは、<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>を使う語彙のための<strong>最も簡単な設定</strong>例になります。語彙URIから機械処理可能な（RDF）コンテンツを提供するようサーバーを設定して<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>を満たします。以下の図のようなやりとりになります：</p>
+<p><a href="#recipe1example">設定例</a> | <a href="#recipe1testing">設定のテスト</a></p>
+<p>このレシピは、<a href="#hash">ハッシュ名前空間</a>を使う語彙のための<strong>最も簡単な設定</strong>例になります。語彙URIから機械処理可能な（RDF）コンテンツを提供するようサーバーを設定して<a href="#minimumrequirements">最小要件</a>を満たします。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe1deref">語彙URIの参照解決</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-min.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="img/deref-ont-uri-min.png" alt="クライアントとサーバーの対話"> </p>
   <p>（RDF/XMLとしてエンコードされた、語彙についてのRDF記述を返す。）</p>
 </div>
 <h3 id="recipe1example">設定例</h3>
@@ -337,16 +337,16 @@ Content-Type: application/rdf+xml</pre>
 ************
 -->
 <h2 id="recipe2">レシピ2．「スラッシュ名前空間」の最小設定</h2>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2example">設定例</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2testing">構成のテスト</a></p>
-<p>このレシピは、<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使用する語彙のための<strong>最も簡単な設定</strong>例になります。語彙URIから機械処理可能な（RDF）コンテンツを提供し、クラスとプロパティのURIから語彙URIにクライアントをリダイレクトするようにサーバー設定することで<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>満たします。以下の図のようなやりとりになります：</p>
+<p><a href="#recipe2example">設定例</a> | <a href="#recipe2testing">構成のテスト</a></p>
+<p>このレシピは、<a href="#slash">スラッシュ名前空間</a>を使用する語彙のための<strong>最も簡単な設定</strong>例になります。語彙URIから機械処理可能な（RDF）コンテンツを提供し、クラスとプロパティのURIから語彙URIにクライアントをリダイレクトするようにサーバー設定することで<a href="#minimumrequirements">最小要件</a>満たします。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe2deref">語彙URIの参照解決</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-min.png" alt="例2クライアントとサーバーの対話。"> </p>
+  <p class="msg"> <img src="img/deref-ont-uri-min.png" alt="例2クライアントとサーバーの対話。"> </p>
   <p>（RDF/XMLとしてエンコードされた、語彙のRDF記述を返す。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe2propderef">クラスまたはプロパティのURIの参照解決</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-min.png" alt="例2クライアントとサーバーの対話。"> </p>
+  <p class="msg"> <img src="img/deref-cp-uri-min.png" alt="例2クライアントとサーバーの対話。"> </p>
   <p>（語彙URIにクライアントをリダイレクトします。）</p>
 </div>
 <h3 id="recipe2example">設定例</h3>
@@ -409,16 +409,16 @@ Location: http://example.com/examples/example2/</pre>
 ************
 -->
 <h2 id="recipe3">レシピ3．「ハッシュ名前空間」の拡張設定</h2>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3example">設定例</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3testing">設定のテスト</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3notes">注意事項</a></p>
-<p>このレシピは、<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>例になります。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかをリクエストに応じて提供するようにサーバーを設定し、<a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張要件</a>を満たします。以下の図のようなやりとりになります：</p>
+<p><a href="#recipe3example">設定例</a> | <a href="#recipe3testing">設定のテスト</a> | <a href="#recipe3notes">注意事項</a></p>
+<p>このレシピは、<a href="#hash">ハッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>例になります。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかをリクエストに応じて提供するようにサーバーを設定し、<a href="#extendedrequirements">拡張要件</a>を満たします。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe3htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
   <p>（語彙に対する現在のHTML文書にクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe3rdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
   <p>（語彙に対する現在のRDF記述にクライアントをリダイレクトします。）</p>
 </div>
 <h3 id="recipe3example">設定例</h3>
@@ -504,7 +504,7 @@ Location: http://example.com/examples/example3-content/2005-10-31.rdf</pre>
 </div>
 <h3 id="recipe3notes">注意点</h3>
 <p>この例ではファイル名を語彙バージョンの変更日としています。また、日付の代わりにバージョン番号（例えば「1.01」）を使うこともできますし、さらには語彙のバージョンを区別し、来歴を保持するためのどんな命名法を使用しても問題ありません。</p>
-<p>また、<a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>も参照してください。</p>
+<p>また、<a href="#negotiation">コンテントネゴシエーション</a>も参照してください。</p>
 <hr>
 <!--
 ************
@@ -512,26 +512,26 @@ Location: http://example.com/examples/example3-content/2005-10-31.rdf</pre>
 ************
 -->
 <h2 id="recipe4">レシピ4．単一のHTML文書を使用した「スラッシュ名前空間」の拡張設定</h2>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4example">設定例</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4testing">設定のテスト</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4notes">注意事項</a></p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかをリクエストに応じて提供するようにサーバーを設定し、さらにリクエストに応じてクラスまたはプロパティURIから適切なコンテンツを取得できるようクライアントをリダイレクトすることで<a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張要件</a>を満たします。HTML文書は、単一のファイルとして提供されています。以下の図のようなやりとりになります：</p>
+<p><a href="#recipe4example">設定例</a> | <a href="#recipe4testing">設定のテスト</a> | <a href="#recipe4notes">注意事項</a></p>
+<p><a href="#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかをリクエストに応じて提供するようにサーバーを設定し、さらにリクエストに応じてクラスまたはプロパティURIから適切なコンテンツを取得できるようクライアントをリダイレクトすることで<a href="#extendedrequirements">拡張要件</a>を満たします。HTML文書は、単一のファイルとして提供されています。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe4htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
-  <p>（<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>のように、語彙に対する現在のHTML文書にクライアントをリダイレクトします。）</p>
+  <p class="msg"> <img src="img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（<a href="#recipe3">レシピ3</a>のように、語彙に対する現在のHTML文書にクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe4rdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
-  <p>（<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>のように、語彙に対する現在のRDF記述にクライアントをリダイレクトします。）</p>
+  <p class="msg"> <img src="img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（<a href="#recipe3">レシピ3</a>のように、語彙に対する現在のRDF記述にクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe4prophtmlderef">クラスまたはプロパティのURIを参照解決し、HTMLコンテンツを要求</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-html.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="img/deref-cp-uri-html.png" alt="クライアントとサーバーの対話"> </p>
   <p>（クラスやプロパティに関連する語彙についての現在のHTML文書のフラグメントにクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe4proprdfderef">クラスまたはプロパティのURIを参照解決し、RDFコンテンツを要求</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="img/deref-cp-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
   <p>（語彙に対する現在のRDF記述にクライアントをリダイレクトします。）</p>
 </div>
 <h3 id="recipe4example">設定例</h3>
@@ -655,8 +655,8 @@ Host: example.com</pre>
 Location: http://example.com/examples/example4-content/2005-10-31.rdf</pre>
 </div>
 <h3 id="recipe4notes">注意点</h3>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>と同様に、この例では語彙バージョンの変更日をファイル名にしています。また、日付の代わりにバージョン番号（例えば「1.01」）を使うこともできますし、さらには語彙のバージョンを区別し、来歴を保持するためのどんな命名法を使用しても問題ありません。</p>
-<p>また、<a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>も参照してください。</p>
+<p><a href="#recipe3">レシピ3</a>と同様に、この例では語彙バージョンの変更日をファイル名にしています。また、日付の代わりにバージョン番号（例えば「1.01」）を使うこともできますし、さらには語彙のバージョンを区別し、来歴を保持するためのどんな命名法を使用しても問題ありません。</p>
+<p>また、<a href="#negotiation">コンテントネゴシエーション</a>も参照してください。</p>
 <hr>
 <!--
 ************
@@ -664,27 +664,27 @@ Location: http://example.com/examples/example4-content/2005-10-31.rdf</pre>
 ************
 -->
 <h2 id="recipe5">レシピ5．複数のHTML文書を使用した「スラッシュ名前空間」の拡張設定</h2>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5example">設定例</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5testing">設定のテスト</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5notes">注意事項</a></p>
-<p>このレシピでは<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。要求されたものに応じて、機械可読（RDF）と人間可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。以下の図のようなやりとりになります：</p>
+<p><a href="#recipe5example">設定例</a> | <a href="#recipe5testing">設定のテスト</a> | <a href="#recipe5notes">注意事項</a></p>
+<p>このレシピでは<a href="#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。要求されたものに応じて、機械可読（RDF）と人間可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe5htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="img/deref-ont-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
   <p>（HTMLで書かれた、語彙についての現在の概要文書にクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe5rdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
-  <p>(<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>と<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>のように、語彙についての現在のRDF記述にクライアントをリダイレクトします。)</p>
+  <p class="msg"> <img src="img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p>(<a href="#recipe3">レシピ3</a>と<a href="#recipe4">レシピ4</a>のように、語彙についての現在のRDF記述にクライアントをリダイレクトします。)</p>
 </div>
 <div class="interaction">
   <h4 id="recipe5prophtmlderef">クラスまたはプロパティのURIを参照解決し、HTMLコンテンツを要求</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="img/deref-cp-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
   <p>（クラスまたはプロパティの現在のHTML文書にクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe5proprdfderef">クラスまたはプロパティのURIを参照解決し、RDFコンテンツを要求</h4>
-  <p class="msg"> <img src="https://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
-  <p>（<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>のように、語彙についての現在のRDF記述にクライアントをリダイレクトします。）</p>
+  <p class="msg"> <img src="img/deref-cp-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p>（<a href="#recipe4">レシピ4</a>のように、語彙についての現在のRDF記述にクライアントをリダイレクトします。）</p>
 </div>
 <h3 id="recipe5example">設定例</h3>
 <p>語彙...</p>
@@ -760,11 +760,11 @@ Location: http://example.com/examples/example5-content/2005-10-31-docs/index.htm
 </div>
 <div class="test">
   <h4 id="recipe5testrdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
-  <p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>に同じ。</p>
+  <p><a href="#recipe4">レシピ4</a>に同じ。</p>
 </div>
 <div class="test">
   <h4 id="recipe5testdefaultderef">デフォルトの場合における語彙URIの参照解決</h4>
-  <p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>に同じ。</p>
+  <p><a href="#recipe4">レシピ4</a>に同じ。</p>
 </div>
 <div class="test">
   <h4 id="recipe5testprophtmlderef">クラスまたはプロパティのURIを参照解決し、HTMLコンテンツを要求</h4>
@@ -778,15 +778,15 @@ Location: http://example.com/examples/example5-content/2005-10-31-docs/ClassA.ht
 </div>
 <div class="test">
   <h4 id="recipe5testproprdfderef">クラスまたはプロパティのURIを参照解決し、RDFコンテンツを要求</h4>
-  <p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>に同じ。</p>
+  <p><a href="#recipe4">レシピ4</a>に同じ。</p>
 </div>
 <div class="test">
   <h4 id="recipe5testpropdefaultderef">デフォルトの場合におけるクラスまたはプロパティのURIの参照解決</h4>
-  <p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4">レシピ4</a>に同じ。</p>
+  <p><a href="#recipe4">レシピ4</a>に同じ。</p>
 </div>
 <h3 id="recipe5notes">注意点</h3>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#negotiation">コンテントネゴシエーション</a>も参照してください。</p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3">レシピ3</a>と同様に 、この例では語彙バージョンの変更日をファイル名にしています。また、日付の代わりにバージョン番号（例えば「1.01」）を使うこともできますし、さらには語彙のバージョンを区別し、来歴を保持するためのどんな命名法を使用しても問題ありません。</p>
+<p><a href="#negotiation">コンテントネゴシエーション</a>も参照してください。</p>
+<p><a href="#recipe3">レシピ3</a>と同様に 、この例では語彙バージョンの変更日をファイル名にしています。また、日付の代わりにバージョン番号（例えば「1.01」）を使うこともできますし、さらには語彙のバージョンを区別し、来歴を保持するためのどんな命名法を使用しても問題ありません。</p>
 <p>なお、ディレクトリ<span class="inlineCode">/apachedocumentroot/examples/example5-content/2005-10-31-docs/</span>においてIndexesとMultiViewsオプションが有効の場合は、書き換え規則1と2を下記のような単一の規則で置き換えることが出来ます。</p>
 <pre class="code2">RewriteCond %{HTTP_ACCEPT} text/html [OR]
 RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
@@ -800,8 +800,8 @@ RewriteRule ^example5/(.*) example5-content/2005-10-31-docs/$1 [R=303]</pre>
 ****************
 -->
 <h2 id="recipe6">レシピ6．複数のHTML文書とクエリサービスを使用した「スラッシュ名前空間」の拡張設定</h2>
-<p>このレシピでは、<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>の一例を示します。要求されたものに応じて、機械処理可能（RDF）と人可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。また、RDFコンテンツについては、クライアントが語彙に関するRDFでの記述の一部を適宜取得できるクエリサービスにより利用可能となるものです。</p>
-<p>このレシピは、<a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5">レシピ5</a>のほぼすべての機能を共有しているものの、RDFのコンテンツを取得するクエリサービスまたはスクリプトを使用すると、最も複雑な拡張構成とならざるを得ず、直接使用可能なレシピを提供するのに最大の課題となります。このため、ただ番号に従うようなレシピではなく、推奨される実装パターンのセットとして提示することにしました。また、他のレシピで採用しているのと同様の詳細さでは特定の実装パターンを記述していません。したがって、このレシピを実施するためにはいくつかのウェブ・プログラミングの知識が必要になります。</p>
+<p>このレシピでは、<a href="#slash">スラッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>の一例を示します。要求されたものに応じて、機械処理可能（RDF）と人可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。また、RDFコンテンツについては、クライアントが語彙に関するRDFでの記述の一部を適宜取得できるクエリサービスにより利用可能となるものです。</p>
+<p>このレシピは、<a href="#recipe5">レシピ5</a>のほぼすべての機能を共有しているものの、RDFのコンテンツを取得するクエリサービスまたはスクリプトを使用すると、最も複雑な拡張構成とならざるを得ず、直接使用可能なレシピを提供するのに最大の課題となります。このため、ただ番号に従うようなレシピではなく、推奨される実装パターンのセットとして提示することにしました。また、他のレシピで採用しているのと同様の詳細さでは特定の実装パターンを記述していません。したがって、このレシピを実施するためにはいくつかのウェブ・プログラミングの知識が必要になります。</p>
 <h3 id="pattern1">パターン1：アプリケーション・ロジックの使用</h3>
 <p>このパターンは、ウェブサーバーに配備されている幾つかのアプリケーション・ロジックに依存しています。このロジックは、単純に要求をサードパーティのウェブサーバーにリダイレクト（またはプロキシとして機能）するシンレイヤー（薄い層、以下のDBpediaの例を参照）か、RDFデータソースをロードし、クエリを処理するためにHTTPリクエストをAPI呼び出しに変換するシックレイヤー（厚い層）になります。</p>
 <p>サーバー側のロジックを導入するにあたり、2つの選択肢があります。</p>
@@ -855,7 +855,7 @@ RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://d
 	       <h3 id="case_studies">ケーススタディ</h3>
 <ul>
   <li>Joshua Taubererは米国国勢調査からの膨大なRDFデータセットを公開したと<a href="http://simile.mit.edu/mail/ReadMsg?listName=Linking Open Data&amp;msgId=19957">発表しました</a>。SPARQLエンドポイントが利用可能で、URL書き換え方法を利用してURIは参照可能です。（例：<a href="http://www.rdfabout.com/rdf/usgov/geo/us">http://www.rdfabout.com/rdf/usgov/geo/us</a>）</li>
-  <li>D2R Serverは関係データベースをラップし、それに対するSPARQLとリンクトデータのインタフェースを提供します。後者については、リソースに対するHTMLとRDF記述の双方を提供するための303リダイレクトを伴うコンテントネゴシエーションの例になります。一方、Pubbyは、既存のSPARQLエンドポイントにリンクトデータのインタフェースを提供します。詳細は「セマンティックウェブのためのクールなURI」[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-COOLURI">COOLURI</a>]の<a href="http://www.w3.org/TR/cooluris/#examples">5章</a>にあります。</li>
+  <li>D2R Serverは関係データベースをラップし、それに対するSPARQLとリンクトデータのインタフェースを提供します。後者については、リソースに対するHTMLとRDF記述の双方を提供するための303リダイレクトを伴うコンテントネゴシエーションの例になります。一方、Pubbyは、既存のSPARQLエンドポイントにリンクトデータのインタフェースを提供します。詳細は「セマンティックウェブのためのクールなURI」[<a href="#ref-COOLURI">COOLURI</a>]の<a href="http://www.w3.org/TR/cooluris/#examples">5章</a>にあります。</li>
 </ul>
 <hr>
 <h2 id="requirements">必要条件</h2>
@@ -867,12 +867,12 @@ RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://d
 <p>注：RDFプロパティやクラスのURIを参照解決しようとしたさいに、それらプロパティやクラスだけでなく、RDF記述を返すことは合理的と言えます。</p>
 <h4 id="recipe6r2">M2．RDFS/OWL語彙やクラス、プロパティを表すHTTP URIの振る舞い​​は、示されたリソースの性質を解釈するさいに矛盾を生じません。</h4>
 <p>現在、ウェブのアーキテクチャにおいてアプリケーションは、HTTP URIで示されるリソースの性質について次の事項に基づき推論できます：</p>
-<p>（ⅰ）URIを参照解決したときに得られるHTTPレスポンスコード（TAG問題「httpRange-14」についての解決を参照してください[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE14]</a>）</p>
+<p>（ⅰ）URIを参照解決したときに得られるHTTPレスポンスコード（TAG問題「httpRange-14」についての解決を参照してください[<a href="#ref-HTTPRANGE14">HTTPRANGE14]</a>）</p>
 <p>そして、</p>
-<p>（ii）URIがフラグメント識別子を含む場合、利用可能な表現のコンテントタイプ[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-AWWW04">AWWW04</a>]。</p>
+<p>（ii）URIがフラグメント識別子を含む場合、利用可能な表現のコンテントタイプ[<a href="#ref-AWWW04">AWWW04</a>]。</p>
 <p>これらの制約が与えられたときには、RDFS/OWLの語彙やクラス、プロパティを表す各HTTP URIへのHTTP要求に対して、アプリケーションが矛盾を含む結論を導き出すことのないような応答が得られます。</p>
 <h3 id="extendedrequirements">拡張要件</h3>
-<p>これらの要件は<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>に対する拡張要件です。</p>
+<p>これらの要件は<a href="#minimumrequirements">最小要件</a>に対する拡張要件です。</p>
 <h4 id="recipe6e1">E1．HTTP URIで示されるRDF語彙やクラス、プロパティに関する「人可読な」文書は、それらのURIを参照解決することで得られます。</h4>
 <p>ウェブブラウザなどのHTTPクライアントは、RDFS/OWL語彙やクラス、プロパティのURIに対してHTTP GETリクエストすることで、それに関する「人可読な」文書を取得できます。そのさい、「Accept:」ヘッダに所望のコンテントタイプを指定します。</p>
 <h4 id="recipe6e2">E2．アプリケーションは、語彙の「バージョン」を区別できます。</h4>
@@ -893,7 +893,7 @@ RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://d
 **************
 -->
 <h2 id="references">参考文献</h2>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/references.bib">BibTeX</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/references.xml">BibTeXML</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/references.rdf">RDF</a> </p>
+<p><a href="references.bib">BibTeX</a> | <a href="references.xml">BibTeXML</a> | <a href="references.rdf">RDF</a> </p>
 <dl>
   <dt> <a name="ref-APACHE20" id="ref-APACHE20">APACHE20</a> </dt>
   <dd><em> <a href="http://httpd.apache.org/docs/2.0/"> <cite>Apache HTTP Server Version 2.0 Documentation</cite> </a> </em>, The Apache Software Foundation.<br>
@@ -968,11 +968,11 @@ RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://d
 <h2 id="purls">付録A：命名用にPURLを使う語彙</h2>
 <p>PURL（Persistent URL）は<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span> URI空間のURIです。PURLは、PURL解決サービスによってサポートされており、これによりPURLドメインの登録所有者はPURLに対するHTTP要求を任意のリソースURLにリダイレクトさせることができます。PURLの登録所有者は、各PURLのリダイレクトURLを指定することは出来ますが、PURLサーバーを設定することは出来ません。</p>
 <p>PURLの中央サーバーが1990年代に開発されたときには、PURLに対する要求に対するHTTPサーバーの標準的な応答は302コード（「一時的な移動」）を返すことでした。その後ウェブアーキテクチャは進化し、W3Cの技術アーキテクチャグループ（TAG）は、RDF<em>クラスとプロパティ名</em>に対するリダイレクトのために、応答コードとして303（「他を参照」）を返すべきであると決めました。
-詳細はhttpRange-14[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE14</a>]についてのTAG決議を参照してください。</p>
+詳細はhttpRange-14[<a href="#ref-HTTPRANGE14">HTTPRANGE14</a>]についてのTAG決議を参照してください。</p>
 <p>PURLサーバーが302応答コードを使用しているため、303応答コードを返すような設定が出来ず、<span class="inlineCode">http://purl.org</span>スラッシュ名前空間サーバーを持つ既存語彙は現在のTAG勧告に厳密には準拠していません。これらの例は、以下のレシピで取り上げています。</p>
 <p>注：本ワーキングドラフトの執筆時点である2008年1月において、PURLサービスのアップデートが進行中です。我々は、このアップデートがhttpRange-14と303リダイレクトについてのTAG判断に対応すると予想しています。
 （<a href="http://www.oclc.org/news/releases/200669.htm">http://www.oclc.org/news/releases/200669.htm</a>を参照）。</p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe1a">レシピ1a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe2a">レシピ2a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe3a">レシピ3a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe4a">レシピ4a</a> | <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe5a">レシピ5a</a></p>
+<p><a href="#recipe1a">レシピ1a</a> | <a href="#recipe2a">レシピ2a</a> | <a href="#recipe3a">レシピ3a</a> | <a href="#recipe4a">レシピ4a</a> | <a href="#recipe5a">レシピ5a</a></p>
 <hr>
 <!--
 *************
@@ -980,7 +980,7 @@ RewriteRule ^example6/(.+) http://dbpedia.org/sparql?query=DESCRIBE+&lt;http://d
 *************
 -->
 <h2 id="recipe1a">レシピ1a．PURL「ハッシュ名前空間」の最小設定</h2>
-<p>このレシピは<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URIスペース内の<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>をもつ語彙に対する<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>を満たす設定例です。機械処理可能（RDF）コンテンツのみが当該名前空間URIで提供されています。</p>
+<p>このレシピは<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URIスペース内の<a href="#hash">ハッシュ名前空間</a>をもつ語彙に対する<a href="#minimumrequirements">最小要件</a>を満たす設定例です。機械処理可能（RDF）コンテンツのみが当該名前空間URIで提供されています。</p>
 <p>語彙...</p>
 <pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a">http://purl.oclc.org/NET/SWD/recipes/examples-A/example1a</a></pre>
 <p>クラス定義...</p>
@@ -1009,8 +1009,8 @@ URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example1a.rdf </pre>
 *************
 -->
 <h2 id="recipe2a">レシピ2a．PURL「スラッシュ名前空間」の最小設定</h2>
-<p>このレシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間にある<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙に対する<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>を満たす設定例になります。機械処理可能（RDF）コンテンツのみが当該名前空間URIで提供されています。</p>
-<p>注：本ワーキングドラフトの執筆時点で、この例は、httpRange-14[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE-14</a>]についてのTAG決議に厳密には従いません。なぜなら、purl.orgサーバーは、303リダイレクトコードではなく、302を使用しているためです。</p>
+<p>このレシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間にある<a href="#slash">スラッシュ名前空間</a>をもつ語彙に対する<a href="#minimumrequirements">最小要件</a>を満たす設定例になります。機械処理可能（RDF）コンテンツのみが当該名前空間URIで提供されています。</p>
+<p>注：本ワーキングドラフトの執筆時点で、この例は、httpRange-14[<a href="#ref-HTTPRANGE14">HTTPRANGE-14</a>]についてのTAG決議に厳密には従いません。なぜなら、purl.orgサーバーは、303リダイレクトコードではなく、302を使用しているためです。</p>
 <p>語彙...</p>
 <pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/">http://purl.oclc.org/NET/SWD/recipes/examples-A/example2a/</a></pre>
 <p>クラス定義...</p>
@@ -1047,7 +1047,7 @@ RewriteRule ^example2a/ example2a.rdf</pre>
 <p>上記のレシピにおいて、単一の書き換えルールは<em>内部</em>リダイレクトです。これは参照解決時に行われる<em>外部</em>（つまり、HTTP）リダイレクトの数を最小限に抑えます。しかし、次のように上記のルールを置き換えることにより、外部リダイレクトとしてこの書き換えルールを実装することも出来ます。</p>
 <pre class="code2"># Rewrite rule to serve RDF/XML content from all partially redirected URIs
 RewriteRule ^example2a/ example2a.rdf [R=303]</pre>
-<p>このルールでは参照解決時に更なるHTTPリダイレクトを伴いますが、クライアントには、語彙やクラス、プロパティのURIが全て同じ場所であることが恐らく明白であり、現在のPURL実装をTAG httpRange-14決議[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE14</a>]に従うように<em>仕向けます</em>。</p>
+<p>このルールでは参照解決時に更なるHTTPリダイレクトを伴いますが、クライアントには、語彙やクラス、プロパティのURIが全て同じ場所であることが恐らく明白であり、現在のPURL実装をTAG httpRange-14決議[<a href="#ref-HTTPRANGE14">HTTPRANGE14</a>]に従うように<em>仕向けます</em>。</p>
 <p>また、語彙の各クラスやプロパティに対する個々のPURLを生成し、部分リダイレクトPURLではなく、それら全て同一のURLを参照することでサーバーの設定を回避することもできます。しかし、コンテンツがその後に移動するなら、個々のPURLは更新が必要になります。これは、つまり中規模から大規模なオントロジーに対しては煩雑で非実用的な作業となります。</p>
 <hr>
 <!--
@@ -1056,7 +1056,7 @@ RewriteRule ^example2a/ example2a.rdf [R=303]</pre>
 *************
 -->
 <h2 id="recipe3a">レシピ3a．PURL「ハッシュ名前空間」の拡張設定</h2>
-<p>このレシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間内の<em><a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a></em>をもつ語彙に対する<em><a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張要件</a></em>を満たす設定例になります。機械処理可能（RDF）および人可読（HTML）双方のコンテンツが当該名前空間URIで提供されます。</p>
+<p>このレシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間内の<em><a href="#hash">ハッシュ名前空間</a></em>をもつ語彙に対する<em><a href="#extendedrequirements">拡張要件</a></em>を満たす設定例になります。機械処理可能（RDF）および人可読（HTML）双方のコンテンツが当該名前空間URIで提供されます。</p>
 <p>語彙...</p>
 <pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a">http://purl.oclc.org/NET/SWD/recipes/examples-A/example3a</a></pre>
 <p>クラス定義...</p>
@@ -1107,8 +1107,8 @@ URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example3a</pre>
 *************
 -->
 <h2 id="recipe4a">レシピ4a．単一HTMLドキュメントのPURL「スラッシュ名前空間」の拡張設定</h2>
-<p>このレシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間内の<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙に対する<a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張要件</a>を満たす設定例になります。機械処理可能（RDF）および人可読（HTML）双方のコンテンツが、当該名前空間URIで提供されます。 HTML文書は単一のファイルとして提供されます。</p>
-<p>注：この例は、httpRange-14[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE-14</a>]についてのTAG決議に厳密には従いません。なぜなら、purl.orgサーバーは、303リダイレクトコードではなく、302を使用しているためです。</p>
+<p>このレシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間内の<a href="#slash">スラッシュ名前空間</a>をもつ語彙に対する<a href="#extendedrequirements">拡張要件</a>を満たす設定例になります。機械処理可能（RDF）および人可読（HTML）双方のコンテンツが、当該名前空間URIで提供されます。 HTML文書は単一のファイルとして提供されます。</p>
+<p>注：この例は、httpRange-14[<a href="#ref-HTTPRANGE14">HTTPRANGE-14</a>]についてのTAG決議に厳密には従いません。なぜなら、purl.orgサーバーは、303リダイレクトコードではなく、302を使用しているためです。</p>
 <p>語彙...</p>
 <pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/">http://purl.oclc.org/NET/SWD/recipes/examples-A/example4a/</a></pre>
 <p>クラス定義...</p>
@@ -1166,8 +1166,8 @@ URL Root:  http://www.w3.org/2006/07/SWD/recipes/examples/example4a/</pre>
 *************
 -->
 <h2 id="recipe5a">レシピ5a．複数のHTML文書を使用したPURL「スラッシュ名前空間」の拡張設定</h2>
-<p>本レシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間にある、<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>をもつ語彙に対する<a href="https://www.w3.org/TR/swbp-vocab-pub/#extendedrequirements">拡張設定</a>を満たす設定例になります。機械処理可能（RDF）と人可読（HTML）コンテンツの双方を当該名前空間URIで提供するもので、HTML文書については複数のリンクで結ばれた文書と一つの概要文書からなります。</p>
-<p>注：この例は、httpRange-14[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-HTTPRANGE14">HTTPRANGE14</a>]についてのTAG決議に厳密には従いません。なぜなら、purl.orgサーバーは、303リダイレクトコードではなく、302を使用しているためです。</p>
+<p>本レシピは、<span class="inlineCode"><a href="http://purl.org/">http://purl.org/</a></span>URI空間にある、<a href="#slash">スラッシュ名前空間</a>をもつ語彙に対する<a href="#extendedrequirements">拡張設定</a>を満たす設定例になります。機械処理可能（RDF）と人可読（HTML）コンテンツの双方を当該名前空間URIで提供するもので、HTML文書については複数のリンクで結ばれた文書と一つの概要文書からなります。</p>
+<p>注：この例は、httpRange-14[<a href="#ref-HTTPRANGE14">HTTPRANGE14</a>]についてのTAG決議に厳密には従いません。なぜなら、purl.orgサーバーは、303リダイレクトコードではなく、302を使用しているためです。</p>
 <p>語彙...</p>
 <pre><a href="http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/">http://purl.oclc.org/NET/SWD/recipes/examples-A/example5a/</a></pre>
 <p>クラス定義...</p>
@@ -1231,35 +1231,35 @@ Root URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example5a/</pre>
 <p>...そして次のURIはFOAFオントロジーを特定します。</p>
 <pre><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></pre>
 <h3 id="hash">「ハッシュ名前空間」を使う語彙</h3>
-<p>SKOSコア[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-SKOS">SKOS</a>]は<em>ハッシュ名前空間</em>を利用する語彙の例です。これは、非公式な表現で、語彙のクラスとプロパティのURIがどのように構築されるかを示しています。この場合、クラスやプロパティのためのURIは、語彙URIの後にハッシュ文字（'＃'）が続き、そして「ローカル名」を付加することによって構築されています。「ローカル名」は語彙のスコープ内で一意にクラスやプロパティを識別する文字列であり、「フラグメント識別子」としても知られています。[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-AWWW04">AWWW04</a>]（ローカル名は[<a href="https://www.w3.org/TR/swbp-vocab-pub/">XML-NS</a>]トークン<a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a>でなくてはなりません）。</p>
+<p>SKOSコア[<a href="#ref-SKOS">SKOS</a>]は<em>ハッシュ名前空間</em>を利用する語彙の例です。これは、非公式な表現で、語彙のクラスとプロパティのURIがどのように構築されるかを示しています。この場合、クラスやプロパティのためのURIは、語彙URIの後にハッシュ文字（'＃'）が続き、そして「ローカル名」を付加することによって構築されています。「ローカル名」は語彙のスコープ内で一意にクラスやプロパティを識別する文字列であり、「フラグメント識別子」としても知られています。[<a href="#ref-AWWW04">AWWW04</a>]（ローカル名は[<a href="">XML-NS</a>]トークン<a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a>でなくてはなりません）。</p>
 <p>たとえば、次のURIはSKOSコア語彙のクラスとプロパティを特定します。</p>
 <pre><a href="http://www.w3.org/2004/02/skos/core#Concept">http://www.w3.org/2004/02/skos/core#Concept</a>
 <a href="http://www.w3.org/2004/02/skos/core#prefLabel">http://www.w3.org/2004/02/skos/core#prefLabel</a></pre>
 <h3 id="slash">「スラッシュ名前空間」を使う語彙</h3>
-<p>FOAF[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-FOAF">FOAF</a>]は<em>スラッシュ名前空間</em>を使用する語彙の例です。ハッシュ名前空間と同じく、これは語彙で定義されたクラスやプロパティのURIが構築される方法を参照する非公式の表現です。この場合、語彙URIはスラッシュ文字（'/'）で終わり、クラスやプロパティのURIは語彙URIにクラスまたはプロパティの「ローカル名」を直接付加することにより構築されています。ここでも、「ローカル名」は語彙のスコープ内でそのクラスやプロパティを一意に識別し、そして[<a href="https://www.w3.org/TR/swbp-vocab-pub/">XML-NS</a>]トークン<a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a>でなくてはなりません。</p>
+<p>FOAF[<a href="#ref-FOAF">FOAF</a>]は<em>スラッシュ名前空間</em>を使用する語彙の例です。ハッシュ名前空間と同じく、これは語彙で定義されたクラスやプロパティのURIが構築される方法を参照する非公式の表現です。この場合、語彙URIはスラッシュ文字（'/'）で終わり、クラスやプロパティのURIは語彙URIにクラスまたはプロパティの「ローカル名」を直接付加することにより構築されています。ここでも、「ローカル名」は語彙のスコープ内でそのクラスやプロパティを一意に識別し、そして[<a href="">XML-NS</a>]トークン<a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a>でなくてはなりません。</p>
 <p>たとえば、次のURIは、FOAFの語彙のクラスやプロパティを特定します。</p>
 <pre><a href="http://xmlns.com/foaf/0.1/Person">http://xmlns.com/foaf/0.1/Person</a>
 <a href="http://xmlns.com/foaf/0.1/maker">http://xmlns.com/foaf/0.1/maker</a></pre>
 <p>URIがスラッシュで終わる語彙が<em>必ずしもスラッシュ名前空間を使うとは限らない</em>ことに注意してください。そしてハッシュ名前空間の場合もあり得ます。例えば、語彙<span class="inlineCode">http://example.org/myvocabulary/</span>はクラス<span class="inlineCode">http://example.org/myvocabulary/#Foo</span>や<span class="inlineCode">http://example.org/myvocabulary/#Bar</span>を定義できます。</p>
-<p><a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>と<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>の双方ともウェブアーキテクチャでサポートされていますが、ウェブサーバーがこれらの選択肢の違いに応じた特定の振舞いが要求されます。サーバーが受信する要求およびサーバーが返す応答の双方がそれぞれの名前空間の場合で異なるので、下記に示す<a href="https://www.w3.org/TR/swbp-vocab-pub/#requirements">要件</a>の一部または全てを満たすために必要なHTTPサーバーの構築方法も異なります。従って両者はそれぞれ別々に扱われます。</p>
+<p><a href="#hash">ハッシュ名前空間</a>と<a href="#slash">スラッシュ名前空間</a>の双方ともウェブアーキテクチャでサポートされていますが、ウェブサーバーがこれらの選択肢の違いに応じた特定の振舞いが要求されます。サーバーが受信する要求およびサーバーが返す応答の双方がそれぞれの名前空間の場合で異なるので、下記に示す<a href="#requirements">要件</a>の一部または全てを満たすために必要なHTTPサーバーの構築方法も異なります。従って両者はそれぞれ別々に扱われます。</p>
 <h3 id="other">他のタイプの名前空間の使う語彙</h3>
-<p>執筆時点で検討中の第三のタイプの語彙URI、すなわち、<a href="http://thing-described-by.org">http://thing-described-by.org</a>のような303リダイレクトサービスに基づいたURIについて留意してください。303リダイレクトのアプローチは本文書で説明しているアプローチよりも簡単に実装できるものの、まだ安定して公開されているRDF語彙がないため、次のレシピでは利用していません。<a href="https://www.w3.org/TR/swbp-vocab-pub/#redirect">付録C</a>でこのアプローチをより詳しく説明しています。</p>
+<p>執筆時点で検討中の第三のタイプの語彙URI、すなわち、<a href="http://thing-described-by.org">http://thing-described-by.org</a>のような303リダイレクトサービスに基づいたURIについて留意してください。303リダイレクトのアプローチは本文書で説明しているアプローチよりも簡単に実装できるものの、まだ安定して公開されているRDF語彙がないため、次のレシピでは利用していません。<a href="#redirect">付録C</a>でこのアプローチをより詳しく説明しています。</p>
 <h3 id="choosingURI">URI名前空間を選択する際の検討事項</h3>
-<p>この文書は、<em>既存</em>語彙の作成者とメンテナのために意図されています。従い、いかなる場面においても最良の<a href="https://www.w3.org/TR/swbp-vocab-pub/#naming">URI名前空間</a>を選択するための適切な助言を行うということは本文書の範囲を超えています。とはいえ、本文書のレシピは、機能性に関する想定をしたうえで特質評価を行っているので、URI名前空間の選択における検討事項の<em>幾つか</em>は本セクションで扱っています。なお、既にURI名前空間の選択をしている場合には、<a href="https://www.w3.org/TR/swbp-vocab-pub/#choosing">レシピの選択</a>に進んでください。</p>
+<p>この文書は、<em>既存</em>語彙の作成者とメンテナのために意図されています。従い、いかなる場面においても最良の<a href="#naming">URI名前空間</a>を選択するための適切な助言を行うということは本文書の範囲を超えています。とはいえ、本文書のレシピは、機能性に関する想定をしたうえで特質評価を行っているので、URI名前空間の選択における検討事項の<em>幾つか</em>は本セクションで扱っています。なお、既にURI名前空間の選択をしている場合には、<a href="#choosing">レシピの選択</a>に進んでください。</p>
 <p>自身の管理する語彙のために選択しようとしているURI名前空間は書き込み権限のあるウェブアドレス（URI）である必要があり、語彙の利用者は当該語彙のURIそのものと、当該語彙で定義されているプロパティやクラスのURIの双方について参照解決可能であると期待しています。ですから、URI名前空間を選択することは、語彙設計の早期における大切な決定事項になります。</p>
 <p>RDFの仕様としては妥当なURIスキームであればどれでも名前空間の冒頭部分に使うことができますが、セマンティックウェブのベストプラクティスとしては、プラグインの追加や追加設定をすることなく、いかなるクライアントでも解決可能なURIスキームを使います。そのなかで、<span style="font-style:italic">http</span> URIスキームが最もよく知られた存在であり、かつ、全てのウェブクライアントに解決されます。このことから、本文書では<span class="inlineCode">http:</span>から始まる名前空間を持つ語彙のみに焦点を当てています。</p>
-<p>ベストプラクティスでは、すべてのRDF語彙が<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>または<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を使うこととしています（上記参照）。どちらを選択するかは次の3点にある程度依存します。すなわち、どの程度対象語彙が大きくなるか、どの程度頻繁に新規語（すなわち、プロパティやクラス）を追加するか、そして、どの程度利用者が語彙中の個々の語に関する情報にアクセスするか、になります。</p>
-<p>小規模な語彙であれば語彙全体を一度のウェブアクセスで提供するのが最も都合が良いでしょう。このような語彙は<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>を利用するのが一般的で、当該語彙中のいかなる語に対するウェブアクセス（すなわち、HTTP GETリクエスト）も、当該語彙の全ての語を記述する単一の<a href="http://www.w3.org/TR/2004/REC-webarch-20041215/#def-information-resource">情報リソース</a>を返します。</p>
-<p>追加が頻繁に行われると想定されたり、一般的なユーザーアプリケーションが一度のアクセスで取得可能なサイズよりも大きなデータを含んでいたりする語彙については、ウェブアクセスを繰り返すことで徐々に語彙中の語に関する詳細を得られるように調整するのが良いでしょう。全ての語に関する完全な記述は複数の情報リソースに分割するか、あるいは、クエリサービスを経由するのが良いかもしれません（例えば[SPARQL] -- <a href="https://www.w3.org/TR/swbp-vocab-pub/#recipe6">レシピ6</a>を参照）。このような語彙は<a href="https://www.w3.org/TR/swbp-vocab-pub/#slash">スラッシュ名前空間</a>を利用するのが一般的で、それは当該語彙中のどの語へのウェブアクセスも原則当該語についての情報のみを返すことが可能だからです。（HTTPプロトコルの仕組みから、<a href="https://www.w3.org/TR/swbp-vocab-pub/#hash">ハッシュ名前空間</a>を使うとこのような設定は出来ません。）</p>
+<p>ベストプラクティスでは、すべてのRDF語彙が<a href="#hash">ハッシュ名前空間</a>または<a href="#slash">スラッシュ名前空間</a>を使うこととしています（上記参照）。どちらを選択するかは次の3点にある程度依存します。すなわち、どの程度対象語彙が大きくなるか、どの程度頻繁に新規語（すなわち、プロパティやクラス）を追加するか、そして、どの程度利用者が語彙中の個々の語に関する情報にアクセスするか、になります。</p>
+<p>小規模な語彙であれば語彙全体を一度のウェブアクセスで提供するのが最も都合が良いでしょう。このような語彙は<a href="#hash">ハッシュ名前空間</a>を利用するのが一般的で、当該語彙中のいかなる語に対するウェブアクセス（すなわち、HTTP GETリクエスト）も、当該語彙の全ての語を記述する単一の<a href="http://www.w3.org/TR/2004/REC-webarch-20041215/#def-information-resource">情報リソース</a>を返します。</p>
+<p>追加が頻繁に行われると想定されたり、一般的なユーザーアプリケーションが一度のアクセスで取得可能なサイズよりも大きなデータを含んでいたりする語彙については、ウェブアクセスを繰り返すことで徐々に語彙中の語に関する詳細を得られるように調整するのが良いでしょう。全ての語に関する完全な記述は複数の情報リソースに分割するか、あるいは、クエリサービスを経由するのが良いかもしれません（例えば[SPARQL] -- <a href="#recipe6">レシピ6</a>を参照）。このような語彙は<a href="#slash">スラッシュ名前空間</a>を利用するのが一般的で、それは当該語彙中のどの語へのウェブアクセスも原則当該語についての情報のみを返すことが可能だからです。（HTTPプロトコルの仕組みから、<a href="#hash">ハッシュ名前空間</a>を使うとこのような設定は出来ません。）</p>
 <p>セマンティックウェブのためのURI設計に関する問題について詳細な議論は次の文書で行われています。</p>
 <ul>
-  <li>「セマンティックウェブのためのクールなURI」[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-COOLURI">COOLURI</a>]</li>
+  <li>「セマンティックウェブのためのクールなURI」[<a href="#ref-COOLURI">COOLURI</a>]</li>
   <li>TAG調査結果：「<a href="http://www.w3.org/2001/tag/doc/nsDocuments/">リソースに名前空間を関連づける</a>」</li>
 </ul>
 <hr>
 <h2 id="redirect">付録C：303-リダイレクトサービスに基づく語彙のURI</h2>
 <p>このタイプのURIには、<a href="http://thing-described-by.org">http://thing-described-by.org</a>のような303リダイレクトサービスのベースURIにクエリ文字列として記述リソースのURIを追加することによって形成されます。thing-described-by.orgドメインは、クエリ文字列（すなわち、疑問符に続く部分）に引用されたドメインに対して、それらのクエリURIの意味を定義する権限を委譲しています。</p>
-<p>原理的には、Foo語彙向けの識別子として、URI<a href="http://thing-described-by.org?http://example.org/foo">http://thing-described-by.org?http://example.org/foo</a>を生成できます。Foo語彙のためのURIまたはFoo語彙のプロパティやクラスに対するURIへのHTTP GETリクエストは303応答コードを返すので、本文書で記述しているRDF語彙の公開のための二件の<a href="https://www.w3.org/TR/swbp-vocab-pub/#minimumrequirements">最小要件</a>の二件目に従うことになります。さらに、http://example.org/fooというURIが当該語彙に対する正式なRDF記述を識別するためにあり、そして当該記述を提供するサーバーがそれを適切に識別するMIMEタイプを返すならば、<a href="http://thing-described-by.org?http://example.org/foo">http://thing-described-by.org?http://example.org/foo</a>を使うことで最小要件の一件目に従うことになります。</p>
+<p>原理的には、Foo語彙向けの識別子として、URI<a href="http://thing-described-by.org?http://example.org/foo">http://thing-described-by.org?http://example.org/foo</a>を生成できます。Foo語彙のためのURIまたはFoo語彙のプロパティやクラスに対するURIへのHTTP GETリクエストは303応答コードを返すので、本文書で記述しているRDF語彙の公開のための二件の<a href="#minimumrequirements">最小要件</a>の二件目に従うことになります。さらに、http://example.org/fooというURIが当該語彙に対する正式なRDF記述を識別するためにあり、そして当該記述を提供するサーバーがそれを適切に識別するMIMEタイプを返すならば、<a href="http://thing-described-by.org?http://example.org/foo">http://thing-described-by.org?http://example.org/foo</a>を使うことで最小要件の一件目に従うことになります。</p>
 <hr>
 <!--
 ************************
@@ -1267,7 +1267,7 @@ Root URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example5a/</pre>
 ************************
 -->
 <h2 id="apache">付録D：Apacheの設定</h2>
-<p>Apache HTTPサーバー[<a href="https://www.w3.org/TR/swbp-vocab-pub/#ref-APACHE20">APACHE20</a>]は、メインのApacheの設定ファイル（通常は「httpd.conf」など）の内部またはディレクトリ単位の設定ファイル（通常は「.htaccess」）の内側のいずれかに書かれた<em>ディレクティブ</em>で設定されています。本文書に書かれているレシピは、読者がメインのApache設定ファイルへのアクセス権を<em>持たない</em>ことを想定しており、必要なティレクティブをサーバーに与えるために、.htaccessファイルを使用し、ディレクトリ単位の設定を行わなくてはならない場面を想定しています。.htaccessファイルを利用するためのより詳しい情報は<a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html">Apache Tutorial: .htaccess
+<p>Apache HTTPサーバー[<a href="#ref-APACHE20">APACHE20</a>]は、メインのApacheの設定ファイル（通常は「httpd.conf」など）の内部またはディレクトリ単位の設定ファイル（通常は「.htaccess」）の内側のいずれかに書かれた<em>ディレクティブ</em>で設定されています。本文書に書かれているレシピは、読者がメインのApache設定ファイルへのアクセス権を<em>持たない</em>ことを想定しており、必要なティレクティブをサーバーに与えるために、.htaccessファイルを使用し、ディレクトリ単位の設定を行わなくてはならない場面を想定しています。.htaccessファイルを利用するためのより詳しい情報は<a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html">Apache Tutorial: .htaccess
   files</a>で得られます。</p>
 <p>もしもメインのApache設定ファイルへの書き込み権限が<em>ある</em>場合は、直接そこに記述することを検討するのが良いでしょう。ディレクトリ単位の設定はサーバーのパフォーマンスに悪影響を及ぼしかねず、また、ディレクトリレベルでのセキュリティ設定により気を使う必要があるからです。<a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html#when">Apache Tutorial: When (not)
   to use .htaccess files</a>を参照してください。なお、<span class="inlineCode">AllowOverride</span>はディレクトリレベルのディレクティブであり、そのパフォーマンスとセキュリティの副作用は通常、それが有効であるディレクトリツリーを越えないことに留意すべきです。</p>
