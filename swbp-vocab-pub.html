@@ -289,7 +289,7 @@ div.test h4 {
 <p>このレシピは、<a href="#hash">ハッシュ名前空間</a>を使う語彙のための<strong>最も簡単な設定</strong>例になります。語彙URIから機械処理可能な（RDF）コンテンツを提供するようサーバーを設定して<a href="#minimumrequirements">最小要件</a>を満たします。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe1deref">語彙URIの参照解決</h4>
-  <p class="msg"> <img src="img/deref-ont-uri-min.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-min.png" alt="クライアントとサーバーの対話"> </p>
   <p>（RDF/XMLとしてエンコードされた、語彙についてのRDF記述を返す。）</p>
 </div>
 <h3 id="recipe1example">設定例</h3>
@@ -341,12 +341,12 @@ Content-Type: application/rdf+xml</pre>
 <p>このレシピは、<a href="#slash">スラッシュ名前空間</a>を使用する語彙のための<strong>最も簡単な設定</strong>例になります。語彙URIから機械処理可能な（RDF）コンテンツを提供し、クラスとプロパティのURIから語彙URIにクライアントをリダイレクトするようにサーバー設定することで<a href="#minimumrequirements">最小要件</a>満たします。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe2deref">語彙URIの参照解決</h4>
-  <p class="msg"> <img src="img/deref-ont-uri-min.png" alt="例2クライアントとサーバーの対話。"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-min.png" alt="例2クライアントとサーバーの対話。"> </p>
   <p>（RDF/XMLとしてエンコードされた、語彙のRDF記述を返す。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe2propderef">クラスまたはプロパティのURIの参照解決</h4>
-  <p class="msg"> <img src="img/deref-cp-uri-min.png" alt="例2クライアントとサーバーの対話。"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-min.png" alt="例2クライアントとサーバーの対話。"> </p>
   <p>（語彙URIにクライアントをリダイレクトします。）</p>
 </div>
 <h3 id="recipe2example">設定例</h3>
@@ -413,12 +413,12 @@ Location: http://example.com/examples/example2/</pre>
 <p>このレシピは、<a href="#hash">ハッシュ名前空間</a>をもつ語彙の<strong>拡張構成</strong>例になります。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかをリクエストに応じて提供するようにサーバーを設定し、<a href="#extendedrequirements">拡張要件</a>を満たします。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe3htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
-  <p class="msg"> <img src="img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
   <p>（語彙に対する現在のHTML文書にクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe3rdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
-  <p class="msg"> <img src="img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
   <p>（語彙に対する現在のRDF記述にクライアントをリダイレクトします。）</p>
 </div>
 <h3 id="recipe3example">設定例</h3>
@@ -516,22 +516,22 @@ Location: http://example.com/examples/example3-content/2005-10-31.rdf</pre>
 <p><a href="#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。語彙URIから人可読（HTML）もしくは機械処理可能（RDF）コンテンツのいずれかをリクエストに応じて提供するようにサーバーを設定し、さらにリクエストに応じてクラスまたはプロパティURIから適切なコンテンツを取得できるようクライアントをリダイレクトすることで<a href="#extendedrequirements">拡張要件</a>を満たします。HTML文書は、単一のファイルとして提供されています。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe4htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
-  <p class="msg"> <img src="img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html.png" alt="クライアントとサーバーの対話"> </p>
   <p>（<a href="#recipe3">レシピ3</a>のように、語彙に対する現在のHTML文書にクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe4rdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
-  <p class="msg"> <img src="img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
   <p>（<a href="#recipe3">レシピ3</a>のように、語彙に対する現在のRDF記述にクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe4prophtmlderef">クラスまたはプロパティのURIを参照解決し、HTMLコンテンツを要求</h4>
-  <p class="msg"> <img src="img/deref-cp-uri-html.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-html.png" alt="クライアントとサーバーの対話"> </p>
   <p>（クラスやプロパティに関連する語彙についての現在のHTML文書のフラグメントにクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe4proprdfderef">クラスまたはプロパティのURIを参照解決し、RDFコンテンツを要求</h4>
-  <p class="msg"> <img src="img/deref-cp-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
   <p>（語彙に対する現在のRDF記述にクライアントをリダイレクトします。）</p>
 </div>
 <h3 id="recipe4example">設定例</h3>
@@ -668,22 +668,22 @@ Location: http://example.com/examples/example4-content/2005-10-31.rdf</pre>
 <p>このレシピでは<a href="#slash">スラッシュ名前空間</a>をもつ語彙向けの<strong>拡張設定</strong>例を示します。要求されたものに応じて、機械可読（RDF）と人間可読（HTML）の双方のコンテンツを提供するサーバーを設定します。HTML文書については概要と、ハイパーリンクで結ばれた複数の文書になります。以下の図のようなやりとりになります：</p>
 <div class="interaction">
   <h4 id="recipe5htmlderef">語彙URIを参照解決し、HTMLコンテンツを要求</h4>
-  <p class="msg"> <img src="img/deref-ont-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
   <p>（HTMLで書かれた、語彙についての現在の概要文書にクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe5rdfderef">語彙URIを参照解決し、RDFコンテンツを要求</h4>
-  <p class="msg"> <img src="img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-ont-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
   <p>(<a href="#recipe3">レシピ3</a>と<a href="#recipe4">レシピ4</a>のように、語彙についての現在のRDF記述にクライアントをリダイレクトします。)</p>
 </div>
 <div class="interaction">
   <h4 id="recipe5prophtmlderef">クラスまたはプロパティのURIを参照解決し、HTMLコンテンツを要求</h4>
-  <p class="msg"> <img src="img/deref-cp-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-html-multi.png" alt="クライアントとサーバーの対話"> </p>
   <p>（クラスまたはプロパティの現在のHTML文書にクライアントをリダイレクトします。）</p>
 </div>
 <div class="interaction">
   <h4 id="recipe5proprdfderef">クラスまたはプロパティのURIを参照解決し、RDFコンテンツを要求</h4>
-  <p class="msg"> <img src="img/deref-cp-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
+  <p class="msg"> <img src="http://www.w3.org/TR/swbp-vocab-pub/img/deref-cp-uri-rdf.png" alt="クライアントとサーバーの対話"> </p>
   <p>（<a href="#recipe4">レシピ4</a>のように、語彙についての現在のRDF記述にクライアントをリダイレクトします。）</p>
 </div>
 <h3 id="recipe5example">設定例</h3>
