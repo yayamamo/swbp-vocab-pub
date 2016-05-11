@@ -89,7 +89,7 @@ div.test h4 {
 
 <dl class="meta">
 <dt>更新日:</dt>
-<dd class="date"><span class="modified">2016-05-09</span></dd>
+<dd class="date"><span class="modified">2016-05-11</span></dd>
 <dt>公開日:</dt>
 <dd class="date"><span class="published">2016-05-09</span></dd>
 <dt>翻訳者:</dt>
@@ -1226,24 +1226,24 @@ Root URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example5a/</pre>
 ******************
 -->
 <h2 id="naming">付録B：URI名前空間</h2>
-<p>あなたの語彙を識別するURIをここでは<em>語彙名前空間URI</em>もしくは単に<em>語彙URI</em>（ここでは<em>語彙</em>と<em>オントロジー</em>は同義なので、<em>オントロジーURI</em>とも）と呼びます。たとえば、次のURIは、SKOSコア語彙を特定します。</p>
+<p>ある語彙を特定するURIをここでは<em>語彙名前空間URI</em>もしくは単に<em>語彙URI</em>（ここでは<em>語彙</em>と<em>オントロジー</em>は同義なので、<em>オントロジーURI</em>とも）と呼びます。たとえば、次のURIは、SKOSコア語彙を特定します。</p>
 <pre><a href="http://www.w3.org/2004/02/skos/core">http://www.w3.org/2004/02/skos/core</a></pre>
 <p>...そして次のURIはFOAFオントロジーを特定します。</p>
 <pre><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></pre>
 <h3 id="hash">「ハッシュ名前空間」を使う語彙</h3>
-<p>SKOSコア[<a href="#ref-SKOS">SKOS</a>]は<em>ハッシュ名前空間</em>を利用する語彙の例です。これは、非公式な表現で、語彙のクラスとプロパティのURIがどのように構築されるかを示しています。この場合、クラスやプロパティのためのURIは、語彙URIの後にハッシュ文字（'＃'）が続き、そして「ローカル名」を付加することによって構築されています。「ローカル名」は語彙のスコープ内で一意にクラスやプロパティを識別する文字列であり、「フラグメント識別子」としても知られています。[<a href="#ref-AWWW04">AWWW04</a>]（ローカル名は[<a href="">XML-NS</a>]トークン<a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a>でなくてはなりません）。</p>
+<p>SKOSコア[<a href="#ref-SKOS">SKOS</a>]は<em>ハッシュ名前空間</em>を利用する語彙の例です。これは、非公式な表現で、語彙のクラスとプロパティのURIがどのように構築されるかを示しています。この場合、クラスやプロパティのためのURIは、語彙URIの後にハッシュ文字（'＃'）が続き、そして「ローカル名」を付加することによって構築されています。「ローカル名」は語彙のスコープ内で一意にクラスやプロパティを特定する文字列であり、「フラグメント識別子」としても知られています。[<a href="#ref-AWWW04">AWWW04</a>]（ローカル名は[<a href="">XML-NS</a>]トークン<a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a>でなくてはなりません）。</p>
 <p>たとえば、次のURIはSKOSコア語彙のクラスとプロパティを特定します。</p>
 <pre><a href="http://www.w3.org/2004/02/skos/core#Concept">http://www.w3.org/2004/02/skos/core#Concept</a>
 <a href="http://www.w3.org/2004/02/skos/core#prefLabel">http://www.w3.org/2004/02/skos/core#prefLabel</a></pre>
 <h3 id="slash">「スラッシュ名前空間」を使う語彙</h3>
-<p>FOAF[<a href="#ref-FOAF">FOAF</a>]は<em>スラッシュ名前空間</em>を使用する語彙の例です。ハッシュ名前空間と同じく、これは語彙で定義されたクラスやプロパティのURIが構築される方法を参照する非公式の表現です。この場合、語彙URIはスラッシュ文字（'/'）で終わり、クラスやプロパティのURIは語彙URIにクラスまたはプロパティの「ローカル名」を直接付加することにより構築されています。ここでも、「ローカル名」は語彙のスコープ内でそのクラスやプロパティを一意に識別し、そして[<a href="">XML-NS</a>]トークン<a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a>でなくてはなりません。</p>
+<p>FOAF[<a href="#ref-FOAF">FOAF</a>]は<em>スラッシュ名前空間</em>を使用する語彙の例です。ハッシュ名前空間と同じく、これは語彙で定義されたクラスやプロパティのURIが構築される方法を参照する非公式の表現です。この場合、語彙URIはスラッシュ文字（'/'）で終わり、クラスやプロパティのURIは語彙URIにクラスまたはプロパティの「ローカル名」を直接付加することにより構築されています。ここでも、「ローカル名」は語彙のスコープ内でそのクラスやプロパティを一意に特定し、そして[<a href="">XML-NS</a>]トークン<a href="http://www.w3.org/TR/REC-xml-names/#NT-NCName">NCName</a>でなくてはなりません。</p>
 <p>たとえば、次のURIは、FOAFの語彙のクラスやプロパティを特定します。</p>
 <pre><a href="http://xmlns.com/foaf/0.1/Person">http://xmlns.com/foaf/0.1/Person</a>
 <a href="http://xmlns.com/foaf/0.1/maker">http://xmlns.com/foaf/0.1/maker</a></pre>
 <p>URIがスラッシュで終わる語彙が<em>必ずしもスラッシュ名前空間を使うとは限らない</em>ことに注意してください。そしてハッシュ名前空間の場合もあり得ます。例えば、語彙<span class="inlineCode">http://example.org/myvocabulary/</span>はクラス<span class="inlineCode">http://example.org/myvocabulary/#Foo</span>や<span class="inlineCode">http://example.org/myvocabulary/#Bar</span>を定義できます。</p>
-<p><a href="#hash">ハッシュ名前空間</a>と<a href="#slash">スラッシュ名前空間</a>の双方ともウェブアーキテクチャでサポートされていますが、ウェブサーバーがこれらの選択肢の違いに応じた特定の振舞いが要求されます。サーバーが受信するリクエストおよびサーバーが返すレスポンスの双方がそれぞれの名前空間の場合で異なるので、下記に示す<a href="#requirements">要件</a>の一部または全てを満たすために必要なHTTPサーバーの構築方法も異なります。従って両者はそれぞれ別々に扱われます。</p>
+<p><a href="#hash">ハッシュ名前空間</a>と<a href="#slash">スラッシュ名前空間</a>の双方ともウェブアーキテクチャでサポートされていますが、これらの選択肢の違いに応じた特定の振舞いがウェブサーバーには要求されます。サーバーが受信するリクエストおよびサーバーが返すレスポンスの双方がそれぞれの名前空間の場合で異なるので、上記の<a href="#requirements">要件</a>の一部または全てを満たすために必要なHTTPサーバーの構築方法も異なります。従って両者はそれぞれ別々に扱われます。</p>
 <h3 id="other">他のタイプの名前空間の使う語彙</h3>
-<p>執筆時点で検討中の第三のタイプの語彙URI、すなわち、<a href="http://thing-described-by.org">http://thing-described-by.org</a>のような303リダイレクトサービスに基づいたURIについて留意してください。303リダイレクトのアプローチは本文書で説明しているアプローチよりも簡単に実装できるものの、まだ安定して公開されているRDF語彙がないため、本文書でのレシピでは利用していません。<a href="#redirect">付録C</a>でこのアプローチをより詳しく説明しています。</p>
+<p>執筆時点で検討中の第三のタイプの語彙URI、すなわち、<a href="http://thing-described-by.org">http://thing-described-by.org</a>のような303リダイレクトサービスに基づいたURIについて留意してください。303リダイレクトのアプローチは本文書で説明しているアプローチよりも簡単に実装できるものの、まだ安定して公開されているRDF語彙がないため、本文書のレシピでは利用していません。<a href="#redirect">付録C</a>でこのアプローチをより詳しく説明しています。</p>
 <h3 id="choosingURI">URI名前空間を選択する際の検討事項</h3>
 <p>この文書は、<em>既存</em>語彙の作成者とメンテナのために意図されています。従い、いかなる場面においても最良の<a href="#naming">URI名前空間</a>を選択するための適切な助言を行うということは本文書の範囲を超えています。とはいえ、本文書のレシピは、機能性に関する想定をしたうえで特質評価を行っているので、URI名前空間の選択における検討事項の<em>幾つか</em>は本セクションで扱っています。なお、既にURI名前空間の選択をしている場合には、<a href="#choosing">レシピの選択</a>に進んでください。</p>
 <p>自身の管理する語彙のために選択しようとしているURI名前空間は書き込み権限のあるウェブアドレス（URI）である必要があり、語彙の利用者は当該語彙のURIそのものと、当該語彙で定義されているプロパティやクラスのURIの双方について参照解決可能であると期待しています。ですから、URI名前空間を選択することは、語彙設計の早期における大切な決定事項になります。</p>
@@ -1258,7 +1258,7 @@ Root URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example5a/</pre>
 </ul>
 <hr />
 <h2 id="redirect">付録C：303-リダイレクトサービスに基づく語彙のURI</h2>
-<p>このタイプのURIには、<a href="http://thing-described-by.org">http://thing-described-by.org</a>のような303リダイレクトサービスのベースURIにクエリ文字列として記述リソースのURIを追加することによって形成されます。thing-described-by.orgドメインは、クエリ文字列（すなわち、疑問符に続く部分）に引用されたドメインに対して、それらのクエリURIの意味を定義する権限を委譲しています。</p>
+<p>このタイプのURIは、<a href="http://thing-described-by.org">http://thing-described-by.org</a>のような303リダイレクトサービスのベースURIにクエリ文字列として記述リソースのURIを追加することによって形成されます。thing-described-by.orgドメインは、クエリ文字列（すなわち、疑問符に続く部分）に引用されたドメインに対して、それらのクエリURIの意味を定義する権限を委譲しています。</p>
 <p>原理的には、Foo語彙向けの識別子として、URI<a href="http://thing-described-by.org?http://example.org/foo">http://thing-described-by.org?http://example.org/foo</a>を生成できます。Foo語彙のためのURIまたはFoo語彙のプロパティやクラスに対するURIへのHTTP GETリクエストは303応答コードを返すので、本文書で記述しているRDF語彙の公開のための二件の<a href="#minimumrequirements">最小要件</a>の二件目に従うことになります。さらに、http://example.org/fooというURIが当該語彙に対する正式なRDF記述を識別するためにあり、そして当該記述を提供するサーバーがそれを適切に識別するMIMEタイプを返すならば、<a href="http://thing-described-by.org?http://example.org/foo">http://thing-described-by.org?http://example.org/foo</a>を使うことで最小要件の一件目に従うことになります。</p>
 <hr />
 <!--
@@ -1267,21 +1267,21 @@ Root URL:  http://www.w3.org/2006/07/SWD/recipes/examples/example5a/</pre>
 ************************
 -->
 <h2 id="apache">付録D：Apacheの設定</h2>
-<p>Apache HTTPサーバー[<a href="#ref-APACHE20">APACHE20</a>]は、メインのApacheの設定ファイル（通常は「httpd.conf」など）の内部またはディレクトリ単位の設定ファイル（通常は「.htaccess」）の内側のいずれかに書かれた<em>ディレクティブ</em>で設定されています。本文書に書かれているレシピは、読者がメインのApache設定ファイルへのアクセス権を<em>持たない</em>ことを想定しており、必要なティレクティブをサーバーに与えるために、.htaccessファイルを使用し、ディレクトリ単位の設定を行わなくてはならない場面を想定しています。.htaccessファイルを利用するためのより詳しい情報は<a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html">Apache Tutorial: .htaccess
+<p>Apache HTTPサーバー[<a href="#ref-APACHE20">APACHE20</a>]は、メインのApacheの設定ファイル（通常は「httpd.conf」など）内、またはディレクトリ単位の設定ファイル（通常は「.htaccess」）内のいずれかに書かれた<em>ディレクティブ</em>で設定されています。本文書に書かれているレシピは、読者がメインのApache設定ファイルへのアクセス権を<em>持たない</em>ことを想定しており、必要なティレクティブをサーバーに与えるために、.htaccessファイルを使用し、ディレクトリ単位の設定を行わなくてはならない場面を想定しています。.htaccessファイルを利用するためのより詳しい情報は<a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html">Apache Tutorial: .htaccess
   files</a>で得られます。</p>
 <p>もしもメインのApache設定ファイルへの書き込み権限が<em>ある</em>場合は、直接そこに記述することを検討するのが良いでしょう。ディレクトリ単位の設定はサーバーのパフォーマンスに悪影響を及ぼしかねず、また、ディレクトリレベルでのセキュリティ設定により気を使う必要があるからです。<a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html#when">Apache Tutorial: When (not)
-  to use .htaccess files</a>を参照してください。なお、<span class="inlineCode">AllowOverride</span>はディレクトリレベルのディレクティブであり、そのパフォーマンスとセキュリティの副作用は通常、それが有効であるディレクトリツリーを越えないことに留意すべきです。</p>
+  to use .htaccess files</a>を参照してください。なお、<span class="inlineCode">AllowOverride</span>はディレクトリレベルのディレクティブであり、そのパフォーマンスとセキュリティに関する副作用は通常、それが有効であるディレクトリツリーを越えないことに留意すべきです。</p>
 <p>注意：ここでの設定では、Apache HTTPサーバーのバージョン2.0.46でのみテストされています。</p>
 <h3 id="server_config">サーバー設定</h3>
 <p>ディレクトリ毎の設定ファイルを利用できるように、サーバーは、使用しているディレクトリに対する<em>override</em>を許可するよう設定する必要があります。必要なoverrideは次のとおりです。</p>
 <pre class="code2">AllowOverride FileInfo Options</pre>
-<p>また、利用しているApacheがmod_rewriteモジュールを含めてコンパイルされているか、またはmod_rewrite動的共有オブジェクト（DSO）がインストールされていることを確認してください。そして、次の行がApacheの設定ファイルに含まれます。</p>
+<p>また、利用しているApacheがmod_rewriteモジュールを含めてコンパイルされているか、またはmod_rewrite動的共有オブジェクト（DSO）がインストールされていることを確認してください。そして、次の2行がApacheの設定ファイルに含まれます。</p>
 <pre class="code2">AddModule mod_rewrite.c<br />LoadModule rewrite_module modules/mod_rewrite.so</pre>
 <p>レシピの動作に問題がある場合、必要なoverrideディレクティブがメインのApacheの設定ファイルで指定されていないか、mod_rewriteを利用できないことが原因の可能性があります。</p>
 <h3 id="testing_parsing">.htaccessが妥当であることをテストします</h3>
 <p>サーバーが指定されたディレクトリにある.htaccessファイルを正しく解析するかテストするには、ウェブブラウザにテストしたいディレクトリ内のファイルにアクセスするURLを与え、正しく配信されていることを確認します。続いて、次に示す行を含むように当該ディレクトリ内の.htaccessファイルを生成または編集します。</p>
 <pre class="code2">InvalidDirective Here</pre>
-<p>ウェブブラウザで当該URLをリロードします。サーバーが当該ディレクトリの.htaccessファイルを解析している場合、サーバーは解析できない<span class="inlineCode">InvalidDirective</span>により生成された「内部サーバーエラー」ページを返すはずです。通常通りにページが再表示された場合はレシピで使うことになるディレクトリで.htaccessファイルが有効になるようシステム管理者に依頼する必要があります。サーバーが.htaccessファイルを解析していると確認したときは、そのディレクトリ内の.htaccessファイルから<span class="inlineCode">InvalidDirective</span>行を削除するのを忘れないでください。</p>
+<p>ウェブブラウザで当該URLをリロードします。サーバーが当該ディレクトリの.htaccessファイルを解析している場合、サーバーは解析できない<span class="inlineCode">InvalidDirective</span>により生成された「内部サーバーエラー」ページを返すはずです。通常通りにページが再表示された場合はレシピで使うことになるディレクトリで.htaccessファイルが有効になるようシステム管理者に依頼する必要があります。サーバーが.htaccessファイルを解析していると確認がとれたときには、当該.htaccessファイルから<span class="inlineCode">InvalidDirective</span>行を削除するのを忘れないでください。</p>
 <h3 id="testing_rewrite">mod_rewriteがインストールされていることをテストします</h3>
 <p>mod_rewriteがインストールされていることをテストするには、最初のテストにおける<span class="inlineCode">InvalidDirective</span>行を次のものに置き換えます。</p>
 <pre class="code2">RewriteEngine On</pre>
